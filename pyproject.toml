@@ -7,6 +7,7 @@ authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 fava = "^1.17"
+PyGObject = "^3.38.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
