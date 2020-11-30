@@ -30,7 +30,10 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         Gtk.Window.__init__(self, *args, **kwargs)
         self.set_title("Fava")
-        self.set_default_size(700, 500)
+        self.set_default_size(950, 700)
+
+        self.header = Header()
+        self.set_titlebar(self.header)
 
         self.webview = WebKit.WebView()
         self.webview.load_uri("http://127.0.0.1:8899/")
@@ -40,6 +43,16 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.add(scrolled_window)
 
         self.connect("destroy", application.quit)
+
+
+class Header(Gtk.HeaderBar):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.set_title("Fava")
+        self.set_show_close_button(True)
+
+        self.button_open = Gtk.Button(label="Open")
+        self.pack_start(self.button_open)
 
 
 class Server:
