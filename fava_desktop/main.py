@@ -21,9 +21,9 @@ class Application(Gtk.Application):
         self.add_window(window)
         window.show_all()
 
-    def do_quit(self, *args, **kwargs):
+    def quit(self, *args, **kwargs):
         self.server.stop()
-        Gtk.main_quit()
+        super().quit()
 
 
 class ApplicationWindow(Gtk.ApplicationWindow):
@@ -39,7 +39,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         scrolled_window.add(self.webview)
         self.add(scrolled_window)
 
-        self.connect("destroy", application.do_quit)
+        self.connect("destroy", application.quit)
 
 
 class Server:
