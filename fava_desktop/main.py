@@ -93,11 +93,11 @@ class Header(Gtk.HeaderBar):
 
 class Server:
     def load_files(self, files):
-        restart = self.is_alive()
-        if restart:
+        start_again = self.is_alive()
+        if start_again:
             self.stop()
         app.config["BEANCOUNT_FILES"] = files
-        if restart:
+        if start_again:
             self.start()
 
     def find_free_port(self):
