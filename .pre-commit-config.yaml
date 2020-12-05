@@ -17,3 +17,11 @@ repos:
     hooks:
       - id: pyupgrade
         args: [ "--py36-plus" ]
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        stages: [ commit ]
+        language: system
+        entry: poetry run pytest
+        types: [ python ]

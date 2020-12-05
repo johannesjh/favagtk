@@ -12,6 +12,7 @@ PyGObject = "^3.38.0"
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 pre-commit = "^2.9.2"
+pyclean = "^2.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
