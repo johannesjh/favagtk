@@ -39,6 +39,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.server.start()
 
         self.webview = WebKit.WebView()
+        settings = WebKit.Settings()
+        settings.set_property("enable-developer-extras", True)
+        self.webview.set_settings(settings)
         self.webview.load_uri(self.server.url)
 
         scrolled_window = Gtk.ScrolledWindow()
