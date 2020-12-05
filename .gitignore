@@ -1,4 +1,6 @@
-.idea
-venv/
+build/
+dist/
+.idea/
 __pycache__/
+venv/
 
