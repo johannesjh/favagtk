@@ -507,6 +507,14 @@ optional = false
 python-versions = ">=3.6, <4"
 
 [[package]]
+name = "pyclean"
+version = "2.0.0"
+description = "Pure Python cross-platform pyclean. Clean up your Python bytecode."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pygobject"
 version = "3.38.0"
 description = "Python bindings for GObject Introspection"
@@ -705,7 +713,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "92efe4c1a92670c321cda50e2237b9c678e83f0b7ce8b25c4520dbac6156f37a"
+content-hash = "3b3483153c57a58373ceec7d94495cf33a4b892ed95d17ac5bd242aa719c3c09"
 
 [metadata.files]
 appdirs = [
@@ -1002,6 +1010,10 @@ pycairo = [
     {file = "pycairo-1.20.0-cp39-cp39-win32.whl", hash = "sha256:57a768f4edc8a9890d98070dd473a812ac3d046cef4bc1c817d68024dab9a9b4"},
     {file = "pycairo-1.20.0-cp39-cp39-win_amd64.whl", hash = "sha256:57166119e424d71eccdba6b318bd731bdabd17188e2ba10d4f315f7bf16ace3f"},
     {file = "pycairo-1.20.0.tar.gz", hash = "sha256:5695a10cb7f9ae0d01f665b56602a845b0a8cb17e2123bfece10c2e58552468c"},
+]
+pyclean = [
+    {file = "pyclean-2.0.0-py3-none-any.whl", hash = "sha256:ac9bb87f0fffe12acbc2292150f92ec30ca1935acf2b45e9fa24dc64efe9b379"},
+    {file = "pyclean-2.0.0.tar.gz", hash = "sha256:06e62e5a26f9b0eaebe249a1a74db17daf35c0216688b6fceb8f55f0d6eb7a40"},
 ]
 pygobject = [
     {file = "PyGObject-3.38.0.tar.gz", hash = "sha256:051b950f509f2e9f125add96c1493bde987c527f7a0c15a1f7b69d6d1c3cd8e6"},
