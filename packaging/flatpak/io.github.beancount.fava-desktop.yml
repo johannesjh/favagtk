@@ -1,0 +1,28 @@
+app-id: io.github.beancount.fava-desktop
+runtime: org.gnome.Platform
+runtime-version: '3.38'
+sdk: org.gnome.Sdk
+command: fava-desktop
+finish-args:
+  - --share=network
+  - - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=home:ro
+modules:
+  - build/generated-poetry-sources.json
+  - name: fava-desktop
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} dist/fava_desktop-*.whl
+    sources:
+      - type: dir
+        path: ../..
+
+
+#{
+#    "name": "fava_desktop_pip",
+#    "buildsystem": "simple",
+#    "build-commands": [
+#        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} ../../fava_desktop"
+#    ]
+#}
