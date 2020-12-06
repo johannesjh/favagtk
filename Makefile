@@ -9,9 +9,3 @@ clean:
 .PHONY: test
 test:
 	poetry run pytest
-
-.PHONY: pyinstaller
-pyinstaller: dist/fava-desktop
-
-dist/fava-desktop:
-	poetry run pyinstaller pyinstaller.spec
