@@ -27,7 +27,7 @@ beancount_dir = os.path.dirname(importlib.import_module("beancount").__file__)
 beancount_version_file = os.path.join(beancount_dir, "VERSION")
 data_files += [(beancount_version_file, "beancount")]
 
-a = Analysis(['fava_desktop/main.py'],
+a = Analysis(['../../fava_desktop/main.py'],
              pathex=['/home/jh/repos/beancount/fava-desktop'],
              binaries=[],
              datas=data_files,
