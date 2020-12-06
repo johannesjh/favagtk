@@ -9,7 +9,7 @@ run:
 .PHONY: clean
 clean:
 	rm -rf .pytest_cache build dist
-	poetry run pyclean .
+	poetry run pyclean fava_desktop tests
 
 .PHONY: test
 test:
