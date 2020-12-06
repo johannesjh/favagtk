@@ -92,7 +92,7 @@ python-versions = "~=3.5"
 
 [[package]]
 name = "certifi"
-version = "2020.11.8"
+version = "2020.12.5"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
@@ -116,7 +116,7 @@ python-versions = "*"
 
 [[package]]
 name = "cheroot"
-version = "8.4.8"
+version = "8.5.0"
 description = "Highly-optimized, pure-python HTTP server"
 category = "main"
 optional = false
@@ -129,7 +129,7 @@ six = ">=1.11.0"
 
 [package.extras]
 docs = ["sphinx (>=1.8.2)", "jaraco.packaging (>=3.2)", "sphinx-tabs (>=1.1.0)", "docutils", "alabaster", "python-dateutil", "sphinxcontrib-apidoc (>=0.3.0)", "sphinxcontrib-spelling (>=5.2.0)"]
-testing = ["pytest (>=4.6.6)", "pytest-mock (>=1.11.0)", "pytest-sugar (>=0.9.3)", "pytest-testmon (<1.0.0)", "pytest-watch (==4.2.0)", "pytest-xdist (>=1.28.0)", "jaraco.text (>=3.1)", "codecov (==2.1.10)", "trustme (>=0.4.0)", "pyopenssl", "requests-unixsocket", "portend", "requests-toolbelt", "jaraco.context", "coverage (==5.3)", "pytest-cov (==2.10.1)", "urllib3 (>=1.25)", "futures", "coverage (<5)", "pytest-cov (==2.8.1)", "urllib3 (<1.25)", "colorama (!=0.4.2)", "pytest-forked (>=1.2.0)", "pytest-forked (>=1.1.3)"]
+testing = ["pytest (>=4.6.6)", "pytest-mock (>=1.11.0)", "pytest-sugar (>=0.9.3)", "pytest-watch (==4.2.0)", "pytest-xdist (>=1.28.0)", "jaraco.text (>=3.1)", "codecov (==2.1.10)", "trustme (>=0.4.0)", "pyopenssl", "requests-unixsocket", "portend", "requests-toolbelt", "jaraco.context", "coverage (==5.3)", "pytest-cov (==2.10.1)", "urllib3 (>=1.25)", "futures", "coverage (<5)", "pytest-cov (==2.8.1)", "urllib3 (<1.25)", "colorama (!=0.4.2)", "pytest-forked (>=1.2.0)", "pytest-forked (>=1.1.3)"]
 
 [[package]]
 name = "click"
@@ -757,8 +757,8 @@ cachetools = [
     {file = "cachetools-4.1.1.tar.gz", hash = "sha256:bbaa39c3dede00175df2dc2b03d0cf18dd2d32a7de7beb68072d13043c9edb20"},
 ]
 certifi = [
-    {file = "certifi-2020.11.8-py2.py3-none-any.whl", hash = "sha256:1f422849db327d534e3d0c5f02a263458c3955ec0aae4ff09b95f195c59f4edd"},
-    {file = "certifi-2020.11.8.tar.gz", hash = "sha256:f05def092c44fbf25834a51509ef6e631dc19765ab8a57b4e7ab85531f0a9cf4"},
+    {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
+    {file = "certifi-2020.12.5.tar.gz", hash = "sha256:1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"},
 ]
 cfgv = [
     {file = "cfgv-3.2.0-py2.py3-none-any.whl", hash = "sha256:32e43d604bbe7896fe7c248a9c2276447dbef840feb28fe20494f62af110211d"},
@@ -769,8 +769,8 @@ chardet = [
     {file = "chardet-3.0.4.tar.gz", hash = "sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"},
 ]
 cheroot = [
-    {file = "cheroot-8.4.8-py2.py3-none-any.whl", hash = "sha256:8134fe93ea2fdd9ab394bf21dd18cf4f51b7f2302b309fcab5bdf434c5048a6c"},
-    {file = "cheroot-8.4.8.tar.gz", hash = "sha256:1089c28a9c320d19fdf9a4b0ed6ace23a0948db1c171a36ac985f3741bc62865"},
+    {file = "cheroot-8.5.0-py2.py3-none-any.whl", hash = "sha256:6c5547b340379cad1bf3e53bcaa8d028e83532b2d86839c72e1008a9312cc09e"},
+    {file = "cheroot-8.5.0.tar.gz", hash = "sha256:199ce39e4a119072fc17c8173ad5f3b40e0b00a68ee67316f1c6ec82275dd36e"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
