@@ -23,5 +23,5 @@ repos:
         name: pytest
         stages: [ commit ]
         language: system
-        entry: poetry run pytest
+        entry: poetry run pytest ./tests
         types: [ python ]

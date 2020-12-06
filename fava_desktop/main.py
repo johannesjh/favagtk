@@ -124,7 +124,11 @@ class Server:
             return False
 
 
-if __name__ == "__main__":
+def main():
     application = Application()
     exit_status = application.run(sys.argv)
     sys.exit(exit_status)
+
+
+if __name__ == "__main__":
+    main()
