@@ -2,13 +2,14 @@ import logging
 import os
 import socketserver
 import sys
+from importlib import resources
 from multiprocessing import Process
 
 import gi
 from fava.application import app
 
-gi.require_versions({"Gtk": "3.0", "WebKit2": "4.0"})
-from gi.repository import Gtk, Gio, WebKit2 as WebKit  # noqa: E402
+gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
+from gi.repository import GdkPixbuf, Gtk, WebKit2 as WebKit  # noqa: E402
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
@@ -24,39 +25,46 @@ class Application(Gtk.Application):
         window.show_all()
 
 
+@Gtk.Template.from_string(resources.read_text("fava_desktop", "window.ui"))
 class ApplicationWindow(Gtk.ApplicationWindow):
+    __gtype_name__ = "FavaDesktopWindow"
+    btn_open = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
+
+    placeholder_view = Gtk.Template.Child()
+    fava_icon = Gtk.Template.Child()
+    btn_open2 = Gtk.Template.Child()
+
+    fava_view = Gtk.Template.Child()
+
+    # webkit workaround from https://stackoverflow.com/a/60128243
+    WebKit.WebView()
+    webview = Gtk.Template.Child()
+
     def __init__(self, app):
         super().__init__(application=app, title="Fava")
         self.app = app
-        self.set_default_size(950, 700)
-
-        self.header = Header(self)
-        self.set_titlebar(self.header)
-
         self.server = Server()
-        # TODO add an initial, empty view:
-        self.server.load_files(["/home/jh/Downloads/example.beancount"])
-        self.server.start()
 
-        self.webview = WebKit.WebView()
+        fava_icon_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
+            "icon.svg", width=98, height=98, preserve_aspect_ratio=True
+        )
+        self.fava_icon.set_from_pixbuf(fava_icon_pixbuf)
+
+        self.btn_open.connect("clicked", self.on_file_open)
+        self.btn_open2.connect("clicked", self.on_file_open)
+
         settings = WebKit.Settings()
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
-        self.webview.load_uri(self.server.url)
-
-        scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.add(self.webview)
-        self.add(scrolled_window)
-
-        open_action = Gio.SimpleAction.new("open", None)
-        open_action.connect("activate", self.file_open)
-        self.add_action(open_action)
 
     def do_destroy(self):
         self.server.stop()
         self.app.remove_window(self)
 
-    def file_open(self, action):
+    def on_file_open(self, action):
+        logger.debug("clicked file open...")
+
         open_dialog = Gtk.FileChooserDialog(
             title="Open beancount files", parent=self, action=Gtk.FileChooserAction.OPEN
         )
@@ -76,7 +84,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             file = dialog.get_filename()
             logger.debug(f"User chose file {file}.")
             self.server.load_files([file])
+            self.server.start()
             self.webview.load_uri(self.server.url)
+            self.stack.set_visible_child(self.fava_view)
         dialog.destroy()
 
 
@@ -87,7 +97,7 @@ class Header(Gtk.HeaderBar):
         self.set_title("Fava")
         self.set_show_close_button(True)
         self.button_open = Gtk.Button(label="Open")
-        self.button_open.connect("clicked", window.file_open)
+        self.button_open.connect("clicked", window.on_file_open)
         self.pack_start(self.button_open)
 
 
@@ -115,7 +125,10 @@ class Server:
         self.process.start()
 
     def stop(self):
-        self.process.terminate()
+        try:
+            self.process.terminate()
+        except AttributeError:
+            pass
 
     def is_alive(self):
         try:
