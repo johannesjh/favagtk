@@ -29,11 +29,8 @@ class Application(Gtk.Application):
 class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavaDesktopWindow"
 
-    btn_open = Gtk.Template.Child()
     stack = Gtk.Template.Child()
-    placeholder_view = Gtk.Template.Child()
     fava_icon = Gtk.Template.Child()
-    btn_open2 = Gtk.Template.Child()
     fava_view = Gtk.Template.Child()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
@@ -46,8 +43,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.server = Server()
 
         self.load_fava_icon()
-        self.btn_open.connect("clicked", self.on_file_open)
-        self.btn_open2.connect("clicked", self.on_file_open)
 
         settings = WebKit.Settings()
         settings.set_property("enable-developer-extras", True)
@@ -62,10 +57,13 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.fava_icon.set_from_pixbuf(pixbuf)
 
     def do_destroy(self):
+        """Stops the server and closes the window"""
         self.server.stop()
         self.app.remove_window(self)
 
-    def on_file_open(self, action):
+    @Gtk.Template.Callback("file_open")
+    def file_open(self, action):
+        """Shows the file open dialog"""
         open_dialog = Gtk.FileChooserDialog(
             title="Open beancount files", parent=self, action=Gtk.FileChooserAction.OPEN
         )
@@ -97,6 +95,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         open_dialog.show()
 
     def file_open_cb(self, dialog, response_id):
+        """Opens a beancount file"""
         if response_id == Gtk.ResponseType.ACCEPT:
             file = dialog.get_filename()
             logger.debug(f"User chose file {file}.")
@@ -108,6 +107,8 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
 
 class Server:
+    """Fava application server"""
+
     def load_files(self, files):
         start_again = self.is_alive()
         if start_again:
