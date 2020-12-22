@@ -8,9 +8,9 @@ include = ["*.ui", "*.svg"]
 [tool.poetry.dependencies]
 python = "^3.8"
 fava = "^1.17"
-PyGObject = "^3.38.0"
 
 [tool.poetry.dev-dependencies]
+PyGObject = "^3.38.0"
 pytest = "^5.2"
 pre-commit = "^2.9.2"
 pyclean = "^2.0.0"

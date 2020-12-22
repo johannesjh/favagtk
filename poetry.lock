@@ -502,7 +502,7 @@ pyasn1 = ">=0.4.6,<0.5.0"
 name = "pycairo"
 version = "1.20.0"
 description = "Python interface for cairo"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6, <4"
 
@@ -518,7 +518,7 @@ python-versions = "*"
 name = "pygobject"
 version = "3.38.0"
 description = "Python bindings for GObject Introspection"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.5, <4"
 
@@ -713,7 +713,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "3b3483153c57a58373ceec7d94495cf33a4b892ed95d17ac5bd242aa719c3c09"
+content-hash = "978058327f3061177d2e3bc9ef099940058bb4964dba50a153c9f76898439263"
 
 [metadata.files]
 appdirs = [
