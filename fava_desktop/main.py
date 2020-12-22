@@ -41,9 +41,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         super().__init__(application=app, title="Fava")
         self.app = app
         self.server = Server()
-
         self.load_fava_icon()
-
         settings = WebKit.Settings()
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
@@ -64,33 +62,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback("file_open")
     def file_open(self, action):
         """Shows the file open dialog"""
-        open_dialog = Gtk.FileChooserDialog(
-            title="Open beancount files", parent=self, action=Gtk.FileChooserAction.OPEN
-        )
-        open_dialog.add_buttons(
-            Gtk.STOCK_CANCEL,
-            Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN,
-            Gtk.ResponseType.ACCEPT,
-        )
-
-        filter_beancount = Gtk.FileFilter()
-        filter_beancount.set_name("Beancount files")
-        filter_beancount.add_pattern("*.beancount")
-        open_dialog.add_filter(filter_beancount)
-
-        filter_plain = Gtk.FileFilter()
-        filter_plain.set_name("Plaintext files")
-        filter_plain.add_mime_type("text/plain")
-        open_dialog.add_filter(filter_plain)
-
-        filter_any = Gtk.FileFilter()
-        filter_any.set_name("Any files")
-        filter_any.add_pattern("*")
-        open_dialog.add_filter(filter_any)
-
-        open_dialog.set_local_only(False)
-        open_dialog.set_modal(True)
+        open_dialog = FileOpenDialog(parent=self)
         open_dialog.connect("response", self.file_open_cb)
         open_dialog.show()
 
@@ -104,6 +76,42 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             self.webview.load_uri(self.server.url)
             self.stack.set_visible_child(self.fava_view)
         dialog.destroy()
+
+
+class FileOpenDialog(Gtk.FileChooserDialog):
+    def __init__(self, *args, **kwargs):
+        kwargs = {
+            "title": "Open Beancount Files",
+            "action": Gtk.FileChooserAction.OPEN,
+            **kwargs,
+        }
+        super().__init__(*args, **kwargs)
+
+        self.add_buttons(
+            Gtk.STOCK_CANCEL,
+            Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN,
+            Gtk.ResponseType.ACCEPT,
+        )
+        self.set_default_response(Gtk.ResponseType.ACCEPT)
+
+        filter_beancount = Gtk.FileFilter()
+        filter_beancount.set_name("Beancount files")
+        filter_beancount.add_pattern("*.beancount")
+        self.add_filter(filter_beancount)
+
+        filter_plain = Gtk.FileFilter()
+        filter_plain.set_name("Plaintext files")
+        filter_plain.add_mime_type("text/plain")
+        self.add_filter(filter_plain)
+
+        filter_any = Gtk.FileFilter()
+        filter_any.set_name("Any files")
+        filter_any.add_pattern("*")
+        self.add_filter(filter_any)
+
+        self.set_local_only(False)
+        self.set_modal(True)
 
 
 class Server:
