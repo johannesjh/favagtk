@@ -17,12 +17,3 @@ modules:
     sources:
       - type: dir
         path: ../..
-
-
-#{
-#    "name": "fava_desktop_pip",
-#    "buildsystem": "simple",
-#    "build-commands": [
-#        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} ../../fava_desktop"
-#    ]
-#}
