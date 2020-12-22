@@ -28,13 +28,12 @@ class Application(Gtk.Application):
 @Gtk.Template.from_string(resources.read_text("fava_desktop", "window.ui"))
 class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavaDesktopWindow"
+
     btn_open = Gtk.Template.Child()
     stack = Gtk.Template.Child()
-
     placeholder_view = Gtk.Template.Child()
     fava_icon = Gtk.Template.Child()
     btn_open2 = Gtk.Template.Child()
-
     fava_view = Gtk.Template.Child()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
@@ -67,8 +66,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.app.remove_window(self)
 
     def on_file_open(self, action):
-        logger.debug("clicked file open...")
-
         open_dialog = Gtk.FileChooserDialog(
             title="Open beancount files", parent=self, action=Gtk.FileChooserAction.OPEN
         )
@@ -92,17 +89,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             self.webview.load_uri(self.server.url)
             self.stack.set_visible_child(self.fava_view)
         dialog.destroy()
-
-
-class Header(Gtk.HeaderBar):
-    def __init__(self, window):
-        super().__init__()
-        self.window = window
-        self.set_title("Fava")
-        self.set_show_close_button(True)
-        self.button_open = Gtk.Button(label="Open")
-        self.button_open.connect("clicked", window.on_file_open)
-        self.pack_start(self.button_open)
 
 
 class Server:
