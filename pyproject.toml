@@ -3,7 +3,7 @@ name = "fava-desktop"
 version = "0.1.0"
 description = ""
 authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
-include = ["*.ui"]
+include = ["*.ui", "*.svg"]
 
 [tool.poetry.dependencies]
 python = "^3.8"

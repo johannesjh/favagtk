@@ -46,17 +46,21 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.app = app
         self.server = Server()
 
-        fava_icon_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-            "icon.svg", width=98, height=98, preserve_aspect_ratio=True
-        )
-        self.fava_icon.set_from_pixbuf(fava_icon_pixbuf)
-
+        self.load_fava_icon()
         self.btn_open.connect("clicked", self.on_file_open)
         self.btn_open2.connect("clicked", self.on_file_open)
 
         settings = WebKit.Settings()
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
+
+    def load_fava_icon(self):
+        """Loads fava's icon from python package resources"""
+        loader = GdkPixbuf.PixbufLoader()
+        loader.write(resources.read_text("fava_desktop", "icon.svg").encode())
+        loader.close()
+        pixbuf = loader.get_pixbuf()
+        self.fava_icon.set_from_pixbuf(pixbuf)
 
     def do_destroy(self):
         self.server.stop()
