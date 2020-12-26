@@ -7,7 +7,7 @@ include = ["*.ui", "*.svg"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fava = "^1.17"
+fava = { path = "./fava", develop = true }
 
 [tool.poetry.dev-dependencies]
 PyGObject = "^3.38.0"
