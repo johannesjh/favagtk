@@ -6,6 +6,7 @@ from importlib import resources
 from multiprocessing import Process
 
 import gi
+
 from fava.application import app
 
 gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
