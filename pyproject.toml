@@ -3,11 +3,9 @@ name = "fava-desktop"
 version = "0.1.0"
 description = ""
 authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
-include = ["*.ui", "*.svg"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fava = { path = "./fava", develop = true }
 
 [tool.poetry.dev-dependencies]
 PyGObject = "^3.38.0"

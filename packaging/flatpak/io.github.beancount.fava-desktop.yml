@@ -9,11 +9,13 @@ finish-args:
   - --socket=fallback-x11
   - --filesystem=home:ro
 modules:
-  - build/generated-poetry-sources.json
   - name: fava-desktop
     buildsystem: simple
     build-commands:
-      - pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} dist/fava_desktop-*.whl
+      - pip3 install --find-links=./dist --prefix=${FLATPAK_DEST} fava fava_desktop
+    build-options:
+        build-args:
+          - --share=network
     sources:
       - type: dir
         path: ../..

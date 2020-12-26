@@ -8,15 +8,9 @@ clean:
 
 # FLATPAK BUILD
 
-build/fava-desktop: build/generated-poetry-sources.json
-	make -C ../.. build
-	flatpak-builder --force-clean --state-dir=build/.flatpak-builder --repo=build/fava-desktop-repo build/fava-desktop io.github.beancount.fava-desktop.yml
-
-build/generated-poetry-sources.json: build/flatpak-builder-tools
-	poetry run python3 ./build/flatpak-builder-tools/poetry/flatpak-poetry-generator.py -o build/generated-poetry-sources.json "../../poetry.lock"
-
-build/flatpak-builder-tools:
-	git clone --depth 1 https://github.com/flatpak/flatpak-builder-tools.git build/flatpak-builder-tools
+build/fava-desktop:
+	make -C ../.. dist
+	flatpak-builder --force-clean --state-dir=build/.flatpak-builder --repo=build/fava-desktop-repo build/fava-desktop io.github.beancount.fava-desktop.yml  #--build-shell=fava-desktop
 
 
 # FLATPAK INSTALL AND RUN
