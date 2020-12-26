@@ -1,5 +1,9 @@
+.PHONY: dist
+dist: build
+
 .PHONY: build
 build: fava
+	poetry run pip3 wheel --wheel-dir dist ./fava
 	poetry build
 
 fava:
