@@ -14,9 +14,11 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava fava-desktop
-    build-options:
-        build-args:
-          - --share=network
+      - mkdir -p /app/share/icons/hicolor/scalable/apps/
+      - cp fava/contrib/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - mkdir -p /app/share/applications/
+      - cp packaging/flatpak/io.github.beancount.fava-desktop.desktop /app/share/applications/
+      - desktop-file-validate /app/share/applications/io.github.beancount.fava-desktop.desktop
     sources:
       - type: dir
         path: ../..
