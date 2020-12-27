@@ -12,8 +12,8 @@ run:
 
 .PHONY: clean
 clean:
-	rm -rf .pytest_cache build dist fava
 	poetry run pyclean fava_desktop tests
+	rm -rf .pytest_cache build dist fava
 
 .PHONY: test
 test:

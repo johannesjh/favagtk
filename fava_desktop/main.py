@@ -80,6 +80,8 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
 
 class FileOpenDialog(Gtk.FileChooserDialog):
+    """Dialog for choosing beancount files."""
+
     def __init__(self, *args, **kwargs):
         kwargs = {
             "title": "Open Beancount Files",
@@ -116,9 +118,10 @@ class FileOpenDialog(Gtk.FileChooserDialog):
 
 
 class Server:
-    """Fava application server"""
+    """Fava's application server running in a separate process"""
 
     def load_files(self, files):
+        logger.debug("Loading files " + ", ".join(files) + "...")
         start_again = self.is_alive()
         if start_again:
             self.stop()
@@ -139,6 +142,7 @@ class Server:
             kwargs={"host": self.host, "port": self.port, "debug": False},
         )
         self.process.start()
+        logger.debug(f"Server started at {self.url}.")
 
     def stop(self):
         try:
