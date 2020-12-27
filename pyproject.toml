@@ -8,6 +8,7 @@ authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+fava = { path = "fava", develop = true }
 PyGObject = "^3.38.0"
 pytest = "^5.2"
 pre-commit = "^2.9.2"
