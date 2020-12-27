@@ -1,5 +1,5 @@
 .PHONY: build
-build: build/fava-desktop
+build: clean build/fava-desktop
 
 .PHONY: clean
 clean:
@@ -34,15 +34,20 @@ run: install
 # FLATPAK BUNDLE
 
 .PHONY: bundle
-bundle: dist/fava-desktop.flatpak
+bundle: clean dist/fava-desktop.flatpak
 
 dist/fava-desktop.flatpak: build/fava-desktop
 	mkdir -p dist
 	flatpak build-bundle build/fava-desktop-repo dist/fava-desktop.flatpak io.github.beancount.fava-desktop
 
 
-.PHONY: run-bundle
-run-bundle: dist/fava-desktop.flatpak
+.PHONY: bundle-run
+bundle-run: dist/fava-desktop.flatpak
 	@-flatpak --user uninstall -y io.github.beancount.fava-desktop
 	flatpak --user install -y dist/fava-desktop.flatpak
 	flatpak run io.github.beancount.fava-desktop
+
+.PHONY: bundle-install
+bundle-install: dist/fava-desktop.flatpak
+	@-flatpak --user uninstall -y io.github.beancount.fava-desktop
+	flatpak --user install ./dist/fava-desktop.flatpak
