@@ -3,7 +3,7 @@ build: build/fava-desktop
 
 .PHONY: clean
 clean:
-	rm -rf .flatpak-builder .pytest_cache build dist flatpak-builder-tools generated-poetry-sources.json
+	rm -rf build dist
 
 
 # FLATPAK BUILD
@@ -13,12 +13,16 @@ build/fava-desktop:
 	flatpak-builder --force-clean --state-dir=build/.flatpak-builder --repo=build/fava-desktop-repo build/fava-desktop io.github.beancount.fava-desktop.yml  #--build-shell=fava-desktop
 
 
-# FLATPAK INSTALL AND RUN
 
-.PHONY: install
-install: build
+# FLATPAK INSTALL AND RUN FROM LOCAL REPO
+
+.PHONY: uninstall
+uninstall:
 	@-flatpak --user uninstall -y io.github.beancount.fava-desktop
 	@-flatpak --user remote-delete fava-desktop-repo
+
+.PHONY: install
+install: build uninstall
 	flatpak --user remote-add --no-gpg-verify fava-desktop-repo build/fava-desktop-repo
 	flatpak --user install -y fava-desktop-repo io.github.beancount.fava-desktop
 

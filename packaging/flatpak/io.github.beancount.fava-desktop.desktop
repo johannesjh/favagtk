@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=fava-desktop
+Exec=fava-desktop
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
+Icon=io.github.beancount.fava-desktop
