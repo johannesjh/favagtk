@@ -7,12 +7,13 @@ finish-args:
   - --share=network
   - - --socket=wayland
   - --socket=fallback-x11
-  - --filesystem=home:ro
+  - --filesystem=home
+  - --device=dri
 modules:
   - name: fava-desktop
     buildsystem: simple
     build-commands:
-      - pip3 install --find-links=./dist --prefix=${FLATPAK_DEST} fava fava_desktop
+      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava fava-desktop
     build-options:
         build-args:
           - --share=network
