@@ -1,8 +1,10 @@
 [Desktop Entry]
 Name=Fava
+Type=Application
+Comment=Fava Desktop provides the Fava bookkeeping software as a desktop application
+Categories=Office;Finance;GTK
+
+Icon=io.github.beancount.FavaDesktop
 Exec=fava-desktop
 Terminal=false
-Type=Application
-Categories=GTK;
 StartupNotify=true
-Icon=io.github.beancount.FavaDesktop
