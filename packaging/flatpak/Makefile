@@ -18,10 +18,16 @@ clean:
 
 # BUILD AND RUN THE APP USING A LOCAL FLATPAK REPOSITORY
 
-build/app:
+.PHONY: build/app
+build/app: build/lint
 	make -C ../.. dist
 	@echo "\n\nBuilding the flatpak app..."
 	flatpak-builder --force-clean --state-dir=build/state --repo=build/repo build/app ${FLATPAK_ID}.yml  #--build-shell=fava-desktop
+
+.PHONY: build/lint
+build/lint:
+	desktop-file-validate ${FLATPAK_ID}.desktop
+	appstreamcli validate ${FLATPAK_ID}.appdata.xml
 
 .PHONY: build/uninstall
 build/uninstall:

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.beancount.FavaDesktop</id>
+
+    <name>FavaDesktop</name>
+    <summary>Fava Desktop provides the Fava bookkeeping software as a desktop application</summary>
+
+    <metadata_license>MIT</metadata_license>
+    <project_license>MIT</project_license>
+
+    <description>
+        <p>
+            Fava Desktop allows to install and use the Fava and beancount double-entry bookkeeping software packages as a desktop application.
+        </p>
+        <p>
+            Fava Desktop makes it easy to install and use fava and beancount. Users can start the application and view and edit beancount files as in any other desktop application - no more need to worry about python environments or commandline instructions.
+        </p>
+    </description>
+
+    <launchable type="desktop-id">io.github.beancount.FavaDesktop.desktop</launchable>
+</component>
