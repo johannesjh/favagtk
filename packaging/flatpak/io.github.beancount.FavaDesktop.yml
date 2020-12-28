@@ -1,4 +1,4 @@
-app-id: io.github.beancount.fava-desktop
+app-id: io.github.beancount.FavaDesktop
 runtime: org.gnome.Platform
 runtime-version: '3.38'
 sdk: org.gnome.Sdk
@@ -19,8 +19,8 @@ modules:
       - cp fava/contrib/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
 
       - mkdir -p /app/share/applications/
-      - cp packaging/flatpak/io.github.beancount.fava-desktop.desktop /app/share/applications/
-      - desktop-file-validate /app/share/applications/io.github.beancount.fava-desktop.desktop
+      - cp packaging/flatpak/${FLATPAK_ID}.desktop /app/share/applications/
+      - desktop-file-validate /app/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: dir
         path: ../..
