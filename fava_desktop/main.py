@@ -31,6 +31,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavaDesktopWindow"
 
     stack = Gtk.Template.Child()
+    placeholder_view = Gtk.Template.Child()
     fava_icon = Gtk.Template.Child()
     fava_view = Gtk.Template.Child()
 
