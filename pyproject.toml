@@ -7,6 +7,9 @@ authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 
+[tool.poetry.extras]
+smart-importer = ["smart-importer"]
+
 [tool.poetry.dev-dependencies]
 fava = { path = "fava", develop = true }
 PyGObject = "^3.38.0"
