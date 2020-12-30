@@ -1,6 +1,10 @@
 .PHONY: all
 all: clean flatpak
 
+.PHONY: install
+install: clean
+	make -C packaging/flatpak install
+
 .PHONY: clean
 clean:
 	@echo "\n\nCleaning up..."

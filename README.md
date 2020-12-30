@@ -6,6 +6,8 @@ Fava Desktop makes it easy to install and use fava and beancount. Users can star
 
 ### Todos
 
-* generate screenshots https://stackoverflow.com/a/7519885
 * Make it possible to pip-install fava with a git reference. This will likely require to overwrite setup.py's build command in order to trigger the frontend build. See end of this article https://jichu4n.com/posts/how-to-add-custom-build-steps-and-commands-to-setuppy/
+* Implement keyboard shortcuts
+  * Ctrl-O for opening a file
+  * Ctrl-Q for closing the application
 * Integrate with github CI (`pre-commit run --all`, build and run using poetry, build and run using flatpak)

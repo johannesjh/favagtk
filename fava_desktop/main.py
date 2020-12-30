@@ -64,23 +64,18 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback("file_open")
     def file_open(self, action):
         """Shows the file open dialog"""
-        open_dialog = FileOpenDialog(parent=self)
-        open_dialog.connect("response", self.file_open_cb)
-        open_dialog.show()
-
-    def file_open_cb(self, dialog, response_id):
-        """Opens a beancount file"""
-        if response_id == Gtk.ResponseType.ACCEPT:
+        dialog = FileOpenDialog(transient_for=self)
+        response = dialog.run()
+        if response == Gtk.ResponseType.ACCEPT:
             file = dialog.get_filename()
             logger.debug(f"User chose file {file}.")
             self.server.load_files([file])
             self.server.start()
             self.webview.load_uri(self.server.url)
             self.stack.set_visible_child(self.fava_view)
-        dialog.destroy()
 
 
-class FileOpenDialog(Gtk.FileChooserDialog):
+class FileOpenDialog(Gtk.FileChooserNative):
     """Dialog for choosing beancount files."""
 
     def __init__(self, *args, **kwargs):
@@ -90,14 +85,6 @@ class FileOpenDialog(Gtk.FileChooserDialog):
             **kwargs,
         }
         super().__init__(*args, **kwargs)
-
-        self.add_buttons(
-            Gtk.STOCK_CANCEL,
-            Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN,
-            Gtk.ResponseType.ACCEPT,
-        )
-        self.set_default_response(Gtk.ResponseType.ACCEPT)
 
         filter_beancount = Gtk.FileFilter()
         filter_beancount.set_name("Beancount files")
