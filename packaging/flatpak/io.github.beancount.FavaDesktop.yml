@@ -5,9 +5,13 @@ sdk: org.gnome.Sdk
 command: fava-desktop
 finish-args:
   - --share=network
-  - - --socket=wayland
+  - --socket=wayland
   - --socket=fallback-x11
-  - --filesystem=home
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-documents
+  - --filesystem=xdg-download
+  - --filesystem=/run/media
+  - --filesystem=/media
   - --device=dri
 modules:
   - name: fava-desktop

@@ -11,6 +11,9 @@ dist: clean dist/${FLATPAK_ID}.flatpak
 .PHONY: run
 run: clean dist/run
 
+.PHONY: install
+install: clean dist/install
+
 .PHONY: clean
 clean:
 	rm -rf build dist
