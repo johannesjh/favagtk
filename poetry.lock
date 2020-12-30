@@ -157,7 +157,7 @@ python-versions = "*"
 
 [[package]]
 name = "fava"
-version = "0.1.dev1+gca37081.d20201228"
+version = "0.1.dev1+gca37081"
 description = "Web interface for the accounting tool Beancount."
 category = "dev"
 optional = false
@@ -715,10 +715,13 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-themes", "sphinx-issues"]
 watchdog = ["watchdog"]
 
+[extras]
+smart-importer = []
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e6b38f2973050bab572d0824af2320d6145ae4047cd338909148df9f051ab228"
+content-hash = "de5855c0394e528e561354e2e0d4bc440dab3ea1906236cf6301fe3af67e3cf0"
 
 [metadata.files]
 appdirs = [

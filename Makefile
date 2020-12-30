@@ -32,6 +32,7 @@ test:
 dist: fava
 	@echo "\n\nCreating python wheels..."
 	poetry run pip3 wheel --wheel-dir dist ./fava
+	poetry run pip3 wheel --wheel-dir dist smart-importer
 	poetry build
 
 .PHONY: flatpak
