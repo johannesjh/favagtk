@@ -8,7 +8,13 @@ Fava Desktop allows to use the [Fava](https://github.com/beancount/fava) and [Be
 
 * Packaged as flatpak application.
 
-### Usage
+
+## Screenshot
+
+![Screenshot of Fava-Desktop](https://user-images.githubusercontent.com/581188/103780103-d65ef180-5034-11eb-9430-e9ee4dfece87.png)
+
+
+## Usage
 
 Fava-Desktop has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work. 
 
