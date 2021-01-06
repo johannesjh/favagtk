@@ -22,7 +22,7 @@ First clone this repository, then execute the following commands to build, insta
 
 ```bash
 # to build and install a fava-desktop flatpak bundle:
-make install
+make -C packaging/flatpak dist/install
 
 # to run the fava-desktop flatpak bundle:
 flatpak run io.github.beancount.FavaDesktop
