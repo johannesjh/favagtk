@@ -18,7 +18,7 @@ modules:
     buildsystem: simple
     build-commands:
       # install python packages
-      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava smart-importer fava-desktop
+      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava smart-importer fava-desktop beancount-plugin-utils beancount_share
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/
