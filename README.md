@@ -1,13 +1,54 @@
 # Fava Desktop
 
-Fava Desktop allows to install and use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
+Fava Desktop allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
-Fava Desktop makes it easy to install and use fava and beancount. Users can start the application and view and edit beancount files as in any other desktop application - no more need to worry about python environments or commandline instructions.
+* Makes it easy to install and use fava and beancount. 
 
-### Todos
+* No messing in the commandline, no python virtualenvs  - a convenient way to open and edit beancount files as in any other desktop application.
 
-* Make it possible to pip-install fava with a git reference. This will likely require to overwrite setup.py's build command in order to trigger the frontend build. See end of this article https://jichu4n.com/posts/how-to-add-custom-build-steps-and-commands-to-setuppy/
-* Implement keyboard shortcuts
-  * Ctrl-O for opening a file
-  * Ctrl-Q for closing the application
-* Integrate with github CI (`pre-commit run --all`, build and run using poetry, build and run using flatpak)
+* Packaged as flatpak application.
+
+### Usage
+
+Fava-Desktop has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work. 
+
+First clone this repository, then execute the following commands to build, install, and run Fava-Desktop:
+
+```bash
+# to build and install a fava-desktop flatpak bundle:
+make install
+
+# to run the fava-desktop flatpak bundle:
+flatpak run io.github.beancount.FavaDesktop
+```
+
+## Development
+
+You can use poetry to develop Fava-Desktop locally. This should work on linux machines with GNOME 3.18. First clone this repository, then execute the following commands.
+
+```bash
+# to install pre-commit on your system,
+# follow instructions from https://pre-commit.com/, for example:
+pip install pre-commit
+
+# to install the pre-commit git hooks in the cloned fava-desktop repo
+pre-commit install
+
+# to install required python packages in a virtual environment
+poetry install
+
+# to run a commandline shell using the python virtual environment
+poetry shell
+
+# to lint the code
+pre-commit run
+
+# to run fava-desktop using the python virtual environment
+make run
+```
+
+## License
+
+Fava-Desktop is MIT licensed, see [LICENSE](./LICENSE) file.
+
+Most of Fava-Desktop's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). Fava-Desktop's dependencies are licensed differently, see [poetry.lock](./poetry.lock) and [io.github.beancount.FavaDesktop.yml](./packaging/flatpak/io.github.beancount.FavaDesktop.yml) for packages that Fava-Desktop depends on.
