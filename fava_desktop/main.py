@@ -10,7 +10,7 @@ import gi
 from fava.application import app
 
 gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
-from gi.repository import GdkPixbuf, Gtk, WebKit2 as WebKit  # noqa: E402
+from gi.repository import GdkPixbuf, Gtk, WebKit2 as WebKit, Gio  # noqa: E402
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
@@ -24,6 +24,18 @@ class Application(Gtk.Application):
         window = ApplicationWindow(self)
         self.add_window(window)
         window.show_all()
+
+        quit_action = Gio.SimpleAction(name="quit")
+        quit_action.connect("activate", lambda *args: self.do_quit())
+        self.add_action(quit_action)
+        self.set_accels_for_action("app.quit", ["<Primary>Q"])
+
+        self.set_accels_for_action("win.file_open", ["<Primary>O"])
+        self.set_accels_for_action("win.close", ["<Primary>W"])
+
+    def do_quit(self):
+        for win in self.get_windows():
+            win.do_destroy()
 
 
 @Gtk.Template.from_string(resources.read_text("fava_desktop", "window.ui"))
@@ -48,6 +60,14 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
 
+        open_action = Gio.SimpleAction(name="file_open")
+        open_action.connect("activate", self.file_open)
+        self.add_action(open_action)
+
+        close_action = Gio.SimpleAction(name="close")
+        close_action.connect("activate", self.close)
+        self.add_action(close_action)
+
     def load_fava_icon(self):
         """Loads fava's icon from python package resources"""
         loader = GdkPixbuf.PixbufLoader()
@@ -56,23 +76,33 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         pixbuf = loader.get_pixbuf()
         self.fava_icon.set_from_pixbuf(pixbuf)
 
-    def do_destroy(self):
-        """Stops the server and closes the window"""
-        self.server.stop()
-        self.app.remove_window(self)
-
-    @Gtk.Template.Callback("file_open")
-    def file_open(self, action):
-        """Shows the file open dialog"""
+    def file_open(self, *args):
+        """Shows the file open dialog and opens the requested beancount file"""
         dialog = FileOpenDialog(transient_for=self)
         response = dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
             file = dialog.get_filename()
-            logger.debug(f"User chose file {file}.")
-            self.server.load_files([file])
-            self.server.start()
+            logger.info(f"User chose file {file}.")
+            self.server.start([file])
             self.webview.load_uri(self.server.url)
             self.stack.set_visible_child(self.fava_view)
+
+    def close(self, *args):
+        """Closes currently opened file, or closes the window if no file is open"""
+        if self.server.is_alive():
+            self.close_file()
+        else:
+            self.do_destroy()
+
+    def close_file(self, *args):
+        """Closes the currently opened beancount file"""
+        self.server.stop()
+        self.stack.set_visible_child(self.placeholder_view)
+
+    def do_destroy(self):
+        """Destroys the window, having first closed the file and stopped the server."""
+        self.close_file()
+        self.app.remove_window(self)
 
 
 class FileOpenDialog(Gtk.FileChooserNative):
@@ -108,33 +138,34 @@ class FileOpenDialog(Gtk.FileChooserNative):
 class Server:
     """Fava's application server running in a separate process"""
 
-    def load_files(self, files):
-        logger.debug("Loading files " + ", ".join(files) + "...")
-        start_again = self.is_alive()
-        if start_again:
-            self.stop()
-        app.config["BEANCOUNT_FILES"] = files
-        if start_again:
-            self.start()
-
     def find_free_port(self):
         with socketserver.TCPServer(("localhost", 0), None) as s:
             return s.server_address[1]
 
-    def start(self):
-        self.port = self.find_free_port()
-        self.host = "127.0.0.1"
-        self.url = f"http://{self.host}:{self.port}/"
+    def start(self, files):
+        """
+        Starts the fava webserver in order to open the requested files.
+        Existing server instances are stopped before the new server is started.
+        """
+        logger.info("Loading files " + ", ".join(files) + "...")
+        self.stop()
+        app.config["BEANCOUNT_FILES"] = files
+        port = self.find_free_port()
+        host = "127.0.0.1"
+        self.url = f"http://{host}:{port}/"
         self.process = Process(
             target=app.run,
-            kwargs={"host": self.host, "port": self.port, "debug": False},
+            kwargs={"host": host, "port": port, "debug": False},
         )
         self.process.start()
-        logger.debug(f"Server started at {self.url}.")
+        logger.info(f"Server started at {self.url}.")
 
     def stop(self):
+        """Stops the fava webserver."""
         try:
             self.process.terminate()
+            self.process.join()
+            self.url = None
         except AttributeError:
             pass
 
