@@ -21,8 +21,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="clicked" handler="file_open" swapped="no"/>
-            <accelerator key="o" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+            <property name="action_name">win.file_open</property>
           </object>
         </child>
       </object>
@@ -61,7 +60,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="file_open" swapped="no"/>
+                <property name="action_name">win.file_open</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
