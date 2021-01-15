@@ -86,7 +86,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.search_toggle_action.connect("change-state", self.search_toggle)
         self.add_action(self.search_toggle_action)
 
-        # workaround because `self.search_entry = Gtk.Template.Child()` does not work:
+        # workaround because
+        # `self.search_entry = Gtk.Template.Child()` does not work, neither does
+        # `self.get_template_child(Gtk.SearchEntry, "search_entry")`.
         self.search_entry = find_child(
             self.search_bar, lambda widget: isinstance(widget, Gtk.SearchEntry)
         )  # type: Gtk.SearchEntry
