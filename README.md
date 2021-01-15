@@ -1,43 +1,43 @@
-# Fava Desktop
+# Fava GTK
 
-Fava Desktop allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
+Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
 * Makes it easy to install and use fava and beancount. 
 
 * No messing in the commandline, no python virtualenvs  - a convenient way to open and edit beancount files as in any other desktop application.
 
-* Packaged as flatpak application.
+* Built using GTK, packaged as flatpak application.
 
 
 ## Screenshot
 
-![Screenshot of Fava-Desktop](https://user-images.githubusercontent.com/581188/103780103-d65ef180-5034-11eb-9430-e9ee4dfece87.png)
+![Screenshot of fava-gtk](https://user-images.githubusercontent.com/581188/103780103-d65ef180-5034-11eb-9430-e9ee4dfece87.png)
 
 
 ## Usage
 
-Fava-Desktop has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work. 
+fava-gtk has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work. 
 
-First clone this repository, then execute the following commands to build, install, and run Fava-Desktop:
+First clone this repository, then execute the following commands to build, install, and run fava-gtk:
 
 ```bash
-# to build and install a fava-desktop flatpak bundle:
+# to build and install a fava-gtk flatpak bundle:
 make -C packaging/flatpak dist/install
 
-# to run the fava-desktop flatpak bundle:
-flatpak run io.github.beancount.FavaDesktop
+# to run the fava-gtk flatpak bundle:
+flatpak run io.github.beancount.FavaGtk
 ```
 
 ## Development
 
-You can use poetry to develop Fava-Desktop locally. This should work on linux machines with GNOME 3.18. First clone this repository, then execute the following commands.
+You can use poetry to develop fava-gtk locally. This should work on linux machines with GNOME 3.18. First clone this repository, then execute the following commands.
 
 ```bash
 # to install pre-commit on your system,
 # follow instructions from https://pre-commit.com/, for example:
 pip install pre-commit
 
-# to install the pre-commit git hooks in the cloned fava-desktop repo
+# to install the pre-commit git hooks in the cloned fava-gtk repo
 pre-commit install
 
 # to install required python packages in a virtual environment
@@ -49,12 +49,12 @@ poetry shell
 # to lint the code
 pre-commit run
 
-# to run fava-desktop using the python virtual environment
+# to run fava-gtk using the python virtual environment
 make run
 ```
 
 ## License
 
-Fava-Desktop is MIT licensed, see [LICENSE](./LICENSE) file.
+fava-gtk is MIT licensed, see [LICENSE](./LICENSE) file.
 
-Most of Fava-Desktop's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). Fava-Desktop's dependencies are licensed differently, see [poetry.lock](./poetry.lock) and [io.github.beancount.FavaDesktop.yml](./packaging/flatpak/io.github.beancount.FavaDesktop.yml) for packages that Fava-Desktop depends on.
+Most of fava-gtk's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). fava-gtk's dependencies are licensed differently, see [poetry.lock](./poetry.lock) and [io.github.beancount.FavaGtk.yml](./packaging/flatpak/io.github.beancount.FavaGtk.yml) for packages that fava-gtk depends on.

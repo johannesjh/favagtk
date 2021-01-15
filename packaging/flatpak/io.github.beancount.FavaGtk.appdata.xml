@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>io.github.beancount.FavaDesktop</id>
+    <id>io.github.beancount.FavaGtk</id>
 
     <name>FavaDesktop</name>
     <summary>Fava Desktop provides the Fava bookkeeping software as a desktop application</summary>
@@ -17,5 +17,5 @@
         </p>
     </description>
 
-    <launchable type="desktop-id">io.github.beancount.FavaDesktop.desktop</launchable>
+    <launchable type="desktop-id">io.github.beancount.FavaGtk.desktop</launchable>
 </component>

@@ -8,7 +8,6 @@ from typing import Callable
 from typing import Optional
 
 import gi
-
 from fava.application import app
 
 gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
@@ -41,7 +40,7 @@ class Application(Gtk.Application):
             win.do_destroy()
 
 
-@Gtk.Template.from_string(resources.read_text("fava_desktop", "window.ui"))
+@Gtk.Template.from_string(resources.read_text("fava_gtk", "window.ui"))
 class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavaDesktopWindow"
 
@@ -96,7 +95,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def load_fava_icon(self):
         """Loads fava's icon from python package resources"""
         loader = GdkPixbuf.PixbufLoader()
-        loader.write(resources.read_text("fava_desktop", "icon.svg").encode())
+        loader.write(resources.read_text("fava_gtk", "placeholder_logo.svg").encode())
         loader.close()
         pixbuf = loader.get_pixbuf()
         self.fava_icon.set_from_pixbuf(pixbuf)
