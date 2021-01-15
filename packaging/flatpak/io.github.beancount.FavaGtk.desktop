@@ -4,7 +4,7 @@ Type=Application
 Comment=Fava Desktop provides the Fava bookkeeping software as a desktop application
 Categories=Office;Finance;GTK
 
-Icon=io.github.beancount.FavaDesktop
-Exec=fava-desktop
+Icon=io.github.beancount.FavaGtk
+Exec=fava-gtk
 Terminal=false
 StartupNotify=true

@@ -1,24 +1,25 @@
 [tool.poetry]
-name = "fava-desktop"
+name = "fava-gtk"
 version = "0.1.0"
 description = ""
 authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+#fava = "^1.17"
+fava = { git = "https://github.com/johannesjh/fava.git", branch = "setup-with-fe-build" }
 
 [tool.poetry.extras]
 smart-importer = ["smart-importer"]
 
 [tool.poetry.dev-dependencies]
-fava = { path = "fava", develop = true }
 PyGObject = "^3.38.0"
 pytest = "^5.2"
 pre-commit = "^2.9.2"
 pyclean = "^2.0.0"
 
 [tool.poetry.scripts]
-fava-desktop = "fava_desktop.main:main"
+fava-gtk = "fava_gtk.main:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,8 +1,8 @@
-app-id: io.github.beancount.FavaDesktop
+app-id: io.github.beancount.FavaGtk
 runtime: org.gnome.Platform
 runtime-version: '3.38'
 sdk: org.gnome.Sdk
-command: fava-desktop
+command: fava-gtk
 finish-args:
   - --share=network
   - --socket=wayland
@@ -14,15 +14,15 @@ finish-args:
   - --filesystem=/media
   - --device=dri
 modules:
-  - name: fava-desktop
+  - name: fava-gtk
     buildsystem: simple
     build-commands:
       # install python packages
-      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava smart-importer fava-desktop beancount-plugin-utils beancount_share
+      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava fava-gtk
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/
-      - cp fava/contrib/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - cp fava_gtk/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
 
       # install desktop file
       - mkdir -p /app/share/applications/

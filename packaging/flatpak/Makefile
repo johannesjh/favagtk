@@ -1,4 +1,4 @@
-FLATPAK_ID = io.github.beancount.FavaDesktop
+FLATPAK_ID = io.github.beancount.FavaGtk
 
 # FEATURED TARGETS
 
@@ -25,7 +25,7 @@ clean:
 build/app: build/lint
 	make -C ../.. dist
 	@echo "\n\nBuilding the flatpak app..."
-	flatpak-builder --force-clean --state-dir=build/state --repo=build/repo build/app ${FLATPAK_ID}.yml  #--build-shell=fava-desktop
+	flatpak-builder --force-clean --state-dir=build/state --repo=build/repo build/app ${FLATPAK_ID}.yml  #--build-shell=fava-gtk
 
 .PHONY: build/lint
 build/lint:
