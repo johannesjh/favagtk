@@ -157,12 +157,11 @@ python-versions = "*"
 
 [[package]]
 name = "fava"
-version = "1.13.dev381+gb644f0ca"
+version = "1.18"
 description = "Web interface for the accounting tool Beancount."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-develop = false
 
 [package.dependencies]
 Babel = ">=2.6.0"
@@ -179,12 +178,6 @@ Werkzeug = ">=0.15.0"
 
 [package.extras]
 excel = ["pyexcel (>=0.2.2)", "pyexcel-ods3 (>=0.1.1)", "pyexcel-xls (>=0.1.0)", "pyexcel-xlsx (>=0.1.0)"]
-
-[package.source]
-type = "git"
-url = "https://github.com/johannesjh/fava.git"
-reference = "setup-with-fe-build"
-resolved_reference = "b644f0cad755a143fd708aa42b05504e4a268763"
 
 [[package]]
 name = "filelock"
@@ -509,7 +502,7 @@ pyasn1 = ">=0.4.6,<0.5.0"
 name = "pycairo"
 version = "1.20.0"
 description = "Python interface for cairo"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6, <4"
 
@@ -525,7 +518,7 @@ python-versions = "*"
 name = "pygobject"
 version = "3.38.0"
 description = "Python bindings for GObject Introspection"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5, <4"
 
@@ -575,7 +568,7 @@ six = ">=1.5"
 
 [[package]]
 name = "python-magic"
-version = "0.4.18"
+version = "0.4.20"
 description = "File type identification using libmagic"
 category = "main"
 optional = false
@@ -723,7 +716,7 @@ smart-importer = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "44e7fceffa4b91fbde044dfc72b25d5c7297c2b60cc91e487d202cb483d404e3"
+content-hash = "49f1cd0b9fbdc80e581926a8585a75a5917307c61029af4508a9626876db853c"
 
 [metadata.files]
 appdirs = [
@@ -794,7 +787,10 @@ distlib = [
     {file = "distlib-0.3.1-py2.py3-none-any.whl", hash = "sha256:8c09de2c67b3e7deef7184574fc060ab8a793e7adbb183d942c389c8b13c52fb"},
     {file = "distlib-0.3.1.zip", hash = "sha256:edf6116872c863e1aa9d5bb7cb5e05a022c519a4594dc703843343a9ddd9bff1"},
 ]
-fava = []
+fava = [
+    {file = "fava-1.18-py3-none-any.whl", hash = "sha256:592540cc0f531c4092760497304f05d708305b2b7b9093661c10ee4d760565b1"},
+    {file = "fava-1.18.tar.gz", hash = "sha256:21336b695708497e6f00cab77135b174c51feb2713b657e0e208282960885bf5"},
+]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
     {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
@@ -1038,8 +1034,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
 ]
 python-magic = [
-    {file = "python-magic-0.4.18.tar.gz", hash = "sha256:b757db2a5289ea3f1ced9e60f072965243ea43a2221430048fd8cacab17be0ce"},
-    {file = "python_magic-0.4.18-py2.py3-none-any.whl", hash = "sha256:356efa93c8899047d1eb7d3eb91e871ba2f5b1376edbaf4cc305e3c872207355"},
+    {file = "python-magic-0.4.20.tar.gz", hash = "sha256:0cc52ccad086c377b9194014e3dbf98d94b194344630172510a6a3e716b47801"},
+    {file = "python_magic-0.4.20-py2.py3-none-any.whl", hash = "sha256:33ce94d9395aa269a9c5fac10ae124a5fb328ebe248f36efc5a43922edee662e"},
 ]
 pytz = [
     {file = "pytz-2020.5-py2.py3-none-any.whl", hash = "sha256:16962c5fb8db4a8f63a26646d8886e9d769b6c511543557bc84e9569fb9a9cb4"},
