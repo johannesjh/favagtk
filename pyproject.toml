@@ -8,9 +8,11 @@ authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
 python = "^3.8"
 fava = "^1.18"
 PyGObject = "^3.38.0"
+smart-importer = {version = "^0.1", optional = true}
+beancount-share = {version = "^0.1.10", optional = true}
 
 [tool.poetry.extras]
-smart-importer = ["smart-importer"]
+all = ["smart-importer", "beancount-share"]
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -21,5 +23,5 @@ pyclean = "^2.0.0"
 fava-gtk = "fava_gtk.main:main"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"
