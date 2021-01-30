@@ -18,7 +18,8 @@ modules:
     buildsystem: simple
     build-commands:
       # install python packages
-      - pip3 install --no-index  --find-links=./dist --prefix=${FLATPAK_DEST} fava fava-gtk
+      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist -r ./dist/requirements.txt
+      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist fava-gtk[all]
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/
@@ -31,6 +32,9 @@ modules:
       # install appstream metadata
       - mkdir -p /app/share/metainfo/
       - cp packaging/flatpak/${FLATPAK_ID}.appdata.xml /app/share/metainfo/
+    build-options:
+        build-args:
+          - --share=network
     sources:
       - type: dir
         path: ../..
