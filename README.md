@@ -30,7 +30,17 @@ flatpak run io.github.beancount.FavaGtk
 
 ## Development
 
-You can use poetry to develop fava-gtk locally. This should work on linux machines with GNOME 3.18. First clone this repository, then execute the following commands.
+To run fava-gtk from local sources, clone this repository, then execute the following commands.
+
+```bash
+# to install required python packages in a virtual environment
+poetry install
+
+# to run fava-gtk using the python virtual environment
+make run
+```
+
+Lint before committing changes:
 
 ```bash
 # to install pre-commit on your system,
@@ -40,18 +50,13 @@ pip install pre-commit
 # to install the pre-commit git hooks in the cloned fava-gtk repo
 pre-commit install
 
-# to install required python packages in a virtual environment
-poetry install
+# to lint all code
+pre-commit run --all
 
-# to run a commandline shell using the python virtual environment
-poetry shell
-
-# to lint the code
+# to lint staged changes
 pre-commit run
-
-# to run fava-gtk using the python virtual environment
-make run
 ```
+
 
 ## License
 
