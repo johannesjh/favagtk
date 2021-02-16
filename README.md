@@ -2,7 +2,7 @@
 
 Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
-* Makes it easy to install and use fava and beancount. 
+* Makes it easy to install and use fava and beancount.
 
 * No messing in the commandline, no python virtualenvs  - a convenient way to open and edit beancount files as in any other desktop application.
 
@@ -16,13 +16,13 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 ## Usage
 
-fava-gtk has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work. 
+fava-gtk has been developed and tested on Linux with GNOME 3.18. Other operating systems may or may not work.
 
 First clone this repository, then execute the following commands to build, install, and run fava-gtk:
 
 ```bash
 # to build and install a fava-gtk flatpak bundle:
-make -C packaging/flatpak dist/install
+make -C packaging/flatpak install
 
 # to run the fava-gtk flatpak bundle:
 flatpak run io.github.beancount.FavaGtk
