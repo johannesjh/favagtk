@@ -1,0 +1,4 @@
+v0.1.0 (2021-02-17) Initial release
+
+* Adds a GUI where users can start fava, open beancount files using a file chooser, and view and edit the beancount file using fava.
+* Adds flatpak packaging, so that users can install and open the application using the GNOME desktop environment.
