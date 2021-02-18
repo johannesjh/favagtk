@@ -16,10 +16,15 @@ finish-args:
 modules:
   - name: fava-gtk
     buildsystem: simple
+    sources:
+      - type: dir
+        path: ../..
     build-commands:
+      # create python wheel
+      - make dist
+
       # install python packages
-      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist -r ./dist/requirements.txt
-      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist fava-gtk[all]
+      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist -c ./requirements/env-dist.txt fava-gtk[all]
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/
@@ -35,6 +40,3 @@ modules:
     build-options:
         build-args:
           - --share=network
-    sources:
-      - type: dir
-        path: ../..

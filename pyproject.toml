@@ -1,27 +1,3 @@
-[tool.poetry]
-name = "fava-gtk"
-version = "0.1.1-dev1"
-description = ""
-authors = ["johannesjh <johannesjh@users.noreply.github.com>"]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-fava = "^1.18"
-PyGObject = "^3.38.0"
-smart-importer = {version = "^0.1", optional = true}
-beancount-share = {version = "^0.1.10", optional = true}
-
-[tool.poetry.extras]
-all = ["smart-importer", "beancount-share"]
-
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
-pre-commit = "^2.9.2"
-pyclean = "^2.0.0"
-
-[tool.poetry.scripts]
-fava-gtk = "fava_gtk.main:main"
-
 [build-system]
-requires = ["poetry-core>=1.1.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

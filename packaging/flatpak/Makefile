@@ -13,7 +13,7 @@ dist/io.github.beancount.FavaGtk.flatpak:
 	appstreamcli validate io.github.beancount.FavaGtk.appdata.xml
 	mkdir -p build dist && rm -rf build/app
 	touch build/.trackerignore dist/.trackerignore
-	flatpak-builder --state-dir=build/state --repo=build/repo build/app io.github.beancount.FavaGtk.yml  #--build-shell=fava-gtk
+	flatpak-builder --state-dir=build/state --repo=build/repo build/app io.github.beancount.FavaGtk.yml #--build-shell=fava-gtk
 	flatpak build-bundle build/repo dist/io.github.beancount.FavaGtk.flatpak io.github.beancount.FavaGtk
 
 .PHONY: install
@@ -23,3 +23,7 @@ install: uninstall dist/io.github.beancount.FavaGtk.flatpak
 .PHONY: uninstall
 uninstall:
 	-flatpak --user uninstall -y io.github.beancount.FavaGtk
+
+.PHONY: run
+run:
+	flatpak run io.github.beancount.FavaGtk

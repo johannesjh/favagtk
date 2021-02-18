@@ -1,0 +1,2 @@
+# system runtime requirements that may be difficult to install in a virtualenv
+PyGObject>=3.36

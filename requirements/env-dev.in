@@ -1,0 +1,8 @@
+# requirements definition for development environment.
+
+# this excludes system requirements like PyGObject because these may be easier
+# to install as operating system packages (e.g., using apt or dnf).
+
+-r req-main.in
+-r req-extras.in
+-r req-dev.in

@@ -7,7 +7,6 @@ repos:
     rev: v2.3.6
     hooks:
       - id: reorder-python-imports
-        args: [ "--application-directories=.:src" ]
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.4
     hooks:
@@ -23,5 +22,7 @@ repos:
         name: pytest
         stages: [ commit ]
         language: system
-        entry: poetry run pytest ./tests
+        entry: pytest ./tests
         types: [ python ]
+        pass_filenames: false
+        always_run: true
