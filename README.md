@@ -64,6 +64,8 @@ System requirements:
 * [python3](https://www.python.org/) is needed, no support for python2. See setup.cfg for the specific version of python that is required.
 * [PyGObject](https://pygobject.readthedocs.io/) is needed because it provides language bindings to GTK. If you are running GNOME you most certainly have it on your system already. Have a look at [PyGObject's installation instructions](https://pygobject.readthedocs.io/en/latest/getting_started.html) and choose (or try out to see) if you want to install PyGObject using pip or using your operating system's package manager.
 * [WebKitGTK](https://webkitgtk.org/) must be installed, specifically WebKit2 API Level4. If you are running GNOME, you probably have it on your system already.
+* git and make
+
 
 Python package dependencies:
 
@@ -107,7 +109,15 @@ pre-commit run
 
 ### Flatpak packaging
 
-Have a look at the targets available in [packaging/flatpak/Makefile]. These targets allow to build, install and launch a .flatpak application package. For example:
+Fava GTK is packaged using flatpak-builder.
+
+The following additional system requirements are needed to locally build flatpak application packages.
+
+* flatpak-builder (installed using instructions from https://docs.flatpak.org/en/latest/first-build.html, the GNOME SDK will also be installed as part of the build process)
+* appstream (provides the appstreamcli command)
+* desktop-file-utils (provides the desktop-file-validate command)
+
+Have a look at the targets available in [packaging/flatpak/Makefile]. These targets build, install and launch the .flatpak application package. For example:
 
 ```bash
 # to create a flatpak bundle
