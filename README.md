@@ -4,7 +4,7 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 * Makes it easy to install and use fava and beancount.
 
-* No messing in the commandline, no python virtualenvs  - a convenient way to open and edit beancount files as in any other desktop application.
+* Simple installation using flatpak, no messing in the commandline  - a convenient way to open and edit beancount files as in any other desktop application.
 
 * Built using GTK and webkit, packaged as flatpak application.
 
