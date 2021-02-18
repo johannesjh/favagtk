@@ -1,0 +1,7 @@
+# requirements definition for production / distribution environment.
+
+# this excludes system requirements like PyGObject that we don't want to pin
+# because we will use whatever is shipped as part of the GNOME platform
+
+-r req-main.in
+-r req-extras.in

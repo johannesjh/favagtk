@@ -1,0 +1,3 @@
+# extra runtime requirements that add optional functionality
+smart-importer~=0.1
+beancount-share~=0.1.10

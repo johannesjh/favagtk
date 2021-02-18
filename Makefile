@@ -1,35 +1,34 @@
 .PHONY: all
 all: clean dist
 
-
-null :=
-space := ${null} ${null}
-WHEEL = $(subst ${space},-,$(subst -,_,$(shell poetry version)))-py3-none-any.whl
-
-
 .PHONY: clean
 clean:
-	-poetry run pyclean fava_gtk tests
-	rm -rf .pytest_cache __pycache__ build dist
+	-pyclean fava_gtk tests
+	rm -rf .pytest_cache __pycache__ *.egg-info build dist venv
 
+.PHONY: requirements
+requirements:
+	pip-compile-multi
 
-dist: dist/$(WHEEL) dist/requirements.txt
-	touch dist/.trackerignore
-	poetry run pip3 download -r dist/requirements.txt --dest dist/
+requirements/%.txt: requirements/%.in $(wildcard requirements/*.in)
+	pip-compile-multi --use-cache -t $<
 
-dist/$(WHEEL):
-	poetry build --format wheel
+.PHONY: venv
+venv: venv/updated
 
-dist/requirements.txt:
-	poetry export --without-hashes --extras all --output dist/requirements.txt
-
+venv/updated: requirements/env-dev.txt
+	test -d venv || virtualenv -p python3 --system-site-packages venv
+	venv/bin/pip install --ignore-installed -c requirements/env-dev.txt --editable .[all]
+	touch venv/updated
 
 .PHONY: run
-run:
-	poetry run python3 fava_gtk/main.py
-
+run: venv/updated
+	venv/bin/python fava_gtk/main.py
 
 .PHONY: test
 test:
-	poetry run pytest ./tests
+	venv/bin/pytest ./tests
 
+.PHONY: dist
+dist:
+	python3 setup.py bdist_wheel
