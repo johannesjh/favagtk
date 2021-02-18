@@ -117,7 +117,7 @@ The following additional system requirements are needed to locally build flatpak
 * appstream (provides the appstreamcli command)
 * desktop-file-utils (provides the desktop-file-validate command)
 
-Have a look at the targets available in [packaging/flatpak/Makefile]. These targets build, install and launch the .flatpak application package. For example:
+Have a look at the targets available in [the flatpak packaging Makefile](./packaging/flatpak/Makefile). These targets build, install and launch the Fava GTK .flatpak application package. For example:
 
 ```bash
 # to create a flatpak bundle
