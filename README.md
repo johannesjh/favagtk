@@ -1,5 +1,7 @@
 # Fava GTK
 
+![main branch build status](https://github.com/johannesjh/fava-gtk/workflows/CI/badge.svg?branch=main)
+
 Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
 * Makes it easy to install and use fava and beancount.
@@ -46,7 +48,7 @@ Fava GTK is only a thin convenience layer around [Fava](https://github.com/beanc
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated. Pull requests welcome.
+All contributions are greatly appreciated... pull requests welcome, and so are bug reports and suggestions for improvement.
 
 
 ### Viewing Debug Output
