@@ -1,0 +1,19 @@
+on:
+  push:
+  pull_request:
+name: CI
+jobs:
+  flatpak-package:
+    name: Flatpak Builder
+    runs-on: ubuntu-latest
+    container:
+      image: 'bilelmoussaoui/flatpak-github-actions:gnome-3.38'
+      options: '--privileged'
+    steps:
+      - name: checkout sources
+        uses: actions/checkout@v2
+      - name: create flatpak bundle
+        uses: bilelmoussaoui/flatpak-github-actions@v2
+        with:
+          bundle: io.github.beancount.FavaGtk.flatpak
+          manifest-path: packaging/flatpak/io.github.beancount.FavaGtk.yml
