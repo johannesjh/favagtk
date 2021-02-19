@@ -10,10 +10,39 @@ jobs:
       image: 'bilelmoussaoui/flatpak-github-actions:gnome-3.38'
       options: '--privileged'
     steps:
+
       - name: checkout sources
         uses: actions/checkout@v2
+
       - name: create flatpak bundle
         uses: bilelmoussaoui/flatpak-github-actions@v2
         with:
           bundle: io.github.beancount.FavaGtk.flatpak
           manifest-path: packaging/flatpak/io.github.beancount.FavaGtk.yml
+
+      - name: move flatpak bundle to dist folder
+        run: mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./packaging/flatpak/dist/io.github.beancount.FavaGtk.flatpak
+          asset_name: io.github.beancount.FavaGtk.flatpak
+          asset_content_type:  application/binary
