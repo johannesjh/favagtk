@@ -110,7 +110,7 @@ pre-commit run
 ```
 
 
-### Flatpak packaging
+### Flatpak Packaging
 
 Fava GTK is packaged using flatpak-builder. The following software is needed to build flatpak application packages.
 
@@ -124,6 +124,18 @@ Have a look at the targets available in [the flatpak packaging Makefile](./packa
 # to create a flatpak bundle
 make dist
 ```
+
+
+### Release Process
+
+How to release a new version of Fava GKT
+
+* Test the flatpak image, a quick smoke test should suffice to verify that the build is working ok.
+* Edit the version number in `setup.cfg` to match the version that shall be released, git commit and push. Format the version number as, e.g., `1.2.3`.
+* Tag the same version number, prefixed with letter `v`, e.g., `v1.2.3`, then run `git push --tags`
+* Github's ci should build the flatpak package and upload it to a release with the same name.
+* Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
+* Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev`, push changes.
 
 
 ## License

@@ -1,3 +1,13 @@
+Release Notes with Change Log for Fava GTK
+
+
+v0.1.1 (2021-02-19) Adds continuous integration, uses setuptools instead of poetry
+
+* Adds a github ci workflow that builds flatpak packages.
+* Users can download these flatpak packages for each release that is made, i.e., for each tag matching `v.*` that is pushed.
+* Moves away from poetry for finer control over requirements and their installation in virtualenvs.
+
+
 v0.1.0 (2021-02-17) Initial release
 
 * Adds a GUI where users can start fava, open beancount files using a file chooser, and view and edit the beancount file using fava.
