@@ -6,17 +6,10 @@ clean:
 	-pyclean fava_gtk tests
 	rm -rf .pytest_cache __pycache__ *.egg-info build dist venv
 
-.PHONY: requirements
-requirements:
-	pip-compile-multi
-
-requirements/%.txt: requirements/%.in $(wildcard requirements/*.in)
-	pip-compile-multi --use-cache -t $<
-
 .PHONY: venv
 venv: venv/updated
 
-venv/updated: requirements/env-dev.txt
+venv/updated:
 	test -d venv || virtualenv -p python3 --system-site-packages venv
 	venv/bin/pip install --ignore-installed -c requirements/env-dev.txt --editable .[all]
 	touch venv/updated
