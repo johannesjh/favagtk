@@ -92,6 +92,12 @@ make run
 ```
 
 
+### Upgrading Python Dependencies
+
+* Minor Upgrades within the constraints of `requirements/*.in`: Simply run `pip-compile-multi`. This will lock packages to their newest version, within the given constraints.
+* Major Upgrades: Manually check if some of the packages in `requirements/*.in` exist in a newer version.
+
+
 ### Code quality
 
 Use [pre-commit](https://pre-commit.com/) to lint the code before committing changes.
