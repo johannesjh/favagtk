@@ -1,6 +1,12 @@
 Release Notes with Change Log for Fava GTK
 
 
+Unreleased
+
+* Adds fava-investor
+* Improves github ci workflow
+
+
 v0.1.1 (2021-02-19) Adds continuous integration, uses setuptools instead of poetry
 
 * Adds a github ci workflow that builds flatpak packages.

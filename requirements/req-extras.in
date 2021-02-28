@@ -1,4 +1,5 @@
 # extra runtime requirements that add optional functionality
+-c req-main.in
 smart-importer~=0.1
 beancount-share~=0.1.10
 fava-investor~=0.2.1
