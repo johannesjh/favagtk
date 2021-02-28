@@ -10,21 +10,17 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 * Built using GTK and webkit, packaged as flatpak application.
 
-
 ## Screenshot
 
 ![Screenshot of fava-gtk](https://user-images.githubusercontent.com/581188/104773200-fa2ce080-5774-11eb-978a-654c62511104.png)
-
 
 ## Getting Started
 
 The easiest way to start using Fava GTK is to download and install the flatpak application package from the Fava GTK releases on Github, as detailed in the following.
 
-
 ### System Requirements
 
 Fava GTK has been developed and tested on Linux with GNOME 3.38. Other operating systems and desktop environments may or may not work. [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
-
 
 ### Installation
 
@@ -36,7 +32,6 @@ You can then install the application as follows.
 flatpak install --user <file.flatpak>
 ```
 
-
 ### Usage
 
 Once installed, you will find an application named "Fava" that can be started in the very same way as any other desktop application, e.g., using GNOME Shell.
@@ -45,11 +40,9 @@ The application window that is initially shown prompts to open a beancount file.
 
 Fava GTK is only a thin convenience layer around [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). These two programs provide the actual functionality. You will find documentation on how to use these programs for managing your finances on their respective websites.
 
-
 ## Contributing
 
 All contributions are greatly appreciated... pull requests welcome, and so are bug reports and suggestions for improvement.
-
 
 ### Viewing Debug Output
 
@@ -58,7 +51,6 @@ Starting Fava GTK from the commandline allows to view its debug output and helps
 ```bash
 flatpak run io.github.beancount.FavaGtk
 ```
-
 
 ### Setting up a Development Environment
 
@@ -70,7 +62,6 @@ System requirements - a modern GNOME installation will usually come with everyth
 * [PyGObject](https://pygobject.readthedocs.io/) is needed because it provides language bindings to GTK. If you are running GNOME you most certainly have it on your system already. Have a look at [PyGObject's installation instructions](https://pygobject.readthedocs.io/en/latest/getting_started.html) and choose (or try out to see) if you want to install PyGObject using pip or using your operating system's package manager.
 * [WebKitGTK](https://webkitgtk.org/) must be installed, specifically WebKit2 API Level4. If you are running GNOME, you probably have it on your system already.
 * Optionally [Glade](https://glade.gnome.org) in order to edit .ui files.
-
 
 Python package dependencies:
 
@@ -91,12 +82,10 @@ make venv
 make run
 ```
 
-
 ### Upgrading Python Dependencies
 
 * Minor Upgrades within the constraints of `requirements/*.in`: Simply run `pip-compile-multi`. This will lock packages to their newest version, within the given constraints.
 * Major Upgrades: Manually check if some of the packages in `requirements/*.in` exist in a newer version.
-
 
 ### Code quality
 
@@ -117,7 +106,6 @@ pre-commit run --all
 pre-commit run
 ```
 
-
 ### Flatpak Packaging
 
 Fava GTK is packaged using flatpak-builder. The following software is needed to build flatpak application packages.
@@ -130,9 +118,9 @@ Have a look at the targets available in [the flatpak packaging Makefile](./packa
 
 ```bash
 # to create a flatpak bundle
-make dist
+cd packaging/flatpak
+make
 ```
-
 
 ### Release Process
 
@@ -144,7 +132,6 @@ How to release a new version of Fava GKT
 * Github's ci should build the flatpak package and upload it to a release with the same name.
 * Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
 * Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev`, push changes.
-
 
 ## License
 
