@@ -5,6 +5,7 @@ Unreleased
 
 * Adds fava-investor
 * Improves github ci workflow
+* Adds a dropdown menu to quickly open a recently used file.
 
 
 v0.1.1 (2021-02-19) Adds continuous integration, uses setuptools instead of poetry
