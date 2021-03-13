@@ -3,9 +3,10 @@ Release Notes with Change Log for Fava GTK
 
 Unreleased
 
-* Adds fava-investor
-* Improves github ci workflow
+* Adds fava-investor plugin
 * Adds a dropdown menu to quickly open a recently used file.
+* Improves github ci workflow
+* Updates python dependencies
 
 
 v0.1.1 (2021-02-19) Adds continuous integration, uses setuptools instead of poetry
