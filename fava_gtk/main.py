@@ -1,14 +1,16 @@
 import logging
 import os
-import socketserver
 import sys
 from importlib import resources
-from multiprocessing import Process
+from pathlib import Path
 from typing import Callable
 from typing import Optional
+from urllib.parse import unquote
+from urllib.parse import urlparse
 
 import gi
-from fava.application import app
+
+from fava_gtk.server import Server
 
 gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
 from gi.repository import GdkPixbuf, Gtk, WebKit2, Gio, GLib  # noqa: E402
@@ -57,14 +59,17 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def __init__(self, app):
         super().__init__(application=app, title="Fava")
         self.app = app
+
         self.server = Server()
-        self.load_fava_icon()
+        self.server.connect("start", self.show_url)
+
+        self.show_fava_icon()
         settings = WebKit2.Settings()
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
 
         self.open_action = Gio.SimpleAction(name="file_open")
-        self.open_action.connect("activate", self.file_open)
+        self.open_action.connect("activate", self.show_file_open_dialog)
         self.add_action(self.open_action)
 
         self.close_action = Gio.SimpleAction(name="close")
@@ -92,7 +97,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             self.search_bar, lambda widget: isinstance(widget, Gtk.SearchEntry)
         )  # type: Gtk.SearchEntry
 
-    def load_fava_icon(self):
+    def show_fava_icon(self):
         """Loads fava's icon from python package resources"""
         loader = GdkPixbuf.PixbufLoader()
         loader.write(resources.read_text("fava_gtk", "placeholder_logo.svg").encode())
@@ -100,18 +105,39 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         pixbuf = loader.get_pixbuf()
         self.fava_icon.set_from_pixbuf(pixbuf)
 
-    def file_open(self, *args):
+    def show_file_open_dialog(self, *args):
         """Shows the file open dialog and opens the requested beancount file"""
         dialog = FileOpenDialog(transient_for=self)
         response = dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
             file = dialog.get_filename()
             logger.info(f"User chose file {file}.")
-            self.server.start([file])
-            self.webview.load_uri(self.server.url)
-            self.stack.set_visible_child(self.fava_view)
-            self.search_action.set_enabled(True)
-            self.search_toggle_action.set_enabled(True)
+            self.file_open(file)
+
+    @Gtk.Template.Callback("recent_chooser_menu_item_activated_cb")
+    def file_open_recent(self, menu, *args):
+        """Handler for when the user clicked to open a recent file"""
+        item = menu.get_current_item()
+        if item:
+            logger.info(f"User chose recent file {item.get_uri()}.")
+            filename = unquote(urlparse(item.get_uri()).path)
+            self.file_open(filename)
+
+    def file_open(self, file):
+        """Opens a beancount file using fava"""
+        # Adds to the list of recently used files
+        Gtk.RecentManager().add_item(Path(file).as_uri())
+        # Instructs the server to load the beancount file.
+        # The server will then emit a "start" signal.
+        # This signal is handled by `self.show_url`.
+        self.server.start(file)
+
+    def show_url(self, _server, url):
+        """Loads the URL in the webview and displays the web page"""
+        self.webview.load_uri(self.server.url)
+        self.stack.set_visible_child(self.fava_view)
+        self.search_action.set_enabled(True)
+        self.search_toggle_action.set_enabled(True)
 
     def search_toggle(self, action: Gio.SimpleAction, state):
         """Toggles the search bar"""
@@ -157,7 +183,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
     def close(self, *args):
         """Closes currently opened file, or closes the window if no file is open"""
-        if self.server.is_alive():
+        if self.server.is_running():
             self.close_file()
         else:
             self.do_destroy()
@@ -204,47 +230,6 @@ class FileOpenDialog(Gtk.FileChooserNative):
 
         self.set_local_only(False)
         self.set_modal(True)
-
-
-class Server:
-    """Fava's application server running in a separate process"""
-
-    def find_free_port(self):
-        with socketserver.TCPServer(("localhost", 0), None) as s:
-            return s.server_address[1]
-
-    def start(self, files):
-        """
-        Starts the fava webserver in order to open the requested files.
-        Existing server instances are stopped before the new server is started.
-        """
-        logger.info("Loading files " + ", ".join(files) + "...")
-        self.stop()
-        app.config["BEANCOUNT_FILES"] = files
-        port = self.find_free_port()
-        host = "127.0.0.1"
-        self.url = f"http://{host}:{port}/"
-        self.process = Process(
-            target=app.run,
-            kwargs={"host": host, "port": port, "debug": False},
-        )
-        self.process.start()
-        logger.info(f"Server started at {self.url}.")
-
-    def stop(self):
-        """Stops the fava webserver."""
-        try:
-            self.process.terminate()
-            self.process.join()
-            self.url = None
-        except AttributeError:
-            pass
-
-    def is_alive(self):
-        try:
-            return self.process.is_alive()
-        except AttributeError:
-            return False
 
 
 def find_child(widget: Gtk.Widget, criterion: Callable) -> Optional[Gtk.Widget]:
