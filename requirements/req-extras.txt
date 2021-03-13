@@ -55,13 +55,13 @@ flask==1.1.2
     # via
     #   fava
     #   flask-babel
-google-api-core==1.26.0
+google-api-core==1.26.1
     # via google-api-python-client
-google-api-python-client==1.12.8
+google-api-python-client==2.0.2
     # via beancount
-google-auth-httplib2==0.0.4
+google-auth-httplib2==0.1.0
     # via google-api-python-client
-google-auth==1.27.0
+google-auth==1.27.1
     # via
     #   google-api-core
     #   google-api-python-client
@@ -112,7 +112,7 @@ ply==3.11
     # via
     #   beancount
     #   fava
-protobuf==3.15.3
+protobuf==3.15.6
     # via
     #   google-api-core
     #   googleapis-common-protos
