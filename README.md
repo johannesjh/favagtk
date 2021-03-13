@@ -12,7 +12,7 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 ## Screenshot
 
-![Screenshot of fava-gtk](https://user-images.githubusercontent.com/581188/104773200-fa2ce080-5774-11eb-978a-654c62511104.png)
+![Screenshot of fava-gtk](https://user-images.githubusercontent.com/581188/111044548-8b54c680-8449-11eb-94cb-c74b2294a670.png)
 
 ## Getting Started
 
