@@ -138,4 +138,14 @@ How to release a new version of Fava GKT
 
 fava-gtk is GPL-licensed, see the [LICENSE](./LICENSE) file.
 
-Most of fava-gtk's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). fava-gtk's dependencies are each licensed in their own way, see the requirements definitions in this repo for lists of packages that fava-gtk depends on.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Licenses of packages that fava-gtk depends on: Most of fava-gtk's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). fava-gtk's dependencies are each licensed in their own way, see the requirements definitions in this repo for lists of packages that fava-gtk depends on.
