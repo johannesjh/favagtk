@@ -133,8 +133,9 @@ How to release a new version of Fava GKT
 * Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
 * Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev`, push changes.
 
+
 ## License
 
-fava-gtk is MIT licensed, see [LICENSE](./LICENSE) file.
+fava-gtk is GPL-licensed, see the [LICENSE](./LICENSE) file.
 
-Most of fava-gtk's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). fava-gtk's dependencies are licensed differently, see the requirements definitions in this repo for lists of packages that fava-gtk depends on.
+Most of fava-gtk's functionality comes from other software packages; many thanks in particular to the authors of of [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). fava-gtk's dependencies are each licensed in their own way, see the requirements definitions in this repo for lists of packages that fava-gtk depends on.
