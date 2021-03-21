@@ -26,6 +26,7 @@ class Application(Gtk.Application):
         window = ApplicationWindow(self)
         self.add_window(window)
         window.show_all()
+        window.open_last_file()
 
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", lambda *args: self.do_quit())
