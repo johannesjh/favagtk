@@ -15,7 +15,10 @@ logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
 
 
 class Server(GObject.GObject):
-    """Fava's web server running in a separate process"""
+    """
+    Fava's web application and web server running in a separate process,
+    provided as GObject with start and stop signals.
+    """
 
     def __init__(self):
         GObject.GObject.__init__(self)
@@ -64,7 +67,9 @@ class Server(GObject.GObject):
             pass
 
     def is_running(self):
-        """Returns True if the server process is alive"""
+        """
+        Returns whether the server process is alive
+        """
         try:
             return self.process.is_alive()
         except AttributeError:
@@ -72,8 +77,10 @@ class Server(GObject.GObject):
 
     def wait_until_available(self, cb, *args, **kwargs):
         """
-        Once the server's URL is available, the callback function is called
-        with the given args and kwargs.
+        Waits until the server's URL is available, then calls the `cb` function.
+        The wait loop runs in a separate thread, repeatedly polling the URL.
+        When the server returns a response for the URL, the loop stops
+        and the callback function `cb` is called.
         """
 
         # from: https://stackoverflow.com/a/45498191
@@ -95,7 +102,10 @@ class Server(GObject.GObject):
 
     @staticmethod
     def is_available(url):
-        """Returns True if the url is available."""
+        """
+        Returns whether the URL is available,
+        i.e., if a request to that URL gets a response from the server.
+        """
         try:
             with urllib.request.urlopen(url, timeout=1):
                 logger.debug(f"Checking server URL: {url} is available.")
