@@ -28,7 +28,7 @@ modules:
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/
-      - cp fava_gtk/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - cp packaging/flatpak/icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
 
       # install desktop file
       - mkdir -p /app/share/applications/

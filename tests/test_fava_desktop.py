@@ -4,7 +4,7 @@ from unittest import TestCase
 
 import gi
 
-from fava_gtk.main import ApplicationWindow
+from fava_gtk.window import ApplicationWindow
 
 gi.require_versions({"GdkPixbuf": "2.0", "Gdk": "3.0", "Gtk": "3.0", "WebKit2": "4.0"})
 from gi.repository import Gtk  # noqa: E402
