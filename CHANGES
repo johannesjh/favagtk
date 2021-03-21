@@ -3,8 +3,9 @@ Release Notes with Change Log for Fava GTK
 
 Unreleased
 
+* Automatically opens the most recent file when the application starts.
+* Adds a dropdown menu to quickly choose from a list of recently used files.
 * Adds fava-investor plugin
-* Adds a dropdown menu to quickly open a recently used file.
 * Improves github ci workflow
 * Updates python dependencies
 * Refactorings and cleanups

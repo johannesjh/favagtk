@@ -25,6 +25,10 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
     __gtype_name__ = "FavaDesktopWindow"
 
+    # ui elements:
+    header_bar = Gtk.Template.Child()  # type: Gtk.HeaderBar
+    recent_mgr = Gtk.Template.Child()  # type: Gtk.RecentManager
+    recent_chooser_menu = Gtk.Template.Child()  # type: Gtk.RecentChooserMenu
     stack = Gtk.Template.Child()  # type: Gtk.Stack
     placeholder_view = Gtk.Template.Child()  # type: Gtk.Box
     fava_icon = Gtk.Template.Child()  # type: Gtk.Image
@@ -40,7 +44,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         super().__init__(application=app, title="Fava")
         self.app = app
 
-        # Load the fava server
+        # Initialize the fava server
         self.server = Server()
         self.server.connect("start", self.load_url)
 
@@ -98,17 +102,39 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             logger.info(f"User chose file {file}.")
             self.open_file(file)
 
+    @Gtk.Template.Callback("recent_chooser_menu_popped_up_cb")
+    def recent_chooser_menu_popped_up_cb(self, *args):
+        """
+        Handler for when the user pops open the recent files menu.
+        Implements a workaround for refreshing the menu before it is displayed.
+        """
+        self.recent_mgr.emit("changed")
+
     @Gtk.Template.Callback("recent_chooser_menu_item_activated_cb")
     def open_recent_file(self, menu, *args):
         """
-        Handler for the GtkRecentChooserMenu,
-        for when the user chose to open a recent file.
+        Handler for the GtkRecentChooserMenu, when the user chose a file.
+        Opens the file that the user chose when clicking the menu item.
         """
         item = menu.get_current_item()
-        if item:
-            logger.info(f"User chose recent file {item.get_uri()}.")
-            filename = unquote(urlparse(item.get_uri()).path)
-            self.open_file(filename)
+        filename = unquote(urlparse(item.get_uri()).path)
+        logger.info(f"Opening recent file {item.get_uri()}.")
+        self.open_file(filename)
+
+    def open_last_file(self):
+        """
+        Opens the last file, i.e., the file that was most recently used.
+        This can be used to open the most recent file when the application starts.
+        """
+        menu = self.recent_chooser_menu
+        items = menu.get_items()
+        item = items[0] if len(items) > 0 else None
+        if not item:
+            logger.warning("Found no recently used file to open.")
+            return
+        logger.info(f"Opening most recently used file {item.get_uri()}.")
+        filename = unquote(urlparse(item.get_uri()).path)
+        self.open_file(filename)
 
     def open_file(self, file):
         """
@@ -117,11 +143,24 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         simply because the old server instance is discarded and a new
         instance is started for the new file.
         """
+        # Verify that the file exists
+        if not Path(file).is_file():
+            logger.warning(
+                f"File {file} could not be opened because it does not exist."
+            )
+            return
+
+        # Show filename and directory in headerbar
+        self.header_bar.set_property("title", Path(file).name)
+        self.header_bar.set_property("subtitle", str(Path(file).parent))
+
         # Adds to the list of recently used files
         Gtk.RecentManager().add_item(Path(file).as_uri())
+
         # Instructs the server to load the beancount file.
-        # The server will then emit a "start" signal.
-        # This signal is handled by `self.show_url`.
+        # Note: The server will then emit a "start" signal.
+        # The application window, when handling this signal, will
+        # instruct the webkit webview to load the URL.
         self.server.start(file)
 
     def load_url(self, _server, url):
@@ -207,10 +246,17 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
     def close_file(self, *args):
         """Closes the currently opened beancount file"""
+        # stop showing filename and dirname in the headerbar
+        self.header_bar.set_property("title", "Fava")
+        self.header_bar.set_property("subtitle", None)
+
+        # cancel ongoing searches
         self.search_stop()
         self.search_action.set_enabled(False)
         self.search_toggle_action.set_enabled(False)
         self.stack.set_visible_child(self.placeholder_view)
+
+        # stop the server
         self.server.stop()
 
     def do_destroy(self):
