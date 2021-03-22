@@ -56,20 +56,14 @@ flatpak run io.github.beancount.FavaGtk
 
 Fava GTK is written as a python application using the GTK user interface toolkit and targeting the GNOME desktop environment. The following requirements are needed to develop and run Fava GTK straight from its python source code.
 
-System requirements - a modern GNOME installation will usually come with everything you need:
+System requirements: A modern GNOME installation will usually come with everything you need.
 
 * [python3](https://www.python.org/) is needed, no support for python2. See setup.cfg for the specific version of python that is required.
 * [PyGObject](https://pygobject.readthedocs.io/) is needed because it provides language bindings to GTK. If you are running GNOME you most certainly have it on your system already. Have a look at [PyGObject's installation instructions](https://pygobject.readthedocs.io/en/latest/getting_started.html) and choose (or try out to see) if you want to install PyGObject using pip or using your operating system's package manager.
 * [WebKitGTK](https://webkitgtk.org/) must be installed, specifically WebKit2 API Level4. If you are running GNOME, you probably have it on your system already.
 * Optionally [Glade](https://glade.gnome.org) in order to edit .ui files.
 
-Python package dependencies:
-
-* Fava GTK depends on other python packages, as defined in the `requirements/*.in` files. Fava GTK aims for compatibility with the dependency versions defined in these files.
-
-* Version-locked aka "frozen" requirement definitions can be found in the `requirements/*.txt` files. These files are created automatically using [pip-compile-multi](https://pypi.org/project/pip-compile-multi/). The version-locked requirements allow to create reproduceable development environments and package builds.
-
-The [Makefile](./Makefile) provides commands that make it easy to set up a python virtual environment for developing Fava GTK.
+Setting up the development environment: The [Makefile](./Makefile) provides commands that make it easy to set up a python virtual environment for developing Fava GTK.
 
 ```bash
 # Run this command to create a python virtual environment for Fava GTK.
@@ -82,10 +76,17 @@ make venv
 make run
 ```
 
-### Upgrading Python Dependencies
+### Python Dependencies
 
-* Minor Upgrades within the constraints of `requirements/*.in`: Simply run `pip-compile-multi`. This will lock packages to their newest version, within the given constraints.
-* Major Upgrades: Manually check if some of the packages in `requirements/*.in` exist in a newer version.
+Fava GTK depends on other python packages, as defined in the `requirements/*.in` files. Fava GTK aims for compatibility with the version ranges defined in these files. 
+
+Version-locked aka "frozen" requirement definitions are automatically generated using [pip-compile-multi](https://pypi.org/project/pip-compile-multi/). The resulting files are named `requirements/*.txt`. These files specify a specific package version for all direct and indirect dependencies. This allows to create reproduceable development environments and package builds.
+
+Upgrading python dependency versions works as follows:
+
+* Minor Upgrades within the constraints of `requirements/*.in`: Simply run `pip-compile-multi`. This will lock packages to their newest version, within the given constraints. Don't forget to test if the application still works correctly. 
+* Major Upgrades: Check if some of the packages in `requirements/*.in` exist in a newer version. Manually edit the `requirements/*.in` files, then proceed as with minor updates. I.e., run `pip-compile-multi` to update the frozen package versions and don't forget to test if the application still works correctly.
+
 
 ### Code quality
 
