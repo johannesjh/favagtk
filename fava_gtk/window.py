@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 
 import gi
 
+from fava_gtk import Settings
+
 gi.require_versions({"GdkPixbuf": "2.0", "Gtk": "3.0", "WebKit2": "4.0"})
 from gi.repository import Gtk, WebKit2, Gio, GLib, GdkPixbuf
 
@@ -24,6 +26,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     """Main application window for FavaGtk."""
 
     __gtype_name__ = "FavaDesktopWindow"
+
+    # path to beancount file
+    beancount_file = None
 
     # ui elements:
     header_bar = Gtk.Template.Child()  # type: Gtk.HeaderBar
@@ -121,21 +126,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         logger.info(f"Opening recent file {item.get_uri()}.")
         self.open_file(filename)
 
-    def open_last_file(self):
-        """
-        Opens the last file, i.e., the file that was most recently used.
-        This can be used to open the most recent file when the application starts.
-        """
-        menu = self.recent_chooser_menu
-        items = menu.get_items()
-        item = items[0] if len(items) > 0 else None
-        if not item:
-            logger.warning("Found no recently used file to open.")
-            return
-        logger.info(f"Opening most recently used file {item.get_uri()}.")
-        filename = unquote(urlparse(item.get_uri()).path)
-        self.open_file(filename)
-
     def open_file(self, file):
         """
         Opens a beancount file using fava.
@@ -144,24 +134,38 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         instance is started for the new file.
         """
         # Verify that the file exists
-        if not Path(file).is_file():
+        if file is None:
+            logger.warning("File could not be opened because it was None.")
+            return
+
+        file = Path(file)
+        if not file.is_file():
             logger.warning(
                 f"File {file} could not be opened because it does not exist."
             )
             return
 
-        # Show filename and directory in headerbar
-        self.header_bar.set_property("title", Path(file).name)
-        self.header_bar.set_property("subtitle", str(Path(file).parent))
+        # Remember the file name
+        self.beancount_file = str(file)
+
+        # Show filename as the window's title
+        self.header_bar.set_property("title", file.name)
+
+        # Show folder name as the window's subtitle,
+        # except for flatpak's cryptic /run/user/... paths
+        if str(file).startswith("/run/user"):
+            self.header_bar.set_property("subtitle", None)
+        else:
+            self.header_bar.set_property("subtitle", str(file.parent))
 
         # Adds to the list of recently used files
-        Gtk.RecentManager().add_item(Path(file).as_uri())
+        Gtk.RecentManager().add_item(file.as_uri())
 
         # Instructs the server to load the beancount file.
         # Note: The server will then emit a "start" signal.
         # The application window, when handling this signal, will
         # instruct the webkit webview to load the URL.
-        self.server.start(file)
+        self.server.start(str(file))
 
     def load_url(self, _server, url):
         """Loads the URL in the webview and displays the web page"""
@@ -246,6 +250,10 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
     def close_file(self, *args):
         """Closes the currently opened beancount file"""
+
+        # forget the file name
+        self.beancount_file = None
+
         # stop showing filename and dirname in the headerbar
         self.header_bar.set_property("title", "Fava")
         self.header_bar.set_property("subtitle", None)
@@ -260,8 +268,17 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.server.stop()
 
     def do_destroy(self):
-        """Destroys the window, having first closed the file and stopped the server."""
+        """Closes the window"""
+
+        # save last used file in application settings
+        settings = Settings.load()
+        settings.last_used_file = self.beancount_file
+        settings.save()
+
+        # close beancount file and stop web server
         self.close_file()
+
+        # close the window
         self.app.remove_window(self)
 
 

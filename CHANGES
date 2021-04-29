@@ -3,8 +3,10 @@ Release Notes with Change Log for Fava GTK
 
 Unreleased
 
-* Automatically opens the most recent file when the application starts.
-* Adds a dropdown menu to quickly choose from a list of recently used files.
+* Remembers and re-opens the last file when the application starts
+* Adds a dropdown menu to quickly choose from a list of recently used files
+* Shows filename and folder in the window's title and subtitle.
+  Note: cryptic flatpak paths like /run/user/... are not shown.
 * Adds fava-investor plugin
 * Improves github ci workflow
 * Updates python dependencies
