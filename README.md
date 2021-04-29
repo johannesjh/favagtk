@@ -82,10 +82,11 @@ Fava GTK depends on other python packages, as defined in the `requirements/*.in`
 
 Version-locked aka "frozen" requirement definitions are automatically generated using [pip-compile-multi](https://pypi.org/project/pip-compile-multi/). The resulting files are named `requirements/*.txt`. These files specify a specific package version for all direct and indirect dependencies. This allows to create reproduceable development environments and package builds.
 
-Upgrading python dependency versions works as follows:
+Modifying python dependencies works as follows:
 
 * Minor Upgrades within the constraints of `requirements/*.in`: Simply run `pip-compile-multi`. This will lock packages to their newest version, within the given constraints. Don't forget to test if the application still works correctly. 
 * Major Upgrades: Check if some of the packages in `requirements/*.in` exist in a newer version. Manually edit the `requirements/*.in` files, then proceed as with minor updates. I.e., run `pip-compile-multi` to update the frozen package versions and don't forget to test if the application still works correctly.
+* Adding additional python dependencies: Specify the additional requirements in one of the `requirements/*.in` files, then run `pip-compile-multi`.
 
 
 ### Code quality
@@ -127,7 +128,7 @@ make
 
 How to release a new version of Fava GKT
 
-* Test the flatpak image, a quick smoke test should suffice to verify that the build is working ok.
+* Test the flatpak image. Given that functional changes are already tested using the dev setup, a quick smoke test should suffice to verify that the flatpak build is working.
 * Edit the version number in `setup.cfg` to match the version that shall be released, git commit and push. Format the version number as, e.g., `1.2.3`.
 * Tag the same version number, prefixed with letter `v`, e.g., `v1.2.3`, then run `git push --tags`
 * Github's ci should build the flatpak package and upload it to a release with the same name.

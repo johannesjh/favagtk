@@ -5,13 +5,13 @@
 #
 #    pip-compile-multi
 #
-argcomplete==1.12.2
+argcomplete==1.12.3
     # via fava-investor
 argh==0.26.2
     # via fava-investor
 attrs==20.3.0
     # via pytest
-babel==2.9.0
+babel==2.9.1
     # via
     #   fava
     #   flask-babel
@@ -19,7 +19,7 @@ beancount-plugin-utils==0.0.4
     # via beancount-share
 beancount-share==0.1.10
     # via -r requirements/req-extras.in
-beancount==2.3.3
+beancount==2.3.4
     # via
     #   beancount-share
     #   fava
@@ -29,7 +29,7 @@ beautifulsoup4==4.9.3
     # via beancount
 bottle==0.12.19
     # via beancount
-cachetools==4.2.1
+cachetools==4.2.2
     # via google-auth
 certifi==2020.12.5
     # via requests
@@ -55,20 +55,20 @@ flask==1.1.2
     # via
     #   fava
     #   flask-babel
-google-api-core==1.26.1
+google-api-core==1.26.3
     # via google-api-python-client
-google-api-python-client==2.0.2
+google-api-python-client==2.3.0
     # via beancount
 google-auth-httplib2==0.1.0
     # via google-api-python-client
-google-auth==1.27.1
+google-auth==1.30.0
     # via
     #   google-api-core
     #   google-api-python-client
     #   google-auth-httplib2
 googleapis-common-protos==1.53.0
     # via google-api-core
-httplib2==0.19.0
+httplib2==0.19.1
     # via
     #   google-api-python-client
     #   google-auth-httplib2
@@ -78,7 +78,7 @@ iniconfig==1.1.1
     # via pytest
 itsdangerous==1.1.0
     # via flask
-jaraco.functools==3.2.1
+jaraco.functools==3.3.0
     # via cheroot
 jinja2==2.11.3
     # via
@@ -87,7 +87,7 @@ jinja2==2.11.3
     #   flask-babel
 joblib==1.0.1
     # via scikit-learn
-lxml==4.6.2
+lxml==4.6.3
     # via beancount
 markdown2==2.4.0
     # via fava
@@ -97,7 +97,7 @@ more-itertools==8.7.0
     # via
     #   cheroot
     #   jaraco.functools
-numpy==1.20.1
+numpy==1.20.2
     # via
     #   scikit-learn
     #   scipy
@@ -112,7 +112,7 @@ ply==3.11
     # via
     #   beancount
     #   fava
-protobuf==3.15.6
+protobuf==3.15.8
     # via
     #   google-api-core
     #   googleapis-common-protos
@@ -128,7 +128,7 @@ pyparsing==2.4.7
     # via
     #   httplib2
     #   packaging
-pytest==6.2.2
+pytest==6.2.3
     # via beancount
 python-dateutil==2.8.1
     # via beancount
@@ -145,9 +145,9 @@ requests==2.25.1
     #   google-api-core
 rsa==4.7.2
     # via google-auth
-scikit-learn==0.24.1
+scikit-learn==0.24.2
     # via smart-importer
-scipy==1.6.1
+scipy==1.6.3
     # via
     #   scikit-learn
     #   smart-importer
@@ -164,7 +164,7 @@ six==1.15.0
     #   python-dateutil
 smart-importer==0.3
     # via -r requirements/req-extras.in
-soupsieve==2.2
+soupsieve==2.2.1
     # via beautifulsoup4
 tabulate==0.8.9
     # via fava-investor
@@ -174,7 +174,7 @@ toml==0.10.2
     # via pytest
 uritemplate==3.0.1
     # via google-api-python-client
-urllib3==1.26.3
+urllib3==1.26.4
     # via requests
 werkzeug==1.0.1
     # via

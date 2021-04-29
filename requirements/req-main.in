@@ -1,2 +1,3 @@
 # main runtime requirements that are easy to install in a virtualenv using pip
 fava>=1.18
+dataclasses-json>=0.5.3

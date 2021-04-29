@@ -3,6 +3,8 @@ import os
 
 import gi
 
+from fava_gtk.settings import Settings
+
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gio
 
@@ -26,7 +28,10 @@ class Application(Gtk.Application):
         window = ApplicationWindow(self)
         self.add_window(window)
         window.show_all()
-        window.open_last_file()
+
+        last_used_file = Settings.load().last_used_file
+        if last_used_file:
+            window.open_file(last_used_file)
 
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", lambda *args: self.do_quit())
