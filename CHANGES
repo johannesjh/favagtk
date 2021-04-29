@@ -3,6 +3,11 @@ Release Notes with Change Log for Fava GTK
 
 Unreleased
 
+* tbd
+
+
+v0.1.2 (2021-04-29) Remembers last opened file, adds fava-investor
+
 * Remembers and re-opens the last file when the application starts
 * Adds a dropdown menu to quickly choose from a list of recently used files
 * Shows filename and folder in the window's title and subtitle.
