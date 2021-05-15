@@ -5,8 +5,8 @@
     <name>FavaDesktop</name>
     <summary>Fava Desktop provides the Fava bookkeeping software as a desktop application</summary>
 
-    <metadata_license>MIT</metadata_license>
-    <project_license>MIT</project_license>
+    <metadata_license>GPL-2.0</metadata_license>
+    <project_license>GPL-2.0</project_license>
 
     <description>
         <p>
