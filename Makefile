@@ -9,7 +9,7 @@ clean:
 .PHONY: venv
 venv: venv/updated
 
-venv/updated:
+venv/updated: requirements/env-dev.txt
 	# create a virtual environment if it does not yet exist:
 	test -d venv || virtualenv -p python3 --system-site-packages venv
 
