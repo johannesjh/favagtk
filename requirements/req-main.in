@@ -1,3 +1,6 @@
 # main runtime requirements that are easy to install in a virtualenv using pip
 fava>=1.18
 dataclasses-json>=0.5.3
+
+# fixed because gnome's 3.38 sdk ships with this version
+six==1.15.0
