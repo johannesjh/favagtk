@@ -150,8 +150,9 @@ scipy==1.7.1
     #   smart-importer
 simplejson==3.17.5
     # via fava
-six==1.16.0
+six==1.15.0
     # via
+    #   -c requirements/req-main.in
     #   cheroot
     #   google-auth-httplib2
     #   python-dateutil
