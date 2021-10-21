@@ -5,7 +5,7 @@
 #
 #    pip-compile-multi
 #
-pycairo==1.20.0
+pycairo==1.20.1
     # via pygobject
-pygobject==3.40.1
+pygobject==3.42.0
     # via -r requirements/req-sys.in
