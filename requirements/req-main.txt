@@ -5,7 +5,7 @@
 #
 #    pip-compile-multi
 #
-attrs==20.3.0
+attrs==21.2.0
     # via pytest
 babel==2.9.1
     # via
@@ -13,151 +13,142 @@ babel==2.9.1
     #   flask-babel
 beancount==2.3.4
     # via fava
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
     # via beancount
 bottle==0.12.19
     # via beancount
-cachetools==4.2.2
+cachetools==4.2.4
     # via google-auth
-certifi==2020.12.5
+certifi==2021.10.8
     # via requests
 chardet==4.0.0
-    # via
-    #   beancount
-    #   requests
+    # via beancount
+charset-normalizer==2.0.7
+    # via requests
 cheroot==8.5.2
     # via fava
-click==7.1.2
+click==8.0.3
     # via
     #   fava
     #   flask
-dataclasses-json==0.5.3
+dataclasses-json==0.5.6
     # via -r requirements/req-main.in
-fava==1.18
+fava==1.20.1
     # via -r requirements/req-main.in
-flask-babel==2.0.0
-    # via fava
-flask==1.1.2
+flask==2.0.2
     # via
     #   fava
     #   flask-babel
-google-api-core==1.26.3
+flask-babel==2.0.0
+    # via fava
+google-api-core==2.1.1
     # via google-api-python-client
-google-api-python-client==2.3.0
+google-api-python-client==2.27.0
     # via beancount
-google-auth-httplib2==0.1.0
-    # via google-api-python-client
-google-auth==1.30.0
+google-auth==2.3.0
     # via
     #   google-api-core
     #   google-api-python-client
     #   google-auth-httplib2
+google-auth-httplib2==0.1.0
+    # via google-api-python-client
 googleapis-common-protos==1.53.0
     # via google-api-core
-httplib2==0.19.1
+httplib2==0.20.1
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==2.10
+idna==3.3
     # via requests
 iniconfig==1.1.1
     # via pytest
-itsdangerous==1.1.0
+itsdangerous==2.0.1
     # via flask
 jaraco.functools==3.3.0
     # via cheroot
-jinja2==2.11.3
+jinja2==3.0.2
     # via
     #   fava
     #   flask
     #   flask-babel
 lxml==4.6.3
     # via beancount
-markdown2==2.4.0
+markdown2==2.4.1
     # via fava
-markupsafe==1.1.1
+markupsafe==2.0.1
     # via jinja2
-marshmallow-enum==1.5.1
-    # via dataclasses-json
-marshmallow==3.11.1
+marshmallow==3.14.0
     # via
     #   dataclasses-json
     #   marshmallow-enum
-more-itertools==8.7.0
+marshmallow-enum==1.5.1
+    # via dataclasses-json
+more-itertools==8.10.0
     # via
     #   cheroot
     #   jaraco.functools
 mypy-extensions==0.4.3
     # via typing-inspect
-packaging==20.9
-    # via
-    #   google-api-core
-    #   pytest
-pluggy==0.13.1
+packaging==21.0
+    # via pytest
+pluggy==1.0.0
     # via pytest
 ply==3.11
     # via
     #   beancount
     #   fava
-protobuf==3.15.8
+protobuf==3.19.0
     # via
     #   google-api-core
     #   googleapis-common-protos
 py==1.10.0
     # via pytest
-pyasn1-modules==0.2.8
-    # via google-auth
 pyasn1==0.4.8
     # via
     #   pyasn1-modules
     #   rsa
+pyasn1-modules==0.2.8
+    # via google-auth
 pyparsing==2.4.7
     # via
     #   httplib2
     #   packaging
-pytest==6.2.3
+pytest==6.2.5
     # via beancount
-python-dateutil==2.8.1
+python-dateutil==2.8.2
     # via beancount
-python-magic==0.4.22
+python-magic==0.4.24
     # via beancount
-pytz==2021.1
+pytz==2021.3
     # via
     #   babel
     #   flask-babel
-    #   google-api-core
-requests==2.25.1
+requests==2.26.0
     # via
     #   beancount
     #   google-api-core
 rsa==4.7.2
     # via google-auth
-simplejson==3.17.2
+simplejson==3.17.5
     # via fava
-six==1.15.0
+six==1.16.0
     # via
     #   cheroot
-    #   google-api-core
-    #   google-api-python-client
-    #   google-auth
     #   google-auth-httplib2
-    #   protobuf
     #   python-dateutil
 soupsieve==2.2.1
     # via beautifulsoup4
-stringcase==1.2.0
-    # via dataclasses-json
 toml==0.10.2
     # via pytest
-typing-extensions==3.7.4.3
+typing-extensions==3.10.0.2
     # via typing-inspect
-typing-inspect==0.6.0
+typing-inspect==0.7.1
     # via dataclasses-json
-uritemplate==3.0.1
+uritemplate==4.1.1
     # via google-api-python-client
-urllib3==1.26.4
+urllib3==1.26.7
     # via requests
-werkzeug==1.0.1
+werkzeug==2.0.2
     # via
     #   fava
     #   flask
