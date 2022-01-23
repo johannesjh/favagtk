@@ -3,6 +3,3 @@ pip-compile-multi~=2.4.1
 pre-commit~=2.12.1
 pyclean~=2.0.0
 pytest~=6.2
-
-# fixed because gnome's 3.38 sdk ships with this version
-six==1.15.0

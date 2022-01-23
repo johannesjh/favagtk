@@ -1,0 +1,8 @@
+# requirements to be installed into a local virtual environment for development + testing
+
+# note:
+# the requirements exclude system requirements like PyGObject because these may be easier
+# to install as operating system packages (e.g., using apt or dnf).
+
+-r main.in
+-r dev.in

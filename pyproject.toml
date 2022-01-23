@@ -1,3 +1,7 @@
 [build-system]
 requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+
+# temporarily disabling the pep517 backend
+  # in order to be due to be able to install using `pip install --no-use-pep517 --editable .`,
+  # as a workaround for https://github.com/pypa/pip/issues/6264
+#build-backend = "setuptools.build_meta"

@@ -9,18 +9,16 @@ clean:
 .PHONY: venv
 venv: venv/updated
 
-venv/updated: requirements/env-dev.txt
+venv/updated: requirements/venv.txt
 	# create a virtual environment if it does not yet exist:
 	test -d venv || virtualenv -p python3 --system-site-packages venv
 
-	# for those dependecies that are easy to install in a venv,
-	# ignore existing site packages and install version-locked dependencies in the venv:
-	venv/bin/pip install --ignore-installed -r requirements/env-dev.txt
+	# install version-locked dev dependencies in the venv:
+	venv/bin/pip install --ignore-installed -r requirements/venv.txt
 
 	# then install ourselves in editable mode.
-	# it may be the case that system dependencies like PyGObject are not installed in the venv,
-	# in this case, they will be accessed from system-wide site packages.
-	venv/bin/pip install --editable .[all]
+	# without pep517 as a workaround for https://github.com/pypa/pip/issues/6264
+	venv/bin/pip install --no-use-pep517 --editable .
 
 	# update timestamp so the makefile knows that the venv has been updated:
 	touch venv/updated

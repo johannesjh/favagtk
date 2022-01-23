@@ -2,5 +2,7 @@
 fava>=1.18
 dataclasses-json>=0.5.3
 
-# fixed because gnome's 3.38 sdk ships with this version
-six==1.15.0
+# extra functionality
+smart-importer~=0.3
+beancount-share~=0.1.10
+fava-investor~=0.2.1
