@@ -38,7 +38,16 @@ Once installed, you will find an application named "Fava" that can be started in
 
 The application window that is initially shown prompts to open a beancount file. If you don't have a beancount file yet, you can simply create an empty text file with a `.beancount` extension. Opening the beancount file will display fava's user interface, allowing to view and edit the beancount file.
 
-Fava GTK is only a thin convenience layer around [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). These two programs provide the actual functionality. You will find documentation on how to use these programs for managing your finances on their respective websites.
+Fava GTK is only a thin convenience layer around fava and other software packages:
+
+* [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) provide most of the functionality.
+  Additional software modules included in fava-gtk are:
+* [smart-importer](https://github.com/beancount/smart_importer)
+* [beancount-share](https://github.com/Akuukis/beancount_share)
+* [fava-investor](https://github.com/redstreet/fava_investor)
+
+...you will find documentation on how to use these programs on their respective websites.
+
 
 ## Contributing
 
