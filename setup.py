@@ -1,26 +1,19 @@
 #!/usr/bin/env python3
-import re
-from pathlib import Path
+import os
 
 from setuptools import setup
 
+with open(os.path.join("requirements", "main.in")) as req:
+    INSTALL_REQUIRES = list(req)
 
-def req(filename, folder=Path(__file__).parent / "requirements"):
-    """Helper for loading dependencies from requirements files."""
-    path = Path(folder) / filename
-    with open(path) as file:
-        return [
-            line.strip()
-            for line in file
-            if not re.match("^-[cr]", line) and not re.match("^#", line)
-        ]
+with open(os.path.join("requirements", "dev.in")) as req:
+    TEST_REQUIRES = list(req)
 
 
 # See setup.cfg for additional configuration.
 setup(
-    install_requires=req("req-sys.in") + req("req-main.in"),
-    extras_require={"all": req("req-extras.in")},
-    tests_require=req("req-dev.in"),
+    install_requires=INSTALL_REQUIRES,
+    tests_require=TEST_REQUIRES,
     include_package_data=True,
     package_data={"": ["*.svg", "*.ui"]},
 )

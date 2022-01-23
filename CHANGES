@@ -1,9 +1,11 @@
 Release Notes with Change Log for Fava GTK
 
-
 Unreleased
 
-* tbd
+* Simplifies the requirements folder
+* Updates python dependency versions
+* Speeds up local flatpak installations by installing from build-dir instead of from bundle
+
 
 v0.1.3 (2021-10-21) Updates fava and other python dependencies
 
