@@ -24,7 +24,7 @@ modules:
       - make dist
 
       # install python packages
-      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist -c ./requirements/env-dist.txt fava-gtk[all]
+      - pip3 install --prefix=${FLATPAK_DEST} --find-links ./dist -c ./requirements/flatpak.txt fava-gtk
 
       # install icons
       - mkdir -p /app/share/icons/hicolor/scalable/apps/

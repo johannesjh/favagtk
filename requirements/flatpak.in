@@ -1,0 +1,3 @@
+# requirements to be installed in a flatpak package build
+
+-r main.in
