@@ -1,5 +1,7 @@
+# requirements to be installed into a local virtual environment for development + testing
+
 # requirements for developing fava-gtk
-pip-compile-multi~=2.4.1
+pip-compile-multi~=2.4.3
 pre-commit~=2.12.1
 pyclean~=2.0.0
 pytest~=6.2

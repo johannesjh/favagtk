@@ -11,7 +11,7 @@ build: build/app
 build/app:
 	mkdir -p build/app
 	touch build/.trackerignore
-	flatpak-builder build/app io.github.beancount.FavaGtk.yml #--build-shell=fava-gtk
+	flatpak-builder --state-dir=build/state --repo=build/repo build/app io.github.beancount.FavaGtk.yml #--build-shell=fava-gtk
 
 .PHONY: install
 install: build/app

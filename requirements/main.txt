@@ -6,186 +6,302 @@
 #    pip-compile-multi
 #
 argcomplete==2.0.0
-    # via fava-investor
+    # via
+    #   -c requirements/all.txt
+    #   fava-investor
 argh==0.26.2
-    # via fava-investor
+    # via
+    #   -c requirements/all.txt
+    #   fava-investor
 attrs==21.4.0
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 babel==2.9.1
     # via
+    #   -c requirements/all.txt
     #   fava
     #   flask-babel
 beancount==2.3.4
     # via
+    #   -c requirements/all.txt
     #   beancount-share
     #   fava
     #   fava-investor
     #   smart-importer
 beancount-plugin-utils==0.0.4
-    # via beancount-share
+    # via
+    #   -c requirements/all.txt
+    #   beancount-share
 beancount-share==0.1.10
-    # via -r requirements/main.in
+    # via
+    #   -c requirements/all.txt
+    #   -r requirements/main.in
 beautifulsoup4==4.10.0
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 bottle==0.12.19
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 cachetools==4.2.4
-    # via google-auth
+    # via
+    #   -c requirements/all.txt
+    #   google-auth
 certifi==2021.10.8
-    # via requests
+    # via
+    #   -c requirements/all.txt
+    #   requests
 chardet==4.0.0
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 charset-normalizer==2.0.10
-    # via requests
+    # via
+    #   -c requirements/all.txt
+    #   requests
 cheroot==8.6.0
-    # via fava
+    # via
+    #   -c requirements/all.txt
+    #   fava
 click==8.0.3
     # via
+    #   -c requirements/all.txt
     #   fava
     #   flask
 dataclasses-json==0.5.6
-    # via -r requirements/main.in
+    # via
+    #   -c requirements/all.txt
+    #   -r requirements/main.in
 fava==1.20.1
     # via
+    #   -c requirements/all.txt
     #   -r requirements/main.in
     #   fava-investor
 fava-investor==0.2.1
-    # via -r requirements/main.in
+    # via
+    #   -c requirements/all.txt
+    #   -r requirements/main.in
 flask==2.0.2
     # via
+    #   -c requirements/all.txt
     #   fava
     #   flask-babel
 flask-babel==2.0.0
-    # via fava
+    # via
+    #   -c requirements/all.txt
+    #   fava
 google-api-core==2.4.0
-    # via google-api-python-client
+    # via
+    #   -c requirements/all.txt
+    #   google-api-python-client
 google-api-python-client==2.36.0
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 google-auth==2.3.3
     # via
+    #   -c requirements/all.txt
     #   google-api-core
     #   google-api-python-client
     #   google-auth-httplib2
 google-auth-httplib2==0.1.0
-    # via google-api-python-client
+    # via
+    #   -c requirements/all.txt
+    #   google-api-python-client
 googleapis-common-protos==1.54.0
-    # via google-api-core
+    # via
+    #   -c requirements/all.txt
+    #   google-api-core
 httplib2==0.20.2
     # via
+    #   -c requirements/all.txt
     #   google-api-python-client
     #   google-auth-httplib2
 idna==3.3
-    # via requests
+    # via
+    #   -c requirements/all.txt
+    #   requests
 iniconfig==1.1.1
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 itsdangerous==2.0.1
-    # via flask
+    # via
+    #   -c requirements/all.txt
+    #   flask
 jaraco.functools==3.5.0
-    # via cheroot
+    # via
+    #   -c requirements/all.txt
+    #   cheroot
 jinja2==3.0.3
     # via
+    #   -c requirements/all.txt
     #   fava
     #   flask
     #   flask-babel
 joblib==1.1.0
-    # via scikit-learn
-lxml==4.7.1
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   scikit-learn
+lxml==4.5.2
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 markdown2==2.4.2
-    # via fava
+    # via
+    #   -c requirements/all.txt
+    #   fava
 markupsafe==2.0.1
-    # via jinja2
+    # via
+    #   -c requirements/all.txt
+    #   jinja2
 marshmallow==3.14.1
     # via
+    #   -c requirements/all.txt
     #   dataclasses-json
     #   marshmallow-enum
 marshmallow-enum==1.5.1
-    # via dataclasses-json
+    # via
+    #   -c requirements/all.txt
+    #   dataclasses-json
 more-itertools==8.12.0
     # via
+    #   -c requirements/all.txt
     #   cheroot
     #   jaraco.functools
 mypy-extensions==0.4.3
-    # via typing-inspect
+    # via
+    #   -c requirements/all.txt
+    #   typing-inspect
 numpy==1.22.1
     # via
+    #   -c requirements/all.txt
     #   scikit-learn
     #   scipy
     #   smart-importer
 packaging==21.3
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 pluggy==1.0.0
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 ply==3.11
     # via
+    #   -c requirements/all.txt
     #   beancount
     #   fava
 protobuf==3.19.3
     # via
+    #   -c requirements/all.txt
     #   google-api-core
     #   googleapis-common-protos
 py==1.11.0
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 pyasn1==0.4.8
     # via
+    #   -c requirements/all.txt
     #   pyasn1-modules
     #   rsa
 pyasn1-modules==0.2.8
-    # via google-auth
+    # via
+    #   -c requirements/all.txt
+    #   google-auth
 pyparsing==3.0.7
     # via
+    #   -c requirements/all.txt
     #   httplib2
     #   packaging
 pytest==6.2.5
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 python-dateutil==2.8.2
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 python-magic==0.4.24
-    # via beancount
+    # via
+    #   -c requirements/all.txt
+    #   beancount
 pytz==2021.3
     # via
+    #   -c requirements/all.txt
     #   babel
     #   flask-babel
 requests==2.27.1
     # via
+    #   -c requirements/all.txt
     #   beancount
     #   google-api-core
 rsa==4.8
-    # via google-auth
+    # via
+    #   -c requirements/all.txt
+    #   google-auth
 scikit-learn==1.0.2
-    # via smart-importer
+    # via
+    #   -c requirements/all.txt
+    #   smart-importer
 scipy==1.7.3
     # via
+    #   -c requirements/all.txt
     #   scikit-learn
     #   smart-importer
 simplejson==3.17.6
-    # via fava
+    # via
+    #   -c requirements/all.txt
+    #   fava
 six==1.16.0
     # via
+    #   -c requirements/all.txt
     #   cheroot
     #   google-auth
     #   google-auth-httplib2
     #   python-dateutil
 smart-importer==0.3
-    # via -r requirements/main.in
+    # via
+    #   -c requirements/all.txt
+    #   -r requirements/main.in
 soupsieve==2.3.1
-    # via beautifulsoup4
+    # via
+    #   -c requirements/all.txt
+    #   beautifulsoup4
 tabulate==0.8.9
-    # via fava-investor
+    # via
+    #   -c requirements/all.txt
+    #   fava-investor
 threadpoolctl==3.0.0
-    # via scikit-learn
+    # via
+    #   -c requirements/all.txt
+    #   scikit-learn
 toml==0.10.2
-    # via pytest
+    # via
+    #   -c requirements/all.txt
+    #   pytest
 typing-extensions==4.0.1
-    # via typing-inspect
+    # via
+    #   -c requirements/all.txt
+    #   typing-inspect
 typing-inspect==0.7.1
-    # via dataclasses-json
+    # via
+    #   -c requirements/all.txt
+    #   dataclasses-json
 uritemplate==4.1.1
-    # via google-api-python-client
+    # via
+    #   -c requirements/all.txt
+    #   google-api-python-client
 urllib3==1.26.8
-    # via requests
+    # via
+    #   -c requirements/all.txt
+    #   requests
 werkzeug==2.0.2
     # via
+    #   -c requirements/all.txt
     #   fava
     #   flask
 
