@@ -2,6 +2,11 @@ Release Notes with Change Log for Fava GTK
 
 Unreleased
 
+* tbd...
+
+
+v0.1.4
+
 * Updates system requirements: Builds against Gnome 40 (but still using GTK3) and requires Python >= 3.8
 * Updates python package versions and simplifies the requirements folder
 * Speeds up local flatpak installations by installing from build-dir instead of from bundle
