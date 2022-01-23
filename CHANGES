@@ -3,6 +3,7 @@ Release Notes with Change Log for Fava GTK
 Unreleased
 
 * Simplifies the requirements folder
+* Builds against Gnome 40 (but still using GTK3)
 * Updates python dependency versions
 * Speeds up local flatpak installations by installing from build-dir instead of from bundle
 

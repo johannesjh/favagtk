@@ -1,0 +1,7 @@
+# this file is the all-including requirements file that is needed to make use of pip-compile-multi's "autoresolve" feature,
+# see https://pip-compile-multi.readthedocs.io/en/latest/features.html#autoresolve-cross-file-conflicts
+
+-r sys.in
+-r flatpak.in
+-r main.in
+-r dev.in

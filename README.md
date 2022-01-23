@@ -38,16 +38,7 @@ Once installed, you will find an application named "Fava" that can be started in
 
 The application window that is initially shown prompts to open a beancount file. If you don't have a beancount file yet, you can simply create an empty text file with a `.beancount` extension. Opening the beancount file will display fava's user interface, allowing to view and edit the beancount file.
 
-Fava GTK is only a thin convenience layer around fava and other software packages:
-
-* [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) provide most of the functionality.
-  Additional software modules included in fava-gtk are:
-* [smart-importer](https://github.com/beancount/smart_importer)
-* [beancount-share](https://github.com/Akuukis/beancount_share)
-* [fava-investor](https://github.com/redstreet/fava_investor)
-
-...you will find documentation on how to use these programs on their respective websites.
-
+Fava GTK is only a thin convenience layer around [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). These two programs provide the actual functionality. You will find documentation on how to use these programs for managing your finances on their respective websites.
 
 ## Contributing
 
@@ -97,7 +88,6 @@ Modifying python dependencies works as follows:
 * Major Upgrades: Check if some of the packages in `requirements/*.in` exist in a newer version. Manually edit the `requirements/*.in` files, then proceed as with minor updates. I.e., run `pip-compile-multi` to update the frozen package versions and don't forget to test if the application still works correctly.
 * Adding additional python dependencies: Specify the additional requirements in one of the `requirements/*.in` files, then run `pip-compile-multi`.
 
-
 ### Code quality
 
 Use [pre-commit](https://pre-commit.com/) to lint the code before committing changes.
@@ -143,7 +133,6 @@ How to release a new version of Fava GKT
 * Github's ci should build the flatpak package and upload it to a release with the same name.
 * Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
 * Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev`, push changes.
-
 
 ## License
 
