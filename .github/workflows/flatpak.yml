@@ -15,10 +15,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: create flatpak bundle
-        uses: bilelmoussaoui/flatpak-github-actions@v2
+        uses: bilelmoussaoui/flatpak-github-actions@v4
         with:
           bundle: io.github.beancount.FavaGtk.flatpak
           manifest-path: packaging/flatpak/io.github.beancount.FavaGtk.yml
+          cache-key: flatpak-builder-${{ github.sha }}
 
       - name: move flatpak bundle to dist folder
         run: mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
