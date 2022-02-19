@@ -14,11 +14,11 @@ with open(os.path.join("requirements", "dev.in")) as req:
 # See setup.cfg for additional configuration.
 setup(
     name="fava-gtk",
-    version="0.1.5-dev2",
+    version="0.1.5-dev3",
     license="GPL-2.0",
     packages=find_packages(exclude="tests"),
     include_package_data=True,
-    package_data={"": ["*.svg", "*.ui"]},
+    package_data={"": ["*.svg", "*.ui", "README.md"]},
     python_requires=">=3.8",
     install_requires=INSTALL_REQUIRES,
     tests_require=TEST_REQUIRES,
