@@ -20,7 +20,7 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}
 
       - name: move flatpak bundle to dist folder
-        run: ls -la && mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
+        run: mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
 
       - name: create a github release and upload the flatpak package
         uses: softprops/action-gh-release@v1
