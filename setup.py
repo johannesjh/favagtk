@@ -14,7 +14,7 @@ with open(os.path.join("requirements", "dev.in")) as req:
 # See setup.cfg for additional configuration.
 setup(
     name="fava-gtk",
-    version="0.1.5-dev4",
+    version="0.1.5-dev5",
     license="GPL-2.0",
     packages=find_packages(exclude="tests"),
     include_package_data=True,
