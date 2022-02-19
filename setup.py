@@ -17,7 +17,7 @@ with open("README.md") as f:
 # See setup.cfg for additional configuration.
 setup(
     name="fava-gtk",
-    version="0.1.5-dev8",
+    version="0.1.5-dev9",
     license="GPL-2.0",
     packages=find_packages(exclude="tests"),
     include_package_data=True,
