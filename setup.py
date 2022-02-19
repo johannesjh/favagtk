@@ -10,14 +10,14 @@ with open(os.path.join("requirements", "main.in")) as req:
 with open(os.path.join("requirements", "dev.in")) as req:
     TEST_REQUIRES = list(req)
 
-with open("README.md") as readme:
-    README = readme
+with open("README.md") as f:
+    README = f.read()
 
 
 # See setup.cfg for additional configuration.
 setup(
     name="fava-gtk",
-    version="0.1.5-dev6",
+    version="0.1.5-dev7",
     license="GPL-2.0",
     packages=find_packages(exclude="tests"),
     include_package_data=True,
@@ -31,7 +31,7 @@ setup(
         ],
     },
     description="Use Fava and Beancount as a Desktop Application.",
-    long_description=readme,
+    long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/johannesjh/fava-gtk/",
     classifiers=[
