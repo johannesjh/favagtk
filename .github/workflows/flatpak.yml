@@ -3,26 +3,24 @@ on:
   pull_request:
 name: flatpak
 jobs:
-  flatpak-package:
-    name: Flatpak Package
+  flatpak:
+    name: "Flatpak"
     runs-on: ubuntu-latest
     container:
-      image: 'bilelmoussaoui/flatpak-github-actions:gnome-40'
-      options: '--privileged'
+      image: bilelmoussaoui/flatpak-github-actions:gnome-40
+      options: --privileged
     steps:
 
-      - name: checkout sources
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: create flatpak bundle
-        uses: bilelmoussaoui/flatpak-github-actions@v4
+      - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
         with:
           bundle: io.github.beancount.FavaGtk.flatpak
           manifest-path: packaging/flatpak/io.github.beancount.FavaGtk.yml
           cache-key: flatpak-builder-${{ github.sha }}
 
       - name: move flatpak bundle to dist folder
-        run: mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
+        run: ls -la && mkdir -p packaging/flatpak/dist && mv io.github.beancount.FavaGtk.flatpak packaging/flatpak/dist/
 
       - name: create a github release and upload the flatpak package
         uses: softprops/action-gh-release@v1
