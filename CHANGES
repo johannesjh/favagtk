@@ -1,8 +1,8 @@
 Release Notes with Change Log for Fava GTK
 
-Unreleased
+Unreleased v0.1.5
 
-* tbd...
+* Starts publishing packages to pypi
 
 
 v0.1.4 (2022-01-24) Updates gnome build target and required python version
