@@ -1,8 +1,13 @@
 Release Notes with Change Log for Fava GTK
 
-Unreleased v0.1.5
+Unreleased
 
-* Starts publishing packages to pypi
+* tbd
+
+
+v0.1.5 (2022-02-19) Starts publishing python packages
+
+* Adds github actions to publish packages of fava-gtk on the pypi package index
 
 
 v0.1.4 (2022-01-24) Updates gnome build target and required python version

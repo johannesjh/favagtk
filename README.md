@@ -128,11 +128,12 @@ make
 How to release a new version of Fava GKT
 
 * Test the flatpak image. Given that functional changes are already tested using the dev setup, a quick smoke test should suffice to verify that the flatpak build is working.
-* Edit the version number in `setup.cfg` to match the version that shall be released, git commit and push. Format the version number as, e.g., `1.2.3`.
+* Edit the version number in `setup.py` to match the version that shall be released, git commit and push. Format the version number as, e.g., `1.2.3`.
 * Tag the same version number, prefixed with letter `v`, e.g., `v1.2.3`, then run `git push --tags`
-* Github's ci should build the flatpak package and upload it to a release with the same name.
+* A github action will build a python package and upload it to a github release as well as to the python package index.
+* Another github action will build flatpak package and upload it to a github release with the same name.
 * Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
-* Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev`, push changes.
+* Optionally set a next development version number in setup.cfg, e.g., `1.2.4-dev0`, push changes.
 
 ## License
 
