@@ -4,7 +4,7 @@ on:
 name: flatpak
 jobs:
   flatpak-package:
-    name: Flatpak Builder
+    name: Flatpak Package
     runs-on: ubuntu-latest
     container:
       image: 'bilelmoussaoui/flatpak-github-actions:gnome-40'
