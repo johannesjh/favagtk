@@ -4,9 +4,9 @@
 
 Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
-* Makes it easy to install and use fava and beancount.
+* Easy installation using flatpak.
 
-* Simple installation using flatpak, no messing in the commandline  - a convenient way to open and edit beancount files as in any other desktop application.
+* Start fava and beancount as you would any other desktop application.
 
 * Built using GTK and webkit, packaged as flatpak application.
 
@@ -16,11 +16,11 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 ## Getting Started
 
-The easiest way to start using Fava GTK is to download and install the flatpak application package from the Fava GTK releases on Github, as detailed in the following.
+The easiest way to start using Fava GTK is to download and install a flatpak application package from the [releases on Github](https://github.com/johannesjh/fava-gtk/releases), as detailed in the following.
 
 ### System Requirements
 
-Fava GTK has been developed and tested on Linux with GNOME 3.38. Other operating systems and desktop environments may or may not work. [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
+Fava GTK has been developed and tested on Linux with GNOME 40. Other operating systems and desktop environments may or may not work. [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
 
 ### Installation
 
@@ -42,7 +42,7 @@ Fava GTK is only a thin convenience layer around [Fava](https://github.com/beanc
 
 ## Contributing
 
-All contributions are greatly appreciated... pull requests welcome, and so are bug reports and suggestions for improvement.
+All contributions are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement.
 
 ### Viewing Debug Output
 
@@ -58,9 +58,9 @@ Fava GTK is written as a python application using the GTK user interface toolkit
 
 System requirements: A modern GNOME installation will usually come with everything you need.
 
-* [python3](https://www.python.org/) is needed, no support for python2. See setup.cfg for the specific version of python that is required.
-* [PyGObject](https://pygobject.readthedocs.io/) is needed because it provides language bindings to GTK. If you are running GNOME you most certainly have it on your system already. Have a look at [PyGObject's installation instructions](https://pygobject.readthedocs.io/en/latest/getting_started.html) and choose (or try out to see) if you want to install PyGObject using pip or using your operating system's package manager.
-* [WebKitGTK](https://webkitgtk.org/) must be installed, specifically WebKit2 API Level4. If you are running GNOME, you probably have it on your system already.
+* [python3](https://www.python.org/) is needed, no support for python2. See setup.py for the specific version of python that is required.
+* [PyGObject](https://pygobject.readthedocs.io/) is needed because it provides language bindings to GTK. If you are running GNOME you most certainly have it on your system already and don't need to do anything. More on a sidenote, it is possible to install PyGObject using pip, have a look at [PyGObject's installation instructions](https://pygobject.readthedocs.io/en/latest/getting_started.html).
+* [WebKitGTK](https://webkitgtk.org/) must be installed, specifically WebKit2 API Level4. If you are running GNOME, you probably have it on your system already and don't need to do anything.
 * Optionally [Glade](https://glade.gnome.org) in order to edit .ui files.
 
 Setting up the development environment: The [Makefile](./Makefile) provides commands that make it easy to set up a python virtual environment for developing Fava GTK.
@@ -127,9 +127,9 @@ make
 
 How to release a new version of Fava GKT
 
-* Test the flatpak image. Given that functional changes are already tested using the dev setup, a quick smoke test should suffice to verify that the flatpak build is working.
-* Edit the version number in `setup.py` to match the version that shall be released, git commit and push. Format the version number as, e.g., `1.2.3`.
-* Tag the same version number, prefixed with letter `v`, e.g., `v1.2.3`, then run `git push --tags`
+* Test the flatpak image.
+* Edit the version number in `setup.py` to match the version that shall be released, git commit and push. The version number formatting in setup.py is like `1.2.3`
+* Tag the same version number in git, prefixed with letter `v`, e.g., `v1.2.3`, then run `git push --tags`
 * A github action will build a python package and upload it to a github release as well as to the python package index.
 * Another github action will build flatpak package and upload it to a github release with the same name.
 * Edit the release notes on the github releases page, and paste the same release notes into the CHANGES file.
