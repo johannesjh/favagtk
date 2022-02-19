@@ -6,6 +6,3 @@
 #    pip-compile-multi
 #
 -r main.txt
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

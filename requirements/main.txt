@@ -22,7 +22,7 @@ babel==2.9.1
     #   -c requirements/all.txt
     #   fava
     #   flask-babel
-beancount==2.3.4
+beancount==2.3.5
     # via
     #   -c requirements/all.txt
     #   beancount-share
@@ -45,7 +45,7 @@ bottle==0.12.19
     # via
     #   -c requirements/all.txt
     #   beancount
-cachetools==4.2.4
+cachetools==5.0.0
     # via
     #   -c requirements/all.txt
     #   google-auth
@@ -57,7 +57,7 @@ chardet==4.0.0
     # via
     #   -c requirements/all.txt
     #   beancount
-charset-normalizer==2.0.10
+charset-normalizer==2.0.12
     # via
     #   -c requirements/all.txt
     #   requests
@@ -65,7 +65,7 @@ cheroot==8.6.0
     # via
     #   -c requirements/all.txt
     #   fava
-click==8.0.3
+click==8.0.4
     # via
     #   -c requirements/all.txt
     #   fava
@@ -74,7 +74,7 @@ dataclasses-json==0.5.6
     # via
     #   -c requirements/all.txt
     #   -r requirements/main.in
-fava==1.20.1
+fava==1.21
     # via
     #   -c requirements/all.txt
     #   -r requirements/main.in
@@ -83,7 +83,7 @@ fava-investor==0.2.1
     # via
     #   -c requirements/all.txt
     #   -r requirements/main.in
-flask==2.0.2
+flask==2.0.3
     # via
     #   -c requirements/all.txt
     #   fava
@@ -92,15 +92,15 @@ flask-babel==2.0.0
     # via
     #   -c requirements/all.txt
     #   fava
-google-api-core==2.4.0
+google-api-core==2.5.0
     # via
     #   -c requirements/all.txt
     #   google-api-python-client
-google-api-python-client==2.36.0
+google-api-python-client==2.37.0
     # via
     #   -c requirements/all.txt
     #   beancount
-google-auth==2.3.3
+google-auth==2.6.0
     # via
     #   -c requirements/all.txt
     #   google-api-core
@@ -114,7 +114,7 @@ googleapis-common-protos==1.54.0
     # via
     #   -c requirements/all.txt
     #   google-api-core
-httplib2==0.20.2
+httplib2==0.20.4
     # via
     #   -c requirements/all.txt
     #   google-api-python-client
@@ -127,11 +127,11 @@ iniconfig==1.1.1
     # via
     #   -c requirements/all.txt
     #   pytest
-itsdangerous==2.0.1
+itsdangerous==2.1.0
     # via
     #   -c requirements/all.txt
     #   flask
-jaraco.functools==3.5.0
+jaraco-functools==3.5.0
     # via
     #   -c requirements/all.txt
     #   cheroot
@@ -153,7 +153,7 @@ markdown2==2.4.2
     # via
     #   -c requirements/all.txt
     #   fava
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via
     #   -c requirements/all.txt
     #   jinja2
@@ -170,12 +170,12 @@ more-itertools==8.12.0
     # via
     #   -c requirements/all.txt
     #   cheroot
-    #   jaraco.functools
+    #   jaraco-functools
 mypy-extensions==0.4.3
     # via
     #   -c requirements/all.txt
     #   typing-inspect
-numpy==1.22.1
+numpy==1.22.2
     # via
     #   -c requirements/all.txt
     #   scikit-learn
@@ -194,7 +194,7 @@ ply==3.11
     #   -c requirements/all.txt
     #   beancount
     #   fava
-protobuf==3.19.3
+protobuf==3.19.4
     # via
     #   -c requirements/all.txt
     #   google-api-core
@@ -225,7 +225,7 @@ python-dateutil==2.8.2
     # via
     #   -c requirements/all.txt
     #   beancount
-python-magic==0.4.24
+python-magic==0.4.25
     # via
     #   -c requirements/all.txt
     #   beancount
@@ -247,7 +247,7 @@ scikit-learn==1.0.2
     # via
     #   -c requirements/all.txt
     #   smart-importer
-scipy==1.7.3
+scipy==1.8.0
     # via
     #   -c requirements/all.txt
     #   scikit-learn
@@ -275,7 +275,7 @@ tabulate==0.8.9
     # via
     #   -c requirements/all.txt
     #   fava-investor
-threadpoolctl==3.0.0
+threadpoolctl==3.1.0
     # via
     #   -c requirements/all.txt
     #   scikit-learn
@@ -283,7 +283,7 @@ toml==0.10.2
     # via
     #   -c requirements/all.txt
     #   pytest
-typing-extensions==4.0.1
+typing-extensions==4.1.1
     # via
     #   -c requirements/all.txt
     #   typing-inspect
@@ -299,11 +299,8 @@ urllib3==1.26.8
     # via
     #   -c requirements/all.txt
     #   requests
-werkzeug==2.0.2
+werkzeug==2.0.3
     # via
     #   -c requirements/all.txt
     #   fava
     #   flask
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

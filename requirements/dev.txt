@@ -13,7 +13,7 @@ cfgv==3.3.1
     # via
     #   -c requirements/all.txt
     #   pre-commit
-click==8.0.3
+click==8.0.4
     # via
     #   -c requirements/all.txt
     #   pip-compile-multi
@@ -22,11 +22,11 @@ distlib==0.3.4
     # via
     #   -c requirements/all.txt
     #   virtualenv
-filelock==3.4.2
+filelock==3.6.0
     # via
     #   -c requirements/all.txt
     #   virtualenv
-identify==2.4.5
+identify==2.4.10
     # via
     #   -c requirements/all.txt
     #   pre-commit
@@ -50,11 +50,11 @@ pip-compile-multi==2.4.3
     # via
     #   -c requirements/all.txt
     #   -r requirements/dev.in
-pip-tools==6.4.0
+pip-tools==6.5.1
     # via
     #   -c requirements/all.txt
     #   pip-compile-multi
-platformdirs==2.4.1
+platformdirs==2.5.0
     # via
     #   -c requirements/all.txt
     #   virtualenv
@@ -95,7 +95,7 @@ toml==0.10.2
     #   -c requirements/all.txt
     #   pre-commit
     #   pytest
-tomli==2.0.0
+tomli==2.0.1
     # via
     #   -c requirements/all.txt
     #   pep517
@@ -103,7 +103,7 @@ toposort==1.7
     # via
     #   -c requirements/all.txt
     #   pip-compile-multi
-virtualenv==20.13.0
+virtualenv==20.13.1
     # via
     #   -c requirements/all.txt
     #   pre-commit
