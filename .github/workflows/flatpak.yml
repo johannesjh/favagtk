@@ -27,6 +27,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          name: Release ${GITHUB_REF/refs\/tags\//} # regex to remove "refs/tags/"
+          name: Release ${GITHUB_REF_NAME}
           files: |
             ./packaging/flatpak/dist/io.github.beancount.FavaGtk.flatpak
