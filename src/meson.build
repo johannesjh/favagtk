@@ -5,7 +5,7 @@ gnome = import('gnome')
 blueprints = custom_target('blueprints',
   input: files(
     'window.blp',
-    'gtk/help-overlay.blp',
+    'shortcuts.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -37,7 +37,10 @@ configure_file(
 
 favagtk_sources = [
   '__init__.py',
+  'about.py',
+  'app.py',
   'main.py',
+  'shortcuts.py',
   'window.py',
 ]
 

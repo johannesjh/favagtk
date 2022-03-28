@@ -1,4 +1,4 @@
-# main.py
+# shortcuts.py
 #
 # Copyright 2022 johannesjh
 #
@@ -15,12 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
-
-from .app import FavagtkApplication
+from gi.repository import Gtk
 
 
-def main(version):
-    """The application's entry point."""
-    app = FavagtkApplication()
-    return app.run(sys.argv)
+@Gtk.Template(resource_path="/io/github/johannesjh/favagtk/shortcuts.ui")
+class FavagtkShortcutsWindow(Gtk.ShortcutsWindow):
+    __gtype_name__ = "FavagtkShortcutsWindow"

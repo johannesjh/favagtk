@@ -1,4 +1,4 @@
-# window.py
+# app.py
 #
 # Copyright 2022 johannesjh
 #
@@ -15,24 +15,45 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio
+import gi
 
-from .shortcuts import FavagtkShortcutsWindow
+gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
+
+from gi.repository import Gtk, Gio, Adw
+from .about import AboutDialog
+from .window import FavagtkWindow
 
 
-@Gtk.Template(resource_path="/io/github/johannesjh/favagtk/window.ui")
-class FavagtkWindow(Gtk.ApplicationWindow):
-    __gtype_name__ = "FavagtkWindow"
+class FavagtkApplication(Adw.Application):
+    """The main application singleton class."""
 
-    label = Gtk.Template.Child()
-    shortcuts_window = FavagtkShortcutsWindow()
+    def __init__(self):
+        super().__init__(
+            application_id="io.github.johannesjh.favagtk",
+            flags=Gio.ApplicationFlags.FLAGS_NONE,
+        )
+        self.create_action("quit", self.quit, ["<primary>q"])
+        self.create_action("about", self.on_about_action)
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.set_help_overlay(self.shortcuts_window)
+    def do_activate(self):
+        """Called when the application is activated.
+
+        We raise the application's main window, creating it if
+        necessary.
+        """
+        win = self.props.active_window
+        if not win:
+            win = FavagtkWindow(application=self)
+        win.present()
+
+    def on_about_action(self, widget, _):
+        """Callback for the app.about action."""
+        about = AboutDialog(self.props.active_window)
+        about.present()
 
     def create_action(self, name, callback, shortcuts=None):
-        """Add a window action.
+        """Add an application action.
 
         Args:
             name: the name of the action

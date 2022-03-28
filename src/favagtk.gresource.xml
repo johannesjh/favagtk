@@ -2,6 +2,6 @@
 <gresources>
   <gresource prefix="/io/github/johannesjh/favagtk">
     <file>window.ui</file>
-    <file>gtk/help-overlay.ui</file>
+    <file>shortcuts.ui</file>
   </gresource>
 </gresources>

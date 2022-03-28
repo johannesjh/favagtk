@@ -1,4 +1,4 @@
-# main.py
+# about.py
 #
 # Copyright 2022 johannesjh
 #
@@ -15,12 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
-
-from .app import FavagtkApplication
+from gi.repository import Gtk
 
 
-def main(version):
-    """The application's entry point."""
-    app = FavagtkApplication()
-    return app.run(sys.argv)
+class AboutDialog(Gtk.AboutDialog):
+    def __init__(self, parent):
+        Gtk.AboutDialog.__init__(self)
+        self.props.program_name = "favagtk"
+        self.props.version = "0.1.0"
+        self.props.authors = ["johannesjh"]
+        self.props.copyright = "2022 johannesjh"
+        self.props.logo_icon_name = "io.github.johannesjh.favagtk"
+        self.props.modal = True
+        self.set_transient_for(parent)
