@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, Gio
 
+from .server import Server
 from .shortcuts import FavagtkShortcutsWindow
 
 
@@ -28,20 +29,15 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     shortcuts_window = FavagtkShortcutsWindow()
 
     def __init__(self, **kwargs):
+        # Initialize the application window
         super().__init__(**kwargs)
         self.set_help_overlay(self.shortcuts_window)
 
-    def create_action(self, name, callback, shortcuts=None):
-        """Add a window action.
+        # Initialize the fava server
+        self.server = Server()
+        self.server.connect("start", self.load_url)
 
-        Args:
-            name: the name of the action
-            callback: the function to be called when the action is
-              activated
-            shortcuts: an optional list of accelerators
-        """
-        action = Gio.SimpleAction.new(name, None)
-        action.connect("activate", callback)
-        self.add_action(action)
-        if shortcuts:
-            self.set_accels_for_action(f"app.{name}", shortcuts)
+    def load_url(self, _server, url):
+        """Loads the URL in the webview and displays the web page"""
+        print(url)
+

@@ -40,6 +40,7 @@ favagtk_sources = [
   'about.py',
   'app.py',
   'main.py',
+  'server.py',
   'shortcuts.py',
   'window.py',
 ]
