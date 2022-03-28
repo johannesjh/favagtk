@@ -1,0 +1,7 @@
+data/io.github.johannesjh.favagtk.desktop.in
+data/io.github.johannesjh.favagtk.appdata.xml.in
+data/io.github.johannesjh.favagtk.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+

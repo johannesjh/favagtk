@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="favagtk">
+	<schema id="io.github.johannesjh.favagtk" path="/io/github/johannesjh/favagtk/">
+	</schema>
+</schemalist>
