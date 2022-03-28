@@ -1,7 +1,7 @@
 {
     "app-id" : "io.github.johannesjh.favagtk",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "master",
+    "runtime-version" : "42",
     "sdk" : "org.gnome.Sdk",
     "command" : "favagtk",
     "finish-args" : [
@@ -34,5 +34,8 @@
                 }
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }
