@@ -23,7 +23,6 @@
         "*.a"
     ],
     "modules" : [
-        "python3-setuptools.json",
         "python3-fava.json",
         {
             "name" : "favagtk",
