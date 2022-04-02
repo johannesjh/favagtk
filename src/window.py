@@ -19,9 +19,11 @@ import gi
 
 gi.require_versions({"Gtk": "4.0", "WebKit2": "5.0"})
 
-from gi.repository import Gdk, Gio, Gtk, WebKit2
+from gi.repository import Gdk, Gio, GLib, Gtk, WebKit2
 
 from . import BUILDTYPE
+from .file_open_dialog import FileOpenDialog
+from .recents import RecentsPopover
 from .server import Server
 from .shortcuts import FavagtkShortcutsWindow
 
@@ -30,7 +32,9 @@ from .shortcuts import FavagtkShortcutsWindow
 class FavagtkWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavagtkWindow"
 
+    # ui elements:
     shortcuts_window = FavagtkShortcutsWindow()
+    search_entry = Gtk.Template.Child()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
     WebKit2.WebView()
@@ -41,6 +45,10 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         super().__init__(**kwargs)
         self.set_help_overlay(self.shortcuts_window)
 
+        # set "devel" style class depending on build type
+        if BUILDTYPE == "debug":
+            self.get_style_context().add_class("devel")
+
         # Initialize the fava server
         self.server = Server()
         self.server.connect("start", self.load_url)
@@ -50,11 +58,192 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
 
-        # set "devel" style class depending on build type
-        print(f"the builtype is {BUILDTYPE}")
-        if BUILDTYPE == "debug":
-            self.get_style_context().add_class("devel")
+        # Configure actions
+        self.open_action = Gio.SimpleAction(name="file_open")
+        self.open_action.connect("activate", self.show_file_open_dialog)
+        self.add_action(self.open_action)
+
+        self.close_action = Gio.SimpleAction(name="close")
+        self.close_action.connect("activate", self.close)
+        self.add_action(self.close_action)
+
+        self.search_action = Gio.SimpleAction(name="search")
+        self.search_action.set_enabled(False)
+        self.search_action.connect("activate", self.search_start)
+        self.add_action(self.search_action)
+
+        self.search_toggle_action = Gio.SimpleAction.new_stateful(
+            name="search_toggle",
+            parameter_type=None,
+            state=GLib.Variant.new_boolean(False),
+        )
+        self.search_toggle_action.set_enabled(False)
+        self.search_toggle_action.connect("change-state", self.search_toggle)
+        self.add_action(self.search_toggle_action)
+
+    def show_file_open_dialog(self, *args):
+        """
+        Handler for the file_open action.
+        Shows the file open dialog and opens the requested beancount file.
+        """
+        dialog = FileOpenDialog(transient_for=self)
+        response = dialog.show()
+        if response == Gtk.ResponseType.ACCEPT:
+            file = dialog.get_filename()
+            logger.info(f"User chose file {file}.")
+            self.open_file(file)
+
+    def open_file(self, file):
+        """
+        Opens a beancount file using fava.
+        Note: A previously opened file will be closed without saving
+        simply because the old server instance is discarded and a new
+        instance is started for the new file.
+        """
+        # Verify that the file exists
+        if file is None:
+            logger.warning("File could not be opened because it was None.")
+            return
+
+        file = Path(file)
+        if not file.is_file():
+            logger.warning(
+                f"File {file} could not be opened because it does not exist."
+            )
+            return
+
+        # Remember the file name
+        self.beancount_file = str(file)
+
+        # Show filename as the window's title
+        self.header_bar.set_property("title", file.name)
+
+        # Show folder name as the window's subtitle,
+        # except for flatpak's cryptic /run/user/... paths
+        if str(file).startswith("/run/user"):
+            self.header_bar.set_property("subtitle", None)
+        else:
+            self.header_bar.set_property("subtitle", str(file.parent))
+
+        # Adds to the list of recently used files
+        Gtk.RecentManager().add_item(file.as_uri())
+
+        # Instructs the server to load the beancount file.
+        # Note: The server will then emit a "start" signal.
+        # The application window, when handling this signal, will
+        # instruct the webkit webview to load the URL.
+        self.server.start(str(file))
 
     def load_url(self, _server, url):
         """Loads the URL in the webview and displays the web page"""
-        print(url)
+        self.webview.load_uri(self.server.url)
+        self.stack.set_visible_child(self.fava_view)
+        self.search_action.set_enabled(True)
+        self.search_toggle_action.set_enabled(True)
+
+    def search_toggle(self, action: Gio.SimpleAction, state):
+        """
+        Handler for the search_toggle action.
+        Starts or stops the search.
+        """
+        if state:
+            self.search_start()
+        else:
+            self.search_stop()
+
+    def search_start(self, *args):
+        """
+        Handler for the search action, and also called directly.
+        Displays the search bar, allowing the user to start searching.
+        """
+        self.search_toggle_action.set_state(GLib.Variant.new_boolean(True))
+        self.search_bar.set_search_mode(True)
+        self.search_entry.select_region(0, -1)
+        self.search_entry.grab_focus()
+
+    # @Gtk.Template.Callback("on_searchentry_changed")
+    def on_searchentry_changed(self, search_entry):
+        """
+        Handler for when the user typed a search term.
+        Instructs the webkit webview to search for the term.
+        """
+        find_controller = self.webview.get_find_controller()
+        find_options = (
+            WebKit2.FindOptions.CASE_INSENSITIVE | WebKit2.FindOptions.WRAP_AROUND
+        )
+        find_controller.search(self.search_entry.get_text(), find_options, 32)
+
+    # @Gtk.Template.Callback("search_entry_previous_match_cb")
+    def search_previous(self, *args):
+        """
+        Handler for the search field's "previous match" keyboard shortcut.
+        Instructs the webkit webview to jump to the previous match.
+        """
+        find_controller = self.webview.get_find_controller()
+        find_controller.search_previous()
+
+    # @Gtk.Template.Callback("search_entry_next_match_cb")
+    def search_next_match(self, *args):
+        """
+        Handler for the search field's "next match" keyboard shortcut.
+        Instructs the webkit webview to jump to the next match.
+        """
+        find_controller = self.webview.get_find_controller()
+        find_controller.search_next()
+
+    # @Gtk.Template.Callback("search_entry_stop_search_cb")
+    def search_stop(self, *args):
+        """
+        Handler for the search field's "stop search" signal,
+        also called directly.
+        Instructs the webkit webview to stop searching
+        and hides the search bar.
+        """
+        self.search_toggle_action.set_state(GLib.Variant.new_boolean(False))
+        self.search_bar.set_search_mode(False)
+        find_controller = (
+            self.webview.get_find_controller()
+        )  # type: WebKit2.FindController
+        find_controller.search_finish()
+        self.search_entry.set_text("")
+        self.webview.grab_focus()
+
+    def close(self, *args):
+        """Closes currently opened file, or closes the window if no file is open"""
+        if self.server.is_running():
+            self.close_file()
+        else:
+            self.do_destroy()
+
+    def close_file(self, *args):
+        """Closes the currently opened beancount file"""
+
+        # forget the file name
+        self.beancount_file = None
+
+        # stop showing filename and dirname in the headerbar
+        self.header_bar.set_property("title", "Fava")
+        self.header_bar.set_property("subtitle", None)
+
+        # cancel ongoing searches
+        self.search_stop()
+        self.search_action.set_enabled(False)
+        self.search_toggle_action.set_enabled(False)
+        self.stack.set_visible_child(self.placeholder_view)
+
+        # stop the server
+        self.server.stop()
+
+    def do_destroy(self):
+        """Closes the window"""
+
+        # save last used file in application settings
+        settings = Settings.load()
+        settings.last_used_file = self.beancount_file
+        settings.save()
+
+        # close beancount file and stop web server
+        self.close_file()
+
+        # close the window
+        self.app.remove_window(self)

@@ -17,7 +17,8 @@ template FavagtkWindow : ApplicationWindow {
       }
       MenuButton btn_open_recent {
         direction: down;
-	styles ["toggle", "popup"]
+        popover: recents_popover;
+	      styles ["toggle", "popup"]
       }
     }
     ToggleButton {
@@ -85,3 +86,4 @@ menu primary_menu {
   }
 }
 
+.RecentsPopover recents_popover {}

@@ -3,6 +3,7 @@
   <gresource prefix="/io/github/johannesjh/favagtk">
     <file>window.ui</file>
     <file>app.css</file>
+    <file>recents.ui</file>
     <file>shortcuts.ui</file>
   </gresource>
 </gresources>

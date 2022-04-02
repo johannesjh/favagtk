@@ -4,8 +4,9 @@ gnome = import('gnome')
 
 blueprints = custom_target('blueprints',
   input: files(
-    'window.blp',
+    'recents.blp',
     'shortcuts.blp',
+    'window.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -46,7 +47,9 @@ favagtk_sources = [
   init_file,
   'about.py',
   'app.py',
+  'file_open_dialog.py',
   'main.py',
+  'recents.py',
   'server.py',
   'shortcuts.py',
   'window.py',

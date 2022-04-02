@@ -1,3 +1,8 @@
 [*.{yml,yaml}]
 indent_style = space
 indent_size = 2
+
+[*.blp]
+indent_style = space
+indent_size = 2
+

@@ -1,0 +1,91 @@
+using Gtk 4.0;
+
+template RecentsPopover {
+  halign: start;
+  valign: end;
+  width-request: 350;
+  styles ["open-popover"]
+
+  Box box {
+    orientation: vertical;
+
+    Box {
+      orientation: horizontal;
+      spacing: 6;
+      margin-top: 6;
+      margin-bottom: 6;
+      margin-start: 6;
+      margin-end: 6;
+
+      SearchEntry search_entry {
+        visible: true;
+        hexpand: true;
+        search-changed => on_search_entry_changed_cb();
+        activate => on_search_entry_activate_cb();
+        stop-search => on_search_entry_stop_cb();
+      }
+
+      Button {
+        visible: true;
+        action-name: "win.open";
+        Image document-open-symbolic {
+          icon-name: "document-open-symbolic";
+        }
+      }
+    }
+
+    Separator {
+      visible: true;
+      orientation: horizontal;
+    }
+
+    Stack stack {
+      visible: true;
+      vhomogeneous: false;
+      hhomogeneous: false;
+
+      Label empty {
+        visible: true;
+        label: _("No Recent Documents");
+        margin-start: 6;
+        margin-top: 18;
+        margin-bottom: 18;
+        margin-end: 6;
+      }
+
+      ScrolledWindow recent {
+        visible: true;
+        hexpand: true;
+        hscrollbar-policy: never;
+        max-content-height: 600;
+        max-content-width: 250;
+        min-content-width: 250;
+        propagate-natural-height: true;
+        vexpand: true;
+
+        Viewport {
+          visible: true;
+
+          ListBox list_box {
+            visible: true;
+            activate-on-single-click: true;
+            selection-mode: none;
+
+            [placeholder]
+            Label {
+              visible: true;
+              label: _("No Results Found");
+
+              styles [
+                "placeholder",
+                "dim-label",
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
