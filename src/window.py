@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio
+from gi.repository import Gdk, Gio, Gtk
 
 from .server import Server
 from .shortcuts import FavagtkShortcutsWindow
@@ -25,8 +25,11 @@ from .shortcuts import FavagtkShortcutsWindow
 class FavagtkWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavagtkWindow"
 
-    label = Gtk.Template.Child()
     shortcuts_window = FavagtkShortcutsWindow()
+
+    # webkit workaround from https://stackoverflow.com/a/60128243
+    # WebKit2.WebView()
+    # webview = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         # Initialize the application window
@@ -40,4 +43,3 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     def load_url(self, _server, url):
         """Loads the URL in the webview and displays the web page"""
         print(url)
-

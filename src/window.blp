@@ -1,12 +1,31 @@
 using Gtk 4.0;
 
 template FavagtkWindow : ApplicationWindow {
-  default-width: 600;
-  default-height: 300;
+  name: "favagtk";
+  default-width: 950;
+  default-height: 700;
   title: _("Fava");
+  styles ["favagtk-window"]
 
   [titlebar]
   HeaderBar header_bar {
+    Box {
+      styles ["linked"]
+      Button btn_open {
+        label: _("Open");
+        action-name: "win.file_open";
+      }
+      MenuButton btn_open_recent {
+        direction: down;
+	styles ["toggle", "popup"]
+      }
+    }
+    ToggleButton {
+      action-name: "win.search_toggle";
+      Image {
+      	icon-name: "system-search";
+      }
+    }
     [end]
     MenuButton {
       icon-name: "open-menu-symbolic";
@@ -14,8 +33,38 @@ template FavagtkWindow : ApplicationWindow {
     }
   }
 
-  Label label {
-    label: "Hello, World!";
+  Stack {
+    Box placeholder_view {
+      name: "placeholder_view";
+      orientation: vertical;
+      halign: center;
+      valign: center;
+      Image {
+        icon-name: "dialog-information-symbolic";
+        icon-size: large;
+      }
+      Button {
+        label: _("Open Beancount File...");
+        action-name: "win.file_open";
+        styles ["suggested-action"]
+      }
+    }
+    Box fava_view {
+      name: "fava_view";
+      SearchBar search_bar {
+      	SearchEntry search_entry {
+      	  next-match => on_searchentry_next_match();
+      	  previous-match => on_searchentry_previous_match();
+      	  changed => on_searchentry_changed();
+      	  stop-search => on_searchentry_stop_search();
+      	}
+      }
+      ScrolledWindow fava_scrolled_window {
+        Viewport fava_view_viewport {
+
+        }
+      }
+    }
   }
 }
 

@@ -17,10 +17,12 @@
 
 import gi
 
+gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gtk, Gio, Adw
+from gi.repository import Adw, Gdk, Gio, Gtk
+
 from .about import AboutDialog
 from .window import FavagtkWindow
 
@@ -42,10 +44,22 @@ class FavagtkApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
+        self.load_css("/io/github/johannesjh/favagtk/app.css")
         win = self.props.active_window
         if not win:
             win = FavagtkWindow(application=self)
         win.present()
+
+    def load_css(self, resource_path):
+        """Loads css from a Gio resource at given path"""
+        display = Gdk.Display.get_default()
+        assert display is not None
+        provider = Gtk.CssProvider()
+        provider.load_from_resource(resource_path)
+        assert provider is not None
+        Gtk.StyleContext.add_provider_for_display(
+            display, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""

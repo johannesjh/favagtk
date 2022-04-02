@@ -1,42 +1,42 @@
 {
-    "app-id" : "io.github.johannesjh.favagtk",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "42",
-    "sdk" : "org.gnome.Sdk",
-    "command" : "favagtk",
-    "finish-args" : [
-        "--share=network",
-        "--share=ipc",
-        "--socket=fallback-x11",
-        "--device=dri",
-        "--socket=wayland"
-    ],
-    "cleanup" : [
-        "/include",
-        "/lib/pkgconfig",
-        "/man",
-        "/share/doc",
-        "/share/gtk-doc",
-        "/share/man",
-        "/share/pkgconfig",
-        "*.la",
-        "*.a"
-    ],
-    "modules" : [
-        "python3-fava.json",
+  "app-id": "io.github.johannesjh.favagtk",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "42",
+  "sdk": "org.gnome.Sdk",
+  "command": "favagtk",
+  "finish-args": [
+    "--share=network",
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--device=dri",
+    "--socket=wayland"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "/man",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    "python3-fava.json",
+    {
+      "name": "favagtk",
+      "builddir": true,
+      "buildsystem": "meson",
+      "sources": [
         {
-            "name" : "favagtk",
-            "builddir" : true,
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "file:///home/jh/Projects/favagtk"
-                }
-            ]
+          "type": "git",
+          "url": "file:///home/jh/Projects/favagtk"
         }
-    ],
-    "build-options" : {
-        "env" : {        }
+      ]
     }
+  ],
+  "build-options": {
+    "env": {}
+  }
 }
