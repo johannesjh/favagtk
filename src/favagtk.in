@@ -24,6 +24,7 @@ import locale
 import gettext
 
 VERSION = '@VERSION@'
+BUILDTYPE = '@BUILDTYPE@'
 pkgdatadir = '@pkgdatadir@'
 localedir = '@localedir@'
 

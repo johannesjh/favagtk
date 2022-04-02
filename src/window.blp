@@ -1,11 +1,11 @@
 using Gtk 4.0;
+using WebKit2 5.0;
 
 template FavagtkWindow : ApplicationWindow {
   name: "favagtk";
   default-width: 950;
   default-height: 700;
   title: _("Fava");
-  styles ["favagtk-window"]
 
   [titlebar]
   HeaderBar header_bar {
@@ -61,7 +61,10 @@ template FavagtkWindow : ApplicationWindow {
       }
       ScrolledWindow fava_scrolled_window {
         Viewport fava_view_viewport {
-
+          WebKit2.WebView webview {
+            hexpand: true;
+            vexpand: true;
+          }
         }
       }
     }

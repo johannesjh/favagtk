@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gdk, Gio, Gtk
+import gi
 
+gi.require_versions({"Gtk": "4.0", "WebKit2": "5.0"})
+
+from gi.repository import Gdk, Gio, Gtk, WebKit2
+
+from . import BUILDTYPE
 from .server import Server
 from .shortcuts import FavagtkShortcutsWindow
 
@@ -28,8 +33,8 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     shortcuts_window = FavagtkShortcutsWindow()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
-    # WebKit2.WebView()
-    # webview = Gtk.Template.Child()
+    WebKit2.WebView()
+    webview = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         # Initialize the application window
@@ -39,6 +44,16 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         # Initialize the fava server
         self.server = Server()
         self.server.connect("start", self.load_url)
+
+        # Configure the webkit widget
+        settings = WebKit2.Settings()
+        settings.set_property("enable-developer-extras", True)
+        self.webview.set_settings(settings)
+
+        # set "devel" style class depending on build type
+        print(f"the builtype is {BUILDTYPE}")
+        if BUILDTYPE == "debug":
+            self.get_style_context().add_class("devel")
 
     def load_url(self, _server, url):
         """Loads the URL in the webview and displays the web page"""

@@ -24,6 +24,7 @@ python = import('python')
 conf = configuration_data()
 conf.set('PYTHON', python.find_installation('python3').path())
 conf.set('VERSION', meson.project_version())
+conf.set('BUILDTYPE', get_option('buildtype'))
 conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
@@ -32,11 +33,17 @@ configure_file(
   output: 'favagtk',
   configuration: conf,
   install: true,
-  install_dir: get_option('bindir')
+  install_dir: get_option('bindir'),
+)
+
+init_file = configure_file(
+  input: '__init__.py',
+  output: '__init__.py',
+  configuration: conf,
 )
 
 favagtk_sources = [
-  '__init__.py',
+  init_file,
   'about.py',
   'app.py',
   'main.py',
