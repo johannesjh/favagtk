@@ -1,6 +1,7 @@
 using Gtk 4.0;
 
 template RecentsPopover {
+  name: "recents_popover";
   halign: start;
   valign: end;
   width-request: 350;
@@ -18,7 +19,6 @@ template RecentsPopover {
       margin-end: 6;
 
       SearchEntry search_entry {
-        visible: true;
         hexpand: true;
         search-changed => on_search_entry_changed_cb();
         activate => on_search_entry_activate_cb();
@@ -26,7 +26,6 @@ template RecentsPopover {
       }
 
       Button {
-        visible: true;
         action-name: "win.open";
         Image document-open-symbolic {
           icon-name: "document-open-symbolic";
@@ -35,17 +34,14 @@ template RecentsPopover {
     }
 
     Separator {
-      visible: true;
       orientation: horizontal;
     }
 
     Stack stack {
-      visible: true;
       vhomogeneous: false;
       hhomogeneous: false;
 
       Label empty {
-        visible: true;
         label: _("No Recent Documents");
         margin-start: 6;
         margin-top: 18;
@@ -54,28 +50,24 @@ template RecentsPopover {
       }
 
       ScrolledWindow recent {
-        visible: true;
         hexpand: true;
         hscrollbar-policy: never;
         max-content-height: 600;
-        max-content-width: 250;
-        min-content-width: 250;
+        max-content-width: 300;
+        min-content-width: 300;
         propagate-natural-height: true;
         vexpand: true;
 
         Viewport {
-          visible: true;
 
           ListBox list_box {
-            visible: true;
+            name: "list_box";
             activate-on-single-click: true;
             selection-mode: none;
 
             [placeholder]
             Label {
-              visible: true;
               label: _("No Results Found");
-
               styles [
                 "placeholder",
                 "dim-label",
@@ -87,5 +79,3 @@ template RecentsPopover {
     }
   }
 }
-
-

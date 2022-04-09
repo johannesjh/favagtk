@@ -15,16 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Popover for recently opened files"""
+"""
+Popover for recently opened files.
+Inspired by
+https://gitlab.gnome.org/World/apostrophe/-/blob/main/apostrophe/open_popover.py
+https://gitlab.gnome.org/World/apostrophe/-/blob/main/data/ui/Recents.ui
+"""
 
 from gettext import gettext as _
 from itertools import islice
-from os import close
 
 import gi
 
 gi.require_version("Gtk", "4.0")
-from gi.repository import Adw, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 
 class RecentItem(GObject.Object):
@@ -43,6 +47,9 @@ class RecentsPopover(Gtk.Popover):
 
     # ui elements:
     list_box = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
+    empty = Gtk.Template.Child()
+    recent = Gtk.Template.Child()
 
     # data model:
     model = Gio.ListStore.new(RecentItem)
@@ -54,22 +61,34 @@ class RecentsPopover(Gtk.Popover):
         self.on_manager_changed()
         self.recents_manager.connect("changed", self.on_manager_changed)
 
+        display = Gdk.Display.get_default()
+        provider = Gtk.CssProvider()
+        provider.load_from_data(
+            b"""
+        #recents_popover label {
+          font-weight: normal;
+        }
+        """
+        )
+        Gtk.StyleContext.add_provider_for_display(
+            display, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
     def create_row(self, item, **args):
         row = Adw.ActionRow.new()
         row.item = item
         row.set_title(item.name)
         row.set_subtitle(item.path)
+        row.set_subtitle_lines(1)
 
-        delete_button = Gtk.Button.new_from_icon_name(
-            "window-close-symbolic", Gtk.IconSize.BUTTON
-        )
+        delete_button = Gtk.Button.new_from_icon_name("window-close-symbolic")
         delete_button.get_style_context().add_class("flat")
         delete_button.get_style_context().add_class("circular")
         delete_button.set_valign(Gtk.Align.CENTER)
         delete_button.set_visible(True)
         delete_button.connect("clicked", self.on_delete_click, item)
 
-        row.add(delete_button)
+        row.add_suffix(delete_button)
         row.set_activatable(True)
         row.set_action_name("win.open_file")
         row.set_action_target_value(GLib.Variant.new_string(item.uri))
@@ -93,9 +112,10 @@ class RecentsPopover(Gtk.Popover):
                 )
             )
 
+        self.stack.set_visible_child(self.recent if self.model else self.empty)
+
     @Gtk.Template.Callback()
     def on_search_entry_changed_cb(self, search_entry):
-        # TODO: implement nice filters in GTK4
         recents_list = self.recents_manager.get_items()
         filtered_list = filter(
             lambda item: search_entry.get_text() in item.get_display_name(),

@@ -13,7 +13,7 @@ template FavagtkWindow : ApplicationWindow {
       styles ["linked"]
       Button btn_open {
         label: _("Open");
-        action-name: "win.file_open";
+        action-name: "win.open";
       }
       MenuButton btn_open_recent {
         direction: down;
@@ -34,7 +34,7 @@ template FavagtkWindow : ApplicationWindow {
     }
   }
 
-  Stack {
+  Stack stack {
     Box placeholder_view {
       name: "placeholder_view";
       orientation: vertical;
@@ -46,12 +46,13 @@ template FavagtkWindow : ApplicationWindow {
       }
       Button {
         label: _("Open Beancount File...");
-        action-name: "win.file_open";
+        action-name: "win.open";
         styles ["suggested-action"]
       }
     }
     Box fava_view {
       name: "fava_view";
+      orientation: vertical;
       SearchBar search_bar {
       	SearchEntry search_entry {
       	  next-match => on_searchentry_next_match();

@@ -15,9 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+import os
+from pathlib import Path
+
 import gi
 
 gi.require_versions({"Gtk": "4.0", "WebKit2": "5.0"})
+
 
 from gi.repository import Gdk, Gio, GLib, Gtk, WebKit2
 
@@ -27,14 +32,22 @@ from .recents import RecentsPopover
 from .server import Server
 from .shortcuts import FavagtkShortcutsWindow
 
+logger = logging.getLogger(__name__)
+logger.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
+
 
 @Gtk.Template(resource_path="/io/github/johannesjh/favagtk/window.ui")
 class FavagtkWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavagtkWindow"
 
     # ui elements:
+    header_bar = Gtk.Template.Child()
+    recents_popover = Gtk.Template.Child()
     shortcuts_window = FavagtkShortcutsWindow()
     search_entry = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
+    placeholder_view = Gtk.Template.Child()
+    fava_view = Gtk.Template.Child()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
     WebKit2.WebView()
@@ -59,39 +72,52 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.webview.set_settings(settings)
 
         # Configure actions
-        self.open_action = Gio.SimpleAction(name="file_open")
-        self.open_action.connect("activate", self.show_file_open_dialog)
-        self.add_action(self.open_action)
 
-        self.close_action = Gio.SimpleAction(name="close")
-        self.close_action.connect("activate", self.close)
-        self.add_action(self.close_action)
+        action = Gio.SimpleAction(name="open")
+        action.connect("activate", self.show_file_open_dialog)
+        self.add_action(action)
 
-        self.search_action = Gio.SimpleAction(name="search")
-        self.search_action.set_enabled(False)
-        self.search_action.connect("activate", self.search_start)
-        self.add_action(self.search_action)
+        action = Gio.SimpleAction.new("open_file", GLib.VariantType("s"))
+        action.connect("activate", self.open_file_from_gvariant)
+        self.add_action(action)
 
-        self.search_toggle_action = Gio.SimpleAction.new_stateful(
+        action = Gio.SimpleAction(name="close")
+        action.connect("activate", self.close)
+        self.add_action(action)
+
+        action = Gio.SimpleAction(name="search")
+        action.set_enabled(False)
+        action.connect("activate", self.search_start)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful(
             name="search_toggle",
             parameter_type=None,
             state=GLib.Variant.new_boolean(False),
         )
-        self.search_toggle_action.set_enabled(False)
-        self.search_toggle_action.connect("change-state", self.search_toggle)
-        self.add_action(self.search_toggle_action)
+        action.set_enabled(False)
+        action.connect("change-state", self.search_toggle)
+        self.add_action(action)
 
     def show_file_open_dialog(self, *args):
         """
-        Handler for the file_open action.
+        Handler for the open action.
         Shows the file open dialog and opens the requested beancount file.
         """
         dialog = FileOpenDialog(transient_for=self)
-        response = dialog.show()
-        if response == Gtk.ResponseType.ACCEPT:
-            file = dialog.get_filename()
-            logger.info(f"User chose file {file}.")
-            self.open_file(file)
+
+        def on_response(dialog, response: Gtk.ResponseType, *args):
+            if response == Gtk.ResponseType.ACCEPT:
+                file = dialog.get_file()
+                logger.info(f"User chose file {file.get_path()}.")
+                self.open_file(file)
+
+        dialog.connect("response", on_response, dialog)
+        dialog.show()
+
+    def open_file_from_gvariant(self, _action, gvariant):
+        self.recents_popover.popdown()  # hides the popover
+        self.open_file(Gio.File.new_for_uri(gvariant.get_string()))
 
     def open_file(self, file):
         """
@@ -100,11 +126,16 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         simply because the old server instance is discarded and a new
         instance is started for the new file.
         """
-        # Verify that the file exists
+        # Verify that the file parameter is not None
         if file is None:
             logger.warning("File could not be opened because it was None.")
             return
 
+        # Convert from Gio.File to str
+        if isinstance(file, Gio.File):
+            file = file.get_path()
+
+        # Verify that the file exists
         file = Path(file)
         if not file.is_file():
             logger.warning(
@@ -116,14 +147,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.beancount_file = str(file)
 
         # Show filename as the window's title
-        self.header_bar.set_property("title", file.name)
-
-        # Show folder name as the window's subtitle,
-        # except for flatpak's cryptic /run/user/... paths
-        if str(file).startswith("/run/user"):
-            self.header_bar.set_property("subtitle", None)
-        else:
-            self.header_bar.set_property("subtitle", str(file.parent))
+        self.set_property("title", str(file.name))
 
         # Adds to the list of recently used files
         Gtk.RecentManager().add_item(file.as_uri())
