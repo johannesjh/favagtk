@@ -121,6 +121,20 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.search_entry.connect("changed", self.search_changed)
         self.search_entry.connect("stop-search", self.search_stop)
 
+        # load settings
+        self.settings = Gio.Settings(schema_id="io.github.johannesjh.favagtk")
+        self.settings.bind(
+            "window-width", self, "default-width", Gio.SettingsBindFlags.DEFAULT
+        )
+        self.settings.bind(
+            "window-height", self, "default-height", Gio.SettingsBindFlags.DEFAULT
+        )
+        self.settings.bind(
+            "window-maximized", self, "maximized", Gio.SettingsBindFlags.DEFAULT
+        )
+        if last_opened_file := self.settings.get_string("last-opened"):
+            self.open_file(last_opened_file)
+
     def show_file_open_dialog(self, *args):
         """
         Handler for the open action.
@@ -277,6 +291,9 @@ class FavagtkWindow(Gtk.ApplicationWindow):
 
     def close_window(self, *args):
         """Closes the window"""
+
+        # remember last-opened file name in settings
+        self.settings.set_string("last-opened", str(self.beancount_file or ""))
 
         # close beancount file and stop web server
         self.close_file()
