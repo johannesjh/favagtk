@@ -10,15 +10,27 @@ template FavagtkShortcutsWindow : Gtk.ShortcutsWindow {
     ShortcutsGroup {
       title: C_("shortcut window", "General");
 
+
       ShortcutsShortcut {
-        title: C_("shortcut window", "Show Shortcuts");
-        action-name: "win.show-help-overlay";
+        title: C_("shortcut window", "Open File");
+        action-name: "win.open";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Search");
+        action-name: "win.search";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Close File");
+        action-name: "win.close";
       }
 
       ShortcutsShortcut {
         title: C_("shortcut window", "Quit");
         action-name: "app.quit";
       }
+
     }
   }
 }

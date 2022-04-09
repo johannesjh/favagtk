@@ -54,12 +54,7 @@ template FavagtkWindow : ApplicationWindow {
       name: "fava_view";
       orientation: vertical;
       SearchBar search_bar {
-      	SearchEntry search_entry {
-      	  next-match => on_searchentry_next_match();
-      	  previous-match => on_searchentry_previous_match();
-      	  changed => on_searchentry_changed();
-      	  stop-search => on_searchentry_stop_search();
-      	}
+      	SearchEntry search_entry {}
       }
       ScrolledWindow fava_scrolled_window {
         Viewport fava_view_viewport {

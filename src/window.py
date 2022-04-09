@@ -18,6 +18,7 @@
 import logging
 import os
 from pathlib import Path
+from typing import Callable, Optional
 
 import gi
 
@@ -36,6 +37,36 @@ logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
 
 
+def find_child(widget: Gtk.Widget, criterion: Callable) -> Optional[Gtk.Widget]:
+    """
+    Helper function to search for a child widget.
+    Returns first matching widget amongst the widget itself and its descendants.
+    """
+    # if the criterion matches to this widget, then we are done
+    if criterion(widget):
+        return widget
+
+    # collect a list of all child widgets
+    children = []
+    try:
+        children += widget.get_children()
+    except AttributeError:
+        pass
+    try:
+        children += [widget.get_child()]
+    except AttributeError:
+        pass
+
+    # return the first match amongst children and their children:
+    for child in children:
+        result = find_child(child, criterion)
+        if isinstance(result, Gtk.Widget):
+            return result
+
+    # otherwise return None
+    return None
+
+
 @Gtk.Template(resource_path="/io/github/johannesjh/favagtk/window.ui")
 class FavagtkWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavagtkWindow"
@@ -44,6 +75,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     header_bar = Gtk.Template.Child()
     recents_popover = Gtk.Template.Child()
     shortcuts_window = FavagtkShortcutsWindow()
+    search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     placeholder_view = Gtk.Template.Child()
@@ -56,6 +88,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         # Initialize the application window
         super().__init__(**kwargs)
+        app = self.get_application()
         self.set_help_overlay(self.shortcuts_window)
 
         # set "devel" style class depending on build type
@@ -72,10 +105,10 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.webview.set_settings(settings)
 
         # Configure actions
-
         action = Gio.SimpleAction(name="open")
         action.connect("activate", self.show_file_open_dialog)
         self.add_action(action)
+        app.set_accels_for_action(f"win.open", ["<primary>o"])
 
         action = Gio.SimpleAction.new("open_file", GLib.VariantType("s"))
         action.connect("activate", self.open_file_from_gvariant)
@@ -84,11 +117,13 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         action = Gio.SimpleAction(name="close")
         action.connect("activate", self.close)
         self.add_action(action)
+        app.set_accels_for_action(f"win.close", ["<primary>w"])
 
         action = Gio.SimpleAction(name="search")
         action.set_enabled(False)
         action.connect("activate", self.search_start)
         self.add_action(action)
+        app.set_accels_for_action(f"win.search", ["<primary>f"])
 
         action = Gio.SimpleAction.new_stateful(
             name="search_toggle",
@@ -98,6 +133,19 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         action.set_enabled(False)
         action.connect("change-state", self.search_toggle)
         self.add_action(action)
+
+        # workaround because
+        # `self.search_entry = Gtk.Template.Child()` does not work, neither does
+        # `self.get_template_child(Gtk.SearchEntry, "search_entry")`.
+        self.search_entry = find_child(
+            self.search_bar, lambda widget: isinstance(widget, Gtk.SearchEntry)
+        )  # type: Gtk.SearchEntry
+        assert self.search_entry is not None
+
+        self.search_entry.connect("next-match", self.search_next)
+        self.search_entry.connect("previous-match", self.search_previous)
+        self.search_entry.connect("changed", self.search_changed)
+        self.search_entry.connect("stop-search", self.search_stop)
 
     def show_file_open_dialog(self, *args):
         """
@@ -162,8 +210,8 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         """Loads the URL in the webview and displays the web page"""
         self.webview.load_uri(self.server.url)
         self.stack.set_visible_child(self.fava_view)
-        self.search_action.set_enabled(True)
-        self.search_toggle_action.set_enabled(True)
+        self.lookup_action("search").set_enabled(True)
+        self.lookup_action("search_toggle").set_enabled(True)
 
     def search_toggle(self, action: Gio.SimpleAction, state):
         """
@@ -180,13 +228,12 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         Handler for the search action, and also called directly.
         Displays the search bar, allowing the user to start searching.
         """
-        self.search_toggle_action.set_state(GLib.Variant.new_boolean(True))
+        self.lookup_action("search_toggle").set_state(GLib.Variant.new_boolean(True))
         self.search_bar.set_search_mode(True)
         self.search_entry.select_region(0, -1)
         self.search_entry.grab_focus()
 
-    # @Gtk.Template.Callback("on_searchentry_changed")
-    def on_searchentry_changed(self, search_entry):
+    def search_changed(self, search_entry):
         """
         Handler for when the user typed a search term.
         Instructs the webkit webview to search for the term.
@@ -197,7 +244,6 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         )
         find_controller.search(self.search_entry.get_text(), find_options, 32)
 
-    # @Gtk.Template.Callback("search_entry_previous_match_cb")
     def search_previous(self, *args):
         """
         Handler for the search field's "previous match" keyboard shortcut.
@@ -206,8 +252,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         find_controller = self.webview.get_find_controller()
         find_controller.search_previous()
 
-    # @Gtk.Template.Callback("search_entry_next_match_cb")
-    def search_next_match(self, *args):
+    def search_next(self, *args):
         """
         Handler for the search field's "next match" keyboard shortcut.
         Instructs the webkit webview to jump to the next match.
@@ -215,7 +260,6 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         find_controller = self.webview.get_find_controller()
         find_controller.search_next()
 
-    # @Gtk.Template.Callback("search_entry_stop_search_cb")
     def search_stop(self, *args):
         """
         Handler for the search field's "stop search" signal,
@@ -223,7 +267,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         Instructs the webkit webview to stop searching
         and hides the search bar.
         """
-        self.search_toggle_action.set_state(GLib.Variant.new_boolean(False))
+        self.lookup_action("search_toggle").set_state(GLib.Variant.new_boolean(False))
         self.search_bar.set_search_mode(False)
         find_controller = (
             self.webview.get_find_controller()
@@ -246,13 +290,12 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.beancount_file = None
 
         # stop showing filename and dirname in the headerbar
-        self.header_bar.set_property("title", "Fava")
-        self.header_bar.set_property("subtitle", None)
+        self.set_property("title", "Fava")
 
         # cancel ongoing searches
         self.search_stop()
-        self.search_action.set_enabled(False)
-        self.search_toggle_action.set_enabled(False)
+        self.lookup_action("search").set_enabled(False)
+        self.lookup_action("search_toggle").set_enabled(False)
         self.stack.set_visible_child(self.placeholder_view)
 
         # stop the server
