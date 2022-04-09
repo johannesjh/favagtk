@@ -37,36 +37,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
 
 
-def find_child(widget: Gtk.Widget, criterion: Callable) -> Optional[Gtk.Widget]:
-    """
-    Helper function to search for a child widget.
-    Returns first matching widget amongst the widget itself and its descendants.
-    """
-    # if the criterion matches to this widget, then we are done
-    if criterion(widget):
-        return widget
-
-    # collect a list of all child widgets
-    children = []
-    try:
-        children += widget.get_children()
-    except AttributeError:
-        pass
-    try:
-        children += [widget.get_child()]
-    except AttributeError:
-        pass
-
-    # return the first match amongst children and their children:
-    for child in children:
-        result = find_child(child, criterion)
-        if isinstance(result, Gtk.Widget):
-            return result
-
-    # otherwise return None
-    return None
-
-
 @Gtk.Template(resource_path="/io/github/johannesjh/favagtk/window.ui")
 class FavagtkWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FavagtkWindow"
@@ -115,7 +85,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.add_action(action)
 
         action = Gio.SimpleAction(name="close")
-        action.connect("activate", self.close)
+        action.connect("activate", self.close_file_or_window)
         self.add_action(action)
         app.set_accels_for_action(f"win.close", ["<primary>w"])
 
@@ -134,7 +104,11 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         action.connect("change-state", self.search_toggle)
         self.add_action(action)
 
-        # workaround because
+        # handle the window's close button
+        self.connect("close-request", self.close_window)
+
+        # setup the search bar
+        # note, this is a workaround for finding the search entry widget:
         # `self.search_entry = Gtk.Template.Child()` does not work, neither does
         # `self.get_template_child(Gtk.SearchEntry, "search_entry")`.
         self.search_entry = find_child(
@@ -276,12 +250,12 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.search_entry.set_text("")
         self.webview.grab_focus()
 
-    def close(self, *args):
+    def close_file_or_window(self, *args):
         """Closes currently opened file, or closes the window if no file is open"""
         if self.server.is_running():
             self.close_file()
         else:
-            self.do_destroy()
+            self.close_window()
 
     def close_file(self, *args):
         """Closes the currently opened beancount file"""
@@ -301,16 +275,42 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         # stop the server
         self.server.stop()
 
-    def do_destroy(self):
+    def close_window(self, *args):
         """Closes the window"""
-
-        # save last used file in application settings
-        settings = Settings.load()
-        settings.last_used_file = self.beancount_file
-        settings.save()
 
         # close beancount file and stop web server
         self.close_file()
 
         # close the window
-        self.app.remove_window(self)
+        app = self.get_application()
+        app.remove_window(self)
+
+
+def find_child(widget: Gtk.Widget, criterion: Callable) -> Optional[Gtk.Widget]:
+    """
+    Helper function to search for a child widget.
+    Returns first matching widget amongst the widget itself and its descendants.
+    """
+    # if the criterion matches to this widget, then we are done
+    if criterion(widget):
+        return widget
+
+    # collect a list of all child widgets
+    children = []
+    try:
+        children += widget.get_children()
+    except AttributeError:
+        pass
+    try:
+        children += [widget.get_child()]
+    except AttributeError:
+        pass
+
+    # return the first match amongst children and their children:
+    for child in children:
+        result = find_child(child, criterion)
+        if isinstance(result, Gtk.Widget):
+            return result
+
+    # otherwise return None
+    return None

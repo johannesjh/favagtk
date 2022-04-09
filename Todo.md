@@ -1,5 +1,8 @@
 # Todos
 
+- By default, position the window in the middle of the screen
+- Remember last opened file as well as window size and position
+
 - WebKit packaging: org.gnome.Platform//42 does not come with webkit2gtk 5.0
   - I could include a webkite build similar to
     [the flatpak build of org.gabmus.gfeeds](https://github.com/flathub/org.gabmus.gfeeds/blob/2ac73b377018c2248198f8d6d9bbc35c0dca03c4/webkit.json)

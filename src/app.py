@@ -35,7 +35,7 @@ class FavagtkApplication(Adw.Application):
             application_id="io.github.johannesjh.favagtk",
             flags=Gio.ApplicationFlags.FLAGS_NONE,
         )
-        self.create_action("quit", self.quit, ["<primary>q"])
+        self.create_action("quit", self.do_quit, ["<primary>q"])
         self.create_action("about", self.on_about_action)
 
     def do_activate(self):
@@ -80,3 +80,12 @@ class FavagtkApplication(Adw.Application):
         self.add_action(action)
         if shortcuts:
             self.set_accels_for_action(f"app.{name}", shortcuts)
+
+    def do_quit(self, *args):
+        """
+        Handler for the "quit" signal.
+        Destroys all application windows.
+        In consequence, GTK will terminate the application.
+        """
+        for win in self.get_windows():
+            win.emit("close-request")
