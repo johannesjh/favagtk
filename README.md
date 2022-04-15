@@ -60,7 +60,7 @@ Simply open this project in GNOME Builder.
 
 ### Python Dependencies
 
-Fava GTK depends on other python packages, as defined in flatpak-pip-update-modules.sh.
+Fava GTK depends on other python packages, as defined in the requirements folder.
 Fava GTK aims for compatibility with the packages defined there.
 
 ### Code quality

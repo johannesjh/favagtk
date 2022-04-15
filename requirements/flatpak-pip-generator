@@ -12,6 +12,7 @@ import sys
 import tempfile
 import urllib.request
 from collections import OrderedDict
+from typing import Dict
 
 try:
     import requirements
@@ -27,10 +28,6 @@ parser.add_argument(
     "--cleanup", choices=["scripts", "all"], help="Select what to clean up after build"
 )
 parser.add_argument("--requirements-file", "-r", help="Specify requirements.txt file")
-parser.add_argument("--include-system-packages", action="store_true", default=False)
-parser.add_argument(
-    "--exclude-system-packages", dest="include_system_packages", action="store_false"
-)
 parser.add_argument(
     "--build-only",
     action="store_const",
@@ -58,7 +55,16 @@ parser.add_argument(
     "--runtime",
     help="Specify a flatpak to run pip inside of a sandbox, ensures python version compatibility",
 )
+parser.add_argument(
+    "--yaml", action="store_true", help="Use YAML as output format instead of JSON"
+)
 opts = parser.parse_args()
+
+if opts.yaml:
+    try:
+        import yaml
+    except ImportError:
+        exit('PyYAML modules is not installed. Run "pip install PyYAML"')
 
 
 def get_pypi_url(name: str, filename: str) -> str:
@@ -158,12 +164,16 @@ def fprint(string: str) -> None:
 
 
 packages = []
-if opts.requirements_file and os.path.exists(opts.requirements_file):
-    with open(opts.requirements_file, "r") as req_file:
-        reqs = parse_continuation_lines(req_file)
-        reqs_as_str = "\n".join([r.split("--hash")[0] for r in reqs])
-        packages = list(requirements.parse(reqs_as_str))
-        requirements_file = opts.requirements_file
+if opts.requirements_file:
+    requirements_file = os.path.expanduser(opts.requirements_file)
+    try:
+        with open(requirements_file, "r") as req_file:
+            reqs = parse_continuation_lines(req_file)
+            reqs_as_str = "\n".join([r.split("--hash")[0] for r in reqs])
+            packages = list(requirements.parse(reqs_as_str))
+    except FileNotFoundError:
+        pass
+
 elif opts.packages:
     packages = list(requirements.parse("\n".join(opts.packages)))
     with tempfile.NamedTemporaryFile(
@@ -193,10 +203,12 @@ if opts.runtime:
         "run",
         opts.runtime,
     ]
-    if opts.requirements_file and os.path.exists(opts.requirements_file):
-        prefix = os.path.realpath(opts.requirements_file)
-        flag = "--filesystem={}".format(prefix)
-        flatpak_cmd.insert(1, flag)
+    if opts.requirements_file:
+        requirements_file = os.path.expanduser(opts.requirements_file)
+        if os.path.exists(requirements_file):
+            prefix = os.path.realpath(requirements_file)
+            flag = "--filesystem={}".format(prefix)
+            flatpak_cmd.insert(1, flag)
 else:
     flatpak_cmd = [pip_executable]
 
@@ -214,7 +226,10 @@ elif len(packages) == 1:
     )
 else:
     output_package = "python{}-modules".format(python_version)
-output_filename = output_package + ".json"
+if opts.yaml:
+    output_filename = output_package + ".yaml"
+else:
+    output_filename = output_package + ".json"
 
 modules = []
 vcs_modules = []
@@ -248,19 +263,19 @@ with tempfile.TemporaryDirectory(prefix=tempdir_prefix) as tempdir:
         except FileNotFoundError:
             pass
 
-    fprint("Downloading arch independent packages")
-    for filename in os.listdir(tempdir):
-        if not filename.endswith(("bz2", "any.whl", "gz", "xz", "zip")):
-            version = get_file_version(filename)
-            name = get_package_name(filename)
-            url = get_tar_package_url_pypi(name, version)
-            print("Deleting", filename)
-            try:
-                os.remove(os.path.join(tempdir, filename))
-            except FileNotFoundError:
-                pass
-            print("Downloading {}".format(url))
-            download_tar_pypi(url, tempdir)
+    # fprint('Downloading arch independent packages')
+    # for filename in os.listdir(tempdir):
+    #    if not filename.endswith(('bz2', 'any.whl', 'gz', 'xz', 'zip')):
+    #        version = get_file_version(filename)
+    #        name = get_package_name(filename)
+    #        url = get_tar_package_url_pypi(name, version)
+    #        print('Deleting', filename)
+    #        try:
+    #            os.remove(os.path.join(tempdir, filename))
+    #        except FileNotFoundError:
+    #            pass
+    #        print('Downloading {}'.format(url))
+    #        download_tar_pypi(url, tempdir)
 
     files = {get_package_name(f): [] for f in os.listdir(tempdir)}
 
@@ -349,9 +364,7 @@ for package in packages:
             file=sys.stderr,
         )
         continue
-    elif (
-        not opts.include_system_packages and package.name.casefold() in system_packages
-    ):
+    elif package.name.casefold() in system_packages:
         continue
 
     if len(package.extras) > 0:
@@ -388,10 +401,7 @@ for package in packages:
             subprocess.run(pip_download + [pkg], check=True, stdout=subprocess.DEVNULL)
             for filename in os.listdir(tempdir):
                 dep_name = get_package_name(filename)
-                if (
-                    not opts.include_system_packages
-                    and dep_name.casefold() in system_packages
-                ):
+                if dep_name.casefold() in system_packages:
                     continue
                 dependencies.append(dep_name)
 
@@ -464,5 +474,18 @@ else:
 
 print()
 with open(output_filename, "w") as output:
-    output.write(json.dumps(pypi_module, indent=4))
+    if opts.yaml:
+
+        class OrderedDumper(yaml.Dumper):
+            def increase_indent(self, flow=False, indentless=False):
+                return super(OrderedDumper, self).increase_indent(flow, False)
+
+        def dict_representer(dumper, data):
+            return dumper.represent_dict(data.items())
+
+        OrderedDumper.add_representer(OrderedDict, dict_representer)
+
+        yaml.dump(pypi_module, output, Dumper=OrderedDumper)
+    else:
+        output.write(json.dumps(pypi_module, indent=4))
     print("Output saved to {}".format(output_filename))
