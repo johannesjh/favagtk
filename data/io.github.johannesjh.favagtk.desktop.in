@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=favagtk
+Name=Fava
 Exec=favagtk
 Icon=io.github.johannesjh.favagtk
 Terminal=false

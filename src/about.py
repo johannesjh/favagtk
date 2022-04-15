@@ -17,12 +17,14 @@
 
 from gi.repository import Gtk
 
+from . import VERSION
+
 
 class AboutDialog(Gtk.AboutDialog):
     def __init__(self, parent):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = "favagtk"
-        self.props.version = "0.1.0"
+        self.props.version = VERSION
         self.props.authors = ["johannesjh"]
         self.props.copyright = "2022 johannesjh"
         self.props.logo_icon_name = "io.github.johannesjh.favagtk"
