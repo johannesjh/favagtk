@@ -15,3 +15,19 @@
     https://git.fsfe.org/reuse/tool#run-as-pre-commit-hook
 
 - Add screenshots to the README and to the appstream file.
+
+  - Examples for how to add screenshots can be found in merge requests
+    that are linked in the GNOME screenshots initiative
+    https://gitlab.gnome.org/GNOME/Initiatives/-/issues/34
+
+- Consider sandboxing webkit, as proposed in this initiative:
+  https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!
+
+  - Note: Do a regression test to see if documents can still be added
+    by dragging them unto a fava journal entry.
+
+- Add and document keyboard shortcuts
+  - compare the GNOME keyboard shortcuts initiative
+    https://gitlab.gnome.org/GNOME/Initiatives/-/issues/14
+  - Ctrl+? should open the keyboard shortcuts page
+  - we should document the search keyboard shortcuts
