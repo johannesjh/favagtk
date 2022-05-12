@@ -17,7 +17,9 @@
 
 """
 Popover for recently opened files.
-Inspired by
+
+Code inspired by Apostrophe, but rewritten in this project for GTK4.
+For apostrophe's sources, see:
 https://gitlab.gnome.org/World/apostrophe/-/blob/main/apostrophe/open_popover.py
 https://gitlab.gnome.org/World/apostrophe/-/blob/main/data/ui/Recents.ui
 """

@@ -11,11 +11,6 @@
 
 - Add screenshots to the README and to the appstream file
 
-- Add additional python packages
-  similar to https://github.com/johannesjh/fava-gtk/blob/main/requirements/main.in
-
-  - Problem: scipy and numpy installation fails on org.gnome.Platform
-
 - WebKit packaging: org.gnome.Platform//42 does not come with webkit2gtk 5.0
   - I could include a webkite build similar to
     [the flatpak build of org.gabmus.gfeeds](https://github.com/flathub/org.gabmus.gfeeds/blob/2ac73b377018c2248198f8d6d9bbc35c0dca03c4/webkit.json)

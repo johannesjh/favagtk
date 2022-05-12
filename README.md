@@ -20,8 +20,6 @@ The easiest way to start using Fava GTK is to download and install a flatpak app
 
 ### System Requirements
 
-Fava GTK has been developed and tested on Linux with GNOME 41.
-Other operating systems and desktop environments may or may not work.
 [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
 
 ### Installation
