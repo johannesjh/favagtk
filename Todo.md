@@ -1,8 +1,7 @@
 # Todos
 
 - Add a CI workflow.
-
-  - Consider using GNOME infrastructure instead of github,
+  - Consider using GNOME infrastructure instead of github?
     not sure what is easier.
 
 - Publish on flathub
@@ -26,8 +25,3 @@
   - Note: Do a regression test to see if documents can still be added
     by dragging them unto a fava journal entry.
 
-- Add and document keyboard shortcuts
-  - compare the GNOME keyboard shortcuts initiative
-    https://gitlab.gnome.org/GNOME/Initiatives/-/issues/14
-  - Ctrl+? should open the keyboard shortcuts page
-  - we should document the search keyboard shortcuts

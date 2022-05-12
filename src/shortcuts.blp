@@ -22,6 +22,16 @@ template FavagtkShortcutsWindow : Gtk.ShortcutsWindow {
       }
 
       ShortcutsShortcut {
+        title: C_("shortcut window", "Search Next Match");
+        accelerator: "<primary>g";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Search Previous Match");
+        accelerator: "<shift><primary>g";
+      }
+
+      ShortcutsShortcut {
         title: C_("shortcut window", "Close File");
         action-name: "win.close";
       }
