@@ -4,6 +4,9 @@
   - Consider using GNOME infrastructure instead of github?
     not sure what is easier.
 
+- Use "profiles" instead of "buildtypes" for debug vs. release app builds,
+  compare https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/DevOps-with-Flatpak#final-gitlab-yaml-file-template
+
 - Publish on flathub
 
 - Licensing
