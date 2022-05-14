@@ -16,15 +16,15 @@ Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beanco
 
 ## Getting Started
 
-The easiest way to start using Fava GTK is to download and install a flatpak application package from the [releases on Github](https://github.com/johannesjh/fava-gtk/releases), as detailed in the following.
+In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from the [CI pipelines](https://gitlab.gnome.org/johannesjh/favagtk/-/pipelines).
 
 ### System Requirements
 
-[flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
+A linux system with [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
 
 ### Installation
 
-Download a .flatpak file from one of Fava GTK's releases on github.
+Download a .flatpak file from one of Fava GTK's [CI builds over on GNOME Gitlab](https://gitlab.gnome.org/johannesjh/favagtk).
 
 You can then install the application as follows.
 
@@ -54,12 +54,12 @@ flatpak run io.github.beancount.FavaGtk
 
 ### Setting up a Development Environment
 
-Simply open this project in GNOME Builder.
+Simply clone this project in GNOME Builder.
 
 ### Python Dependencies
 
 Fava GTK depends on other python packages, as defined in the requirements folder.
-Fava GTK aims for compatibility with the packages defined there.
+Fava GTK aims for compatibility with the package versions defined there.
 
 ### Code quality
 
@@ -82,7 +82,8 @@ pre-commit run
 
 ### Flatpak Packaging
 
-Fava GTK is packaged using flatpak-builder. The easiest way to build is using GNOME Builder.
+Fava GTK is packaged using flatpak-builder.
+You can build the project in GNOME Builder by simply clicking the build button.
 
 ## License
 
@@ -105,4 +106,3 @@ and [Beancount](https://github.com/beancount/beancount).
 
 - FavaGtk's dependencies are each licensed in their own way,
   see the requirements folder for lists of packages that fava-gtk depends on.
-
