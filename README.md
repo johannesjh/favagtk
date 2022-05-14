@@ -104,6 +104,5 @@ many thanks in particular to the authors of of [Fava](https://github.com/beancou
 and [Beancount](https://github.com/beancount/beancount).
 
 - FavaGtk's dependencies are each licensed in their own way,
-  see the .json files for lists of packages that fava-gtk depends on.
-- The recents file menu is heavily inspired by
-  [apostrophe's open_popover](https://gitlab.gnome.org/World/apostrophe/-/blob/aa56131abdb2839edfec4d6ce3fbbdea9b1bfdd4/apostrophe/open_popover.py)
+  see the requirements folder for lists of packages that fava-gtk depends on.
+
