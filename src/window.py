@@ -27,7 +27,7 @@ gi.require_versions({"Gtk": "4.0", "WebKit2": "5.0"})
 
 from gi.repository import Gdk, Gio, GLib, Gtk, WebKit2
 
-from . import BUILDTYPE
+from . import PROFILE
 from .file_open_dialog import FileOpenDialog
 from .recents import RecentsPopover
 from .server import Server
@@ -62,7 +62,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.set_help_overlay(self.shortcuts_window)
 
         # set "devel" style class depending on build type
-        if BUILDTYPE == "debug":
+        if PROFILE == "devel":
             self.get_style_context().add_class("devel")
 
         # Initialize the fava server

@@ -1,0 +1,1 @@
+option('profile', type : 'combo', choices: ['devel', 'release'], value: 'devel', description : 'development or release build')

@@ -1,11 +1,14 @@
 # Todos
 
 - Add a CI workflow.
+
   - Consider using GNOME infrastructure instead of github?
     not sure what is easier.
 
 - Use "profiles" instead of "buildtypes" for debug vs. release app builds,
   compare https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/DevOps-with-Flatpak#final-gitlab-yaml-file-template
+
+- Display build information in the about dialogue
 
 - Publish on flathub
 
@@ -20,4 +23,3 @@
 
   - Note: Do a regression test to see if documents can still be added
     by dragging them unto a fava journal entry.
-

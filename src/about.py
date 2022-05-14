@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-from . import VERSION
+from . import VCS_TAG, VERSION
 
 
 class AboutDialog(Gtk.AboutDialog):
@@ -25,6 +25,8 @@ class AboutDialog(Gtk.AboutDialog):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = "favagtk"
         self.props.version = VERSION
+        if VCS_TAG:
+            self.props.version += f" ({VCS_TAG})"
         self.props.authors = ["johannesjh"]
         self.props.copyright = "2022 johannesjh"
         self.props.logo_icon_name = "io.github.johannesjh.favagtk"
