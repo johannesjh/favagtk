@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-from . import VCS_TAG, VERSION
+from . import PROFILE, VCS_TAG, VERSION
 
 
 class AboutDialog(Gtk.AboutDialog):
@@ -25,6 +25,8 @@ class AboutDialog(Gtk.AboutDialog):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = "favagtk"
         self.props.version = VERSION
+        if PROFILE:
+            self.props.version += f" {PROFILE} build "
         if VCS_TAG:
             self.props.version += f" ({VCS_TAG})"
         self.props.authors = ["johannesjh"]
