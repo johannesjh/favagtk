@@ -6,9 +6,13 @@
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
 	<description>
-	  <p>This app packages Fava, the open-source accounting software
-	    based on Beancount, as a GNOME desktop application.
+	  <p>Fava GTK allows to use the Fava and Beancount double-entry bookkeeping
+	    software packages as a desktop application.
 	  </p>
+	  <ul>
+	    <li>Start fava and beancount as you would any other desktop application.</li>
+	    <li>Easy installation using flatpak.</li>
+	  </ul>
 	</description>
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://gitlab.gnome.org/johannesjh/favagtk</url>
