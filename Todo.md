@@ -2,6 +2,8 @@
 
 - Choose a new app id, maybe by registering app.drey.favagtk?
 
+- Delete the favagtk project over on pypi
+
 - Publish on flathub
 
 - Consider sandboxing webkit, as proposed in this initiative:

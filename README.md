@@ -1,6 +1,6 @@
 # Fava GTK
 
-![main branch build status](https://github.com/johannesjh/fava-gtk/workflows/CI/badge.svg?branch=main)
+[![pipeline status](https://gitlab.gnome.org/johannesjh/favagtk/badges/main/pipeline.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/commits/main)
 
 Fava GTK allows to use the [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount) double-entry bookkeeping software packages as a desktop application.
 
