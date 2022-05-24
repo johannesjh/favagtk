@@ -16,12 +16,12 @@ jobs:
 
       - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
         with:
-          bundle: io.github.johannesjh.favagtk.flatpak
-          manifest-path: io.github.johannesjh.favagtk.json
+          bundle: org.gnome.gitlab.johannesjh.favagtk.flatpak
+          manifest-path: org.gnome.gitlab.johannesjh.favagtk.json
           cache-key: flatpak-builder-${{ github.sha }}
 
       - name: create a github release and upload the flatpak package
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          files: io.github.johannesjh.favagtk.flatpak
+          files: org.gnome.gitlab.johannesjh.favagtk.flatpak

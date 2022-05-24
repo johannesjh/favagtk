@@ -1,10 +1,10 @@
 # Todos
 
-- Choose a new app id, maybe by registering app.drey.favagtk?
-
-- Delete the favagtk project over on pypi
+- Test manually
 
 - Publish on flathub
+
+- Delete the favagtk project over on pypi
 
 - Consider sandboxing webkit, as proposed in this initiative:
   https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!

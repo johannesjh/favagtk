@@ -32,7 +32,7 @@ class FavagtkApplication(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="io.github.johannesjh.favagtk",
+            application_id="org.gnome.gitlab.johannesjh.favagtk",
             flags=Gio.ApplicationFlags.FLAGS_NONE,
         )
         self.create_action("quit", self.do_quit, ["<primary>q"])

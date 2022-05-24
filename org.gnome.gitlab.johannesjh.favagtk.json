@@ -1,5 +1,5 @@
 {
-  "app-id": "io.github.johannesjh.favagtk",
+  "app-id": "org.gnome.gitlab.johannesjh.favagtk",
   "runtime": "org.gnome.Platform",
   "runtime-version": "master",
   "sdk": "org.gnome.Sdk",

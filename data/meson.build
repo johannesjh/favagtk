@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-  input: 'io.github.johannesjh.favagtk.desktop.in',
-  output: 'io.github.johannesjh.favagtk.desktop',
+  input: 'org.gnome.gitlab.johannesjh.favagtk.desktop.in',
+  output: 'org.gnome.gitlab.johannesjh.favagtk.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -15,8 +15,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'io.github.johannesjh.favagtk.appdata.xml.in',
-  output: 'io.github.johannesjh.favagtk.appdata.xml',
+  input: 'org.gnome.gitlab.johannesjh.favagtk.appdata.xml.in',
+  output: 'org.gnome.gitlab.johannesjh.favagtk.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -29,7 +29,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('io.github.johannesjh.favagtk.gschema.xml',
+install_data('org.gnome.gitlab.johannesjh.favagtk.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

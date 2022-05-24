@@ -31,6 +31,6 @@ class AboutDialog(Gtk.AboutDialog):
             self.props.version += f" ({VCS_TAG})"
         self.props.authors = ["johannesjh"]
         self.props.copyright = "2022 johannesjh"
-        self.props.logo_icon_name = "io.github.johannesjh.favagtk"
+        self.props.logo_icon_name = "org.gnome.gitlab.johannesjh.favagtk"
         self.props.modal = True
         self.set_transient_for(parent)

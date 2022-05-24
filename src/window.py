@@ -122,7 +122,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.search_entry.connect("stop-search", self.search_stop)
 
         # load settings
-        self.settings = Gio.Settings(schema_id="io.github.johannesjh.favagtk")
+        self.settings = Gio.Settings(schema_id="org.gnome.gitlab.johannesjh.favagtk")
         self.settings.bind(
             "window-width", self, "default-width", Gio.SettingsBindFlags.DEFAULT
         )

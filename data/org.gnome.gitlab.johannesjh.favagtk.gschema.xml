@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="favagtk">
-  <schema id="io.github.johannesjh.favagtk" path="/io/github/johannesjh/favagtk/">
+  <schema id="org.gnome.gitlab.johannesjh.favagtk" path="/io/github/johannesjh/favagtk/">
     <key name="window-width" type="i">
       <default>950</default>
     </key>

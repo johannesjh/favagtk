@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Fava
 Exec=favagtk
-Icon=io.github.johannesjh.favagtk
+Icon=org.gnome.gitlab.johannesjh.favagtk
 Terminal=false
 Type=Application
 Categories=Office;Finance

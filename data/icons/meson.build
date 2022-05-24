@@ -1,4 +1,4 @@
-application_id = 'io.github.johannesjh.favagtk'
+application_id = 'org.gnome.gitlab.johannesjh.favagtk'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(
