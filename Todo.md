@@ -2,6 +2,10 @@
 
 - Test manually
 
+- Release builds should not have the striped "work-in-progress" window styling.
+  - Set the "release" build profile if building a tagged release.
+  - Create a gitlab release from the artifacts that were built?
+
 - Publish on flathub
 
 - Delete the favagtk project over on pypi
