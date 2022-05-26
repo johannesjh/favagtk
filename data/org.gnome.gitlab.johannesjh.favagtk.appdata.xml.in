@@ -2,16 +2,17 @@
 <component type="desktop-application">
 	<id>org.gnome.gitlab.johannesjh.favagtk.desktop</id>
   <name>Fava</name>
-  <summary>Do your finances with fava and beancount</summary>
+  <summary>Do your finances using fava and beancount</summary>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
 	<description>
-	  <p>Fava GTK allows to use the Fava and Beancount double-entry bookkeeping
-	    software packages as a desktop application.
+	  <p>This app allows to use the Fava and Beancount double-entry bookkeeping
+	    software packages as a GNOME desktop application.
 	  </p>
 	  <ul>
+	    <li>Easy installation using flatpak</li>
 	    <li>Start fava and beancount as you would any other desktop application.</li>
-	    <li>Easy installation using flatpak.</li>
+	    <li>Built as a GNOME application, using GTK4 and webkit, packaged using flatpak.</li>
 	  </ul>
 	</description>
   <content_rating type="oars-1.1"/>
