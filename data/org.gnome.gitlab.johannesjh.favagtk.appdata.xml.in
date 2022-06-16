@@ -18,10 +18,9 @@
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://gitlab.gnome.org/johannesjh/favagtk</url>
   <url type="bugtracker">https://gitlab.gnome.org/johannesjh/favagtk/-/issues</url>
-  <url type="vcs-browser">https://gitlab.gnome.org/johannesjh/favagtk/-/tree/main</url>
   <launchable type="desktop-id">org.gnome.gitlab.johannesjh.favagtk.desktop</launchable>
   <screenshots>
-    <screenshot>
+    <screenshot type="default">
       <image>https://gitlab.gnome.org/johannesjh/favagtk/raw/HEAD/data/screenshots/main.png</image>
     </screenshot>
   </screenshots>
