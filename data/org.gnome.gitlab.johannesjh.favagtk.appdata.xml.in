@@ -25,6 +25,9 @@
       <caption>Main window</caption>
     </screenshot>
   </screenshots>
+  <kudos>
+   <kudo>ModernToolkit</kudo>
+  </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
     <release version="0.2.0" date="2022-05-14">
