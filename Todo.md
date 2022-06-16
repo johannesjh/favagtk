@@ -8,8 +8,6 @@
 
 - Publish on flathub
 
-- Delete the favagtk project over on pypi
-
 - Do I need to sandbox webkit?, as proposed in this initiative:
   https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!
 
