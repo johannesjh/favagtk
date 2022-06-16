@@ -18,3 +18,6 @@
   - Ask upstream if fava wants to support dark mode styling too,
     the feature only really makes sense if fava's web content is dark as well.
 
+- Consider using flatpak extensions for additional packages
+  e.g., for smart_importer, which is large because it needs scikit-learn.
+
