@@ -1,6 +1,13 @@
 include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml"
 
-flatpak:
+stages:
+  - build
+  - test
+  - upload
+  - release
+
+flatpak-debugbuild:
+  # builds a flatpak image using the "debug" build profile
   image: "registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master"
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
@@ -9,3 +16,43 @@ flatpak:
     RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
     BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.flatpak"
   extends: ".flatpak"
+
+flatpak-releasebuild:
+  # builds a flatpak image using the "release" build profile
+  extends: flatpak-debugbuild
+  only:
+    - tags
+  variables:
+    CONFIG_OPTS: >
+      -Dprofile=release
+
+upload:
+  # uploads the flatpak bundle to the project's package registry
+  # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
+  stage: upload
+  only:
+    - tags
+  image: curlimages/curl:latest
+  script:
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file bin/${LINUX_AMD64_BINARY} ${PACKAGE_REGISTRY_URL}/${LINUX_AMD64_BINARY}
+
+release:
+  # creates a release
+  # https://docs.gitlab.com/ee/ci/yaml/index.html#release
+  stage: release
+  only:
+    - tags
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Running the release job."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: "Release $CI_COMMIT_TAG"
+    description: "Release created using the release-cli."
+    assets:
+      links:
+        - name: ${BUNDLE}
+          url: ${PACKAGE_REGISTRY_URL}/${BUNDLE}

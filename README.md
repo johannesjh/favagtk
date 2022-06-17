@@ -4,9 +4,9 @@
 
 Do your finances using fava and beancount.
 
-favagtk makes it easy to use the 
-[Fava](https://github.com/beancount/fava) and 
-[Beancount](https://github.com/beancount/beancount) 
+favagtk makes it easy to use the
+[Fava](https://github.com/beancount/fava) and
+[Beancount](https://github.com/beancount/beancount)
 double-entry bookkeeping software as a GNOME desktop application.
 
 - Easy installation using flatpak.
@@ -61,6 +61,9 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 
 Simply clone this project in GNOME Builder.
 
+See [docs/build-options.md](./docs/build-options.md)
+for how to configure build options.
+
 ### Dependencies
 
 favagtk depends on other software packages.
@@ -113,8 +116,8 @@ GNU General Public License for more details.
 
 Licenses of packages that favagtk depends on:
 Most of favagtk's functionality comes from other software packages;
-many thanks in particular to the authors of 
+many thanks in particular to the authors of
 [Fava](https://github.com/beancount/fava)
 and [Beancount](https://github.com/beancount/beancount).
-See the `requirements` folder for a list of software packages 
+See the `requirements` folder for a list of software packages
 that favagtk depends on.
