@@ -21,7 +21,7 @@ double-entry bookkeeping software as a GNOME desktop application.
 
 ## Getting Started
 
-In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from the [CI pipelines](https://gitlab.gnome.org/johannesjh/favagtk/-/pipelines?page=1&scope=all&ref=main&status=success).
+In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from [favagtk's releases in gilab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
 
 ### System Requirements
 
@@ -29,7 +29,7 @@ A linux system with [flatpak](https://flatpak.org/) is needed to install and run
 
 ### Installation
 
-Download a .flatpak file from one of favagtk's [CI builds over on GNOME Gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/pipelines?page=1&scope=all&ref=main&status=success).
+Download a .flatpak file from one of [favagtk's releases in gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
 
 You can then install the application as follows.
 

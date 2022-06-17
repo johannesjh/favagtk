@@ -35,8 +35,10 @@ upload:
     - tags
   image: curlimages/curl:latest
   script:
-    - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}
+    # list all environment variables for debug purposes:
+    - export
+    # upload the flatpak bundle:
+    - curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}
 
 release:
   # creates a release
