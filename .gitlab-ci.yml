@@ -6,25 +6,26 @@ stages:
   - upload
   - release
 
-flatpak-debugbuild:
-  # builds a flatpak image using the "debug" build profile
+flatpak:
+  # builds a flatpak image
+  extends: ".flatpak"
+  stage: build
   image: "registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master"
+  rules:
+    - if: $CI_COMMIT_TAG == null
+      variables:
+        PROFILE: debug
+    - if: $CI_COMMIT_TAG != null
+      variables:
+        PROFILE: release
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
     FLATPAK_MODULE: "favagtk"
     APP_ID: "org.gnome.gitlab.johannesjh.favagtk"
     RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
     BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.flatpak"
-  extends: ".flatpak"
-
-flatpak-releasebuild:
-  # builds a flatpak image using the "release" build profile
-  extends: flatpak-debugbuild
-  only:
-    - tags
-  variables:
     CONFIG_OPTS: >
-      -Dprofile=release
+      -Dprofile=${PROFILE}
 
 upload:
   # uploads the flatpak bundle to the project's package registry
