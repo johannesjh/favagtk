@@ -26,6 +26,8 @@ flatpak:
     BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.flatpak"
     CONFIG_OPTS: >
       -Dprofile=${PROFILE}
+  script:
+    - 'echo "the flatpak bundle" > ${BUNDLE}'
 
 upload:
   # uploads the flatpak bundle to the project's package registry
