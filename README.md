@@ -61,6 +61,8 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 
 Simply clone this project in GNOME Builder.
 
+### Build Options
+
 See [docs/build-options.md](./docs/build-options.md)
 for how to configure build options.
 
@@ -99,6 +101,17 @@ pre-commit run
 
 favagtk is packaged using flatpak-builder.
 You can build the project in GNOME Builder by simply clicking the build button.
+
+### Releases
+
+Releases are named using semantic versioning.
+They are built in gitlab ci; the build is triggered by pushing a tag:
+
+- To prepare a release, don't forget to update the appdata file, to describe the release and its changes.
+- Optionally, create a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
+- To create the release, push a tag named similar to `v1.2.3`.
+
+All releases are available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
 
 ## License
 
