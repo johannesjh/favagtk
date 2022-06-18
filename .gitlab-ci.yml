@@ -12,10 +12,12 @@ variables:
 
 flatpak:
   # builds a flatpak image
+  # based on GNOME's "devops with flatpak" initiative: https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/DevOps-with-Flatpak
   extends: ".flatpak"
   stage: build
   image: "registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master"
   rules:
+    # using the release build profile for tagged versions, otherwise using the devel build profile
     - if: $CI_COMMIT_TAG == null
       variables:
         PROFILE: devel
@@ -29,8 +31,6 @@ flatpak:
     RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
     CONFIG_OPTS: >
       -Dprofile=${PROFILE}
-  script:
-    - 'echo "the flatpak bundle" > ${BUNDLE}'
 
 upload:
   # uploads the flatpak bundle to the project's package registry
@@ -39,15 +39,10 @@ upload:
   only:
     - tags
   image: curlimages/curl:latest
-  script:
-    - '# list all environment variables for debug purposes:'
-    - 'export'
-    - '# upload the flatpak bundle:'
-    - 'echo curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE}" "${PACKAGE_REGISTRY_URL}/${BUNDLE}"'
-    - 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE}" "${PACKAGE_REGISTRY_URL}/${BUNDLE}"'
+  script: 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE}" "${PACKAGE_REGISTRY_URL}/${BUNDLE}"'
 
 release:
-  # creates a release
+  # creates a "release" in the gitlab project's page, to make it easy for users to download the flatpak bundle
   # https://docs.gitlab.com/ee/ci/yaml/index.html#release
   stage: release
   only:
