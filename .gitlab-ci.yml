@@ -36,11 +36,12 @@ upload:
   image: curlimages/curl:latest
   variables:
     PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/favagtk/${CI_COMMIT_TAG}"
-  script: |
-    # list all environment variables for debug purposes:
-    export
-    # upload the flatpak bundle:
-    curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}
+  script:
+    - '# list all environment variables for debug purposes:'
+    - 'export'
+    - '# upload the flatpak bundle:'
+    - 'echo curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}'
+    - 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${BUNDLE} ${PACKAGE_REGISTRY_URL}/${BUNDLE}'
 
 release:
   # creates a release
