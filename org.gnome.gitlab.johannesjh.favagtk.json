@@ -34,7 +34,8 @@
           "type": "dir",
           "path": "."
         }
-      ]
+      ],
+      "config-opts": ["-Dprofile=release"]
     }
   ],
   "build-options": {

@@ -4,9 +4,9 @@
 
 Do your finances using fava and beancount.
 
-favagtk makes it easy to use the 
-[Fava](https://github.com/beancount/fava) and 
-[Beancount](https://github.com/beancount/beancount) 
+favagtk makes it easy to use the
+[Fava](https://github.com/beancount/fava) and
+[Beancount](https://github.com/beancount/beancount)
 double-entry bookkeeping software as a GNOME desktop application.
 
 - Easy installation using flatpak.
@@ -21,7 +21,7 @@ double-entry bookkeeping software as a GNOME desktop application.
 
 ## Getting Started
 
-In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from the [CI pipelines](https://gitlab.gnome.org/johannesjh/favagtk/-/pipelines?page=1&scope=all&ref=main&status=success).
+In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from [favagtk's releases in gilab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
 
 ### System Requirements
 
@@ -29,7 +29,7 @@ A linux system with [flatpak](https://flatpak.org/) is needed to install and run
 
 ### Installation
 
-Download a .flatpak file from one of favagtk's [CI builds over on GNOME Gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/pipelines?page=1&scope=all&ref=main&status=success).
+Download a .flatpak file from one of [favagtk's releases in gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
 
 You can then install the application as follows.
 
@@ -60,6 +60,9 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 ### Setting up a Development Environment
 
 Simply clone this project in GNOME Builder.
+
+See [docs/build-options.md](./docs/build-options.md)
+for how to configure build options.
 
 ### Dependencies
 
@@ -113,8 +116,8 @@ GNU General Public License for more details.
 
 Licenses of packages that favagtk depends on:
 Most of favagtk's functionality comes from other software packages;
-many thanks in particular to the authors of 
+many thanks in particular to the authors of
 [Fava](https://github.com/beancount/fava)
 and [Beancount](https://github.com/beancount/beancount).
-See the `requirements` folder for a list of software packages 
+See the `requirements` folder for a list of software packages
 that favagtk depends on.
