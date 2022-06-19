@@ -1,13 +1,8 @@
 # Todos
 
-- Test manually
+- Publish on flathub,
+  see https://gitlab.gnome.org/johannesjh/favagtk/-/issues/1
 
-- Publish on flathub
-  - Using a separate repository on github, similar to how everybody else
-    seems to be keeping dev vs packaging repos separate.
-  - Using org.gnome.Platform//42 instead of //master,
-    hence including our own build of webkit-gtk, similar to
-    [gfeeds](https://github.com/flathub/org.gabmus.gfeeds)
 - Do I need to sandbox webkit?, as proposed in this initiative:
   https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!
 
@@ -16,6 +11,8 @@
 
 - Enable dark mode
 
+  - Make sure the GTK window and widgets respect the system's dark mode, 
+    see https://developer.gnome.org/documentation/tutorials/beginners/getting_started/dark_mode.html
   - Ask upstream if fava wants to support dark mode styling too,
     the feature only really makes sense if fava's web content is dark as well.
 

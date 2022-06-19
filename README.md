@@ -1,6 +1,7 @@
 # favagtk
 
 [![pipeline status](https://gitlab.gnome.org/johannesjh/favagtk/badges/main/pipeline.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/commits/main)
+[![Latest Release](https://gitlab.gnome.org/johannesjh/favagtk/-/badges/release.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
 
 Do your finances using fava and beancount.
 
