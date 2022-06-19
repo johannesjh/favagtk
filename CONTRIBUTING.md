@@ -1,8 +1,8 @@
-## Contributing
+# Contributing
 
-All contributions are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement.
+All contributions to favagtk are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement.
 
-### Viewing Debug Output
+## Viewing Debug Output
 
 Starting favagtk from the commandline allows to view its debug output and helps understand what is going on "under the hood". This can be useful to analyze a problem prior to reporting a bug.
 
@@ -10,16 +10,16 @@ Starting favagtk from the commandline allows to view its debug output and helps 
 flatpak run org.gnome.gitlab.johannesjh.favagtk
 ```
 
-### Setting up a Development Environment
+## Setting up a Development Environment
 
 Simply clone this project in GNOME Builder.
 
-### Build Options
+## Build Options
 
 See [docs/build-options.md](./docs/build-options.md)
 for how to configure build options.
 
-### Dependencies
+## Dependencies
 
 favagtk depends on other software packages.
 These dependencies are defined in the following files.
@@ -31,7 +31,7 @@ These dependencies are defined in the following files.
 
 favagtk aims for compatibility with the package versions defined there.
 
-### Code quality
+## Code quality
 
 Use [pre-commit](https://pre-commit.com/) to prettify and lint the code before committing changes.
 
@@ -50,12 +50,14 @@ pre-commit run --all
 pre-commit run
 ```
 
-### Flatpak Packaging
+## Flatpak Packaging
 
-favagtk is packaged using flatpak-builder.
-You can build the project in GNOME Builder by simply clicking the build button.
+favagtk is packaged using flatpak.
 
-### Releases
+- You can build a package locally GNOME Builder by simply clicking the build button.
+- Gitlab's ci integration also creates package builds.
+
+## Releases
 
 Releases are named using semantic versioning.
 They are built in gitlab ci; the build is triggered by pushing a tag:
