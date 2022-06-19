@@ -46,6 +46,10 @@ The application window that is initially shown prompts to open a beancount file.
 
 Note that FavaGTK is only a thin convenience layer around [Fava](https://github.com/beancount/fava) and [Beancount](https://github.com/beancount/beancount). These two programs provide the actual functionality. You can find documentation on how to use these programs for managing your finances on their respective websites.
 
+## Contributing
+
+All contributions are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement. See [CONTRIBUTING.md](./CONTRIBUTING.md) for details, e.g., how to view debug output when testing and how to setup a development environment.
+
 ## License
 
 favagtk is GPL-licensed, see the [LICENSE](./LICENSE) file.
