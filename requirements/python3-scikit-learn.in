@@ -1,0 +1,12 @@
+# scikit-learn
+
+# This file is hand-written.
+# It pins the version number of scikit-learn and its dependencies,
+# in order to match the version numbers in the according flatpak build module.
+
+scikit-learn == 0.24.0
+pybind11 == 2.6.1
+threadpoolctl == 2.1.0
+joblib == 1.0.0
+numpy == 1.21.6
+scipy == 1.6.1

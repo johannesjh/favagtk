@@ -23,8 +23,8 @@
     "*.a"
   ],
   "modules": [
-    "requirements/blueprint-compiler.json",
-    "requirements/python3-requirements.json",
+    "requirements/python3-scikit-learn.json",
+    "requirements/python3-main.json",
     {
       "name": "favagtk",
       "builddir": true,
@@ -35,7 +35,8 @@
           "path": "."
         }
       ],
-      "config-opts": ["-Dprofile=release"]
+      "config-opts": ["-Dprofile=release"],
+      "modules": ["requirements/blueprint-compiler.json"]
     }
   ],
   "build-options": {

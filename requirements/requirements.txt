@@ -1,4 +1,0 @@
-fava ~= 1.21
-smart-importer ~= 0.3
-beancount-share ~= 0.1.10
-fava-investor ~= 0.2.1

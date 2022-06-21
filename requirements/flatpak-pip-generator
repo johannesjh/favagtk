@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 
+# flatpak-pip-generator
+#
+# based on:
+# https://github.com/flatpak/flatpak-builder-tools/blob/a9514143fca4bf9cb1297c20dc038aa38c5d8a1d/pip/flatpak-pip-generator
+#
+#
+# changes specific to this version of the script:
+# * added a commandline argument to exclude certain packages or dependencies
+# * formatted using black for consistency with favagtk's codebase
+# * adds "--user" argument when invoking `flatpak run`
+
 __license__ = "MIT"
 
 import argparse
@@ -28,6 +39,7 @@ parser.add_argument(
     "--cleanup", choices=["scripts", "all"], help="Select what to clean up after build"
 )
 parser.add_argument("--requirements-file", "-r", help="Specify requirements.txt file")
+parser.add_argument("--exclude", "-e", nargs="+", help="Exclude these packages")
 parser.add_argument(
     "--build-only",
     action="store_const",
@@ -184,6 +196,15 @@ elif opts.packages:
 else:
     exit("Please specifiy either packages or requirements file argument")
 
+for i in packages:
+    if i["name"].lower().startswith("pyqt"):
+        print("PyQt packages are not supported by flapak-pip-generator")
+        print("However, there is a BaseApp for PyQt available, that you should use")
+        print(
+            "Visit https://github.com/flathub/com.riverbankcomputing.PyQt.BaseApp for more information"
+        )
+        sys.exit(0)
+
 with open(requirements_file, "r") as req_file:
     use_hash = "--hash=" in req_file.read()
 
@@ -196,6 +217,7 @@ else:
 if opts.runtime:
     flatpak_cmd = [
         "flatpak",
+        "--user",
         "--devel",
         "--share=network",
         "--filesystem=/tmp",
@@ -263,19 +285,19 @@ with tempfile.TemporaryDirectory(prefix=tempdir_prefix) as tempdir:
         except FileNotFoundError:
             pass
 
-    # fprint('Downloading arch independent packages')
-    # for filename in os.listdir(tempdir):
-    #    if not filename.endswith(('bz2', 'any.whl', 'gz', 'xz', 'zip')):
-    #        version = get_file_version(filename)
-    #        name = get_package_name(filename)
-    #        url = get_tar_package_url_pypi(name, version)
-    #        print('Deleting', filename)
-    #        try:
-    #            os.remove(os.path.join(tempdir, filename))
-    #        except FileNotFoundError:
-    #            pass
-    #        print('Downloading {}'.format(url))
-    #        download_tar_pypi(url, tempdir)
+    fprint("Downloading arch independent packages")
+    for filename in os.listdir(tempdir):
+        if not filename.endswith(("bz2", "any.whl", "gz", "xz", "zip")):
+            version = get_file_version(filename)
+            name = get_package_name(filename)
+            url = get_tar_package_url_pypi(name, version)
+            print("Deleting", filename)
+            try:
+                os.remove(os.path.join(tempdir, filename))
+            except FileNotFoundError:
+                pass
+            print("Downloading {}".format(url))
+            download_tar_pypi(url, tempdir)
 
     files = {get_package_name(f): [] for f in os.listdir(tempdir)}
 
@@ -366,6 +388,9 @@ for package in packages:
         continue
     elif package.name.casefold() in system_packages:
         continue
+    elif package.name.casefold() in opts.exclude:
+        print(f"Ignoring package {package.name} because it is on the exclude list.")
+        continue
 
     if len(package.extras) > 0:
         extras = "[" + ",".join(extra for extra in package.extras) + "]"
@@ -402,6 +427,11 @@ for package in packages:
             for filename in os.listdir(tempdir):
                 dep_name = get_package_name(filename)
                 if dep_name.casefold() in system_packages:
+                    continue
+                if dep_name.casefold() in opts.exclude:
+                    print(
+                        f"Ignoring package dependency {dep_name} because it is on the exclude list."
+                    )
                     continue
                 dependencies.append(dep_name)
 
