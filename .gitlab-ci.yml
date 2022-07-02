@@ -14,6 +14,7 @@ flatpak:
   # builds a flatpak image
   # based on GNOME's "devops with flatpak" initiative: https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/DevOps-with-Flatpak
   extends: ".flatpak"
+  timeout: 120m
   stage: build
   image: "registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master"
   rules:
@@ -25,7 +26,7 @@ flatpak:
       variables:
         PROFILE: release
   variables:
-    MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
+    MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.devel.json"
     FLATPAK_MODULE: "favagtk"
     APP_ID: "org.gnome.gitlab.johannesjh.favagtk"
     RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"

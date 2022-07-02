@@ -1,8 +1,5 @@
 # Todos
 
-- Publish on flathub,
-  see https://gitlab.gnome.org/johannesjh/favagtk/-/issues/1
-
 - Do I need to sandbox webkit?, as proposed in this initiative:
   https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!
 
@@ -11,7 +8,7 @@
 
 - Enable dark mode
 
-  - Make sure the GTK window and widgets respect the system's dark mode, 
+  - Make sure the GTK window and widgets respect the system's dark mode,
     see https://developer.gnome.org/documentation/tutorials/beginners/getting_started/dark_mode.html
   - Ask upstream if fava wants to support dark mode styling too,
     the feature only really makes sense if fava's web content is dark as well.

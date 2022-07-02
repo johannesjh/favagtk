@@ -14,10 +14,52 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 
 Simply clone this project in GNOME Builder.
 
+The project includes two build configurations:
+
+* `org.gnome.gitlab.johannesjh.favagtk.devel.json`
+  for quick development builds:
+  resolves python packages on-the-fly (i.e., does not compare against saved hashes)
+  and prefers binary packages to shorten the build time.
+* `org.gnome.gitlab.johannesjh.favagtk.json`
+  for release builds:
+  resolves python packages before building, saves and compares hashes,
+  builds and installs python source packages.
+
+To choose a build configuration in GNOME Builder, 
+switch to the "Build Preferences" surface (e.g., using the dropdown button in the top left corner of the window),
+select the desired build configuration
+and click the "Make Active" button.
+
+
 ## Build Options
 
-See [docs/build-options.md](./docs/build-options.md)
-for how to configure build options.
+Available options are declared in `meson_options.txt`.
+
+### Debug versus Release Builds
+
+The "profile" option allows to toggle between a debug and release build.
+
+The option (as well as other options) can be set in the following ways:
+
+- In GNOME Builder's build options,
+  by entering `-Dprofile=release` under "configure options".
+  This modifies the flatpak `.json` manifest file.
+
+- In the flatpak manifest `.json` file, the build can be configured
+  as follows:
+
+  ```json
+  {
+    "name": "favagtk",
+    "config-opts": ["-Dprofile=release"]
+  }
+  ```
+
+- If building from the commandline, the build option can be set as follows:
+  `meson configure -Dprofile=release`.
+  See the [meson documentation about build options](https://mesonbuild.com/Build-options.html)
+  for further explanation.
+
 
 ## Dependencies
 

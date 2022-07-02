@@ -1,9 +1,7 @@
 /*
 This file was created manually.
 It is a shared flatpak build module for the blueprint compiler.
-
-Code based on:
-https://github.com/flathub/org.gabmus.gfeeds/blob/master/org.gabmus.gfeeds.json
+Code based on org.gabmus.gfeeds.json
 */
 {
   "name": "blueprint-compiler",

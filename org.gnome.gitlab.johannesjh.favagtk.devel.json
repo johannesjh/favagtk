@@ -1,8 +1,8 @@
-/* release build of favagtk */
+/* devel build of favagtk */
 {
   "app-id": "org.gnome.gitlab.johannesjh.favagtk",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "42",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "command": "favagtk",
   "finish-args": [
@@ -24,11 +24,23 @@
     "*.a"
   ],
   "modules": [
-    /* shared module, a gtk4 compatible version of webkitgtk is required */
-    "requirements/webkitgtk.json",
-
-    /* main application dependencies, generated using pip-compile and flatpak-pip-generator */
-    "requirements/python3-main.json",
+    /* main application dependencies, downloaded and installed on the fly */
+    {
+      "name": "python3-main",
+      "buildsystem": "simple",
+      "build-options": {
+        "build-args": ["--share=network"]
+      },
+      "build-commands": [
+        "pip3 install --verbose --ignore-installed --prefix=${FLATPAK_DEST} -r python3-main.txt"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "requirements"
+        }
+      ]
+    },
 
     /* blueprint compiler for .ui files */
     "requirements/blueprint-compiler.json",
@@ -44,7 +56,7 @@
           "path": "."
         }
       ],
-      "config-opts": ["-Dprofile=release"]
+      "config-opts": ["-Dprofile=devel"]
     }
   ],
   "build-options": {
