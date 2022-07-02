@@ -34,6 +34,7 @@
       <description>
         <p>Maintenance release</p>
         <ul>
+          <li>Fixed a bug where the UI froze when users clicked the file-open button inside the recent files popover.</li>
           <li>Temporarily removes fava plugins such as smart_importer, fava_investor and others because of their heavy machine learning dependencies.</li>
           <li>Faster development builds locally and in gitlab-ci.</li>
         </ul>
