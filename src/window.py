@@ -140,6 +140,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         Handler for the open action.
         Shows the file open dialog and opens the requested beancount file.
         """
+        self.recents_popover.popdown()  # hides the popover
         dialog = FileOpenDialog(transient_for=self)
 
         def on_response(dialog, response: Gtk.ResponseType, *args):
