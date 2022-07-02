@@ -101,11 +101,25 @@ favagtk is packaged using flatpak.
 
 ## Releases
 
+On a generaral note:
 Releases are named using semantic versioning.
-They are built in gitlab ci; the build is triggered by pushing a tag:
+They are built and published using CI scripts when a tag is pushed.
 
-- To prepare a release, don't forget to update the appdata file, to describe the release and its changes.
-- Optionally, create a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
-- To create the release, push a tag named similar to `v1.2.3`.
+### Releases in the Git Development Repo
 
-All releases are available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
+To publish a new version of favagtk in favagtk's development repository,
+take the following steps:
+
+- Set the intended version number in the main `meson.build` file. 
+- Describe the release in the `data/*appdata.xml*` file.
+- Build and test a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
+- Publish the release by pushing a tag named similar to `v1.2.3`.
+
+CI scripts will build a package and make it available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) in gitlab.
+
+## Flathub Releases
+
+To publish an updated flatpak package on flathub, 
+create a pull request with updated manifest and requirement files 
+in [favagtk's flathub packaging repo](https://github.com/flathub/org.gnome.gitlab.johannesjh.favagtk).
+

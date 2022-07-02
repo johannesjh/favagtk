@@ -30,6 +30,15 @@
   </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
+    <release version="0.2.1" date="2022-07-30">
+      <description>
+        <p>Maintenance release</p>
+        <ul>
+          <li>Temporarily removes fava plugins such as smart_importer, fava_investor and others because of their heavy machine learning dependencies.</li>
+          <li>Faster development builds locally and in gitlab-ci.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.0" date="2022-06-18">
       <description>
         <p>Full rewrite using GTK4</p>
