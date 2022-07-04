@@ -27,11 +27,11 @@
     /* shared module, a gtk4 compatible version of webkitgtk is required */
     "requirements/webkitgtk.json",
 
-    /* main application dependencies, generated using pip-compile and flatpak-pip-generator */
-    "requirements/python3-main.json",
-
     /* blueprint compiler for .ui files */
     "requirements/blueprint-compiler.json",
+
+    /* main application dependencies, generated using pip-compile and flatpak-pip-generator */
+    "requirements/python3-main.json",
 
     /* the actual favagtk application */
     {

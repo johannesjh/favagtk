@@ -24,6 +24,9 @@
     "*.a"
   ],
   "modules": [
+    /* blueprint compiler for .ui files */
+    "requirements/blueprint-compiler.json",
+
     /* main application dependencies, downloaded and installed on the fly */
     {
       "name": "python3-main",
@@ -41,9 +44,6 @@
         }
       ]
     },
-
-    /* blueprint compiler for .ui files */
-    "requirements/blueprint-compiler.json",
 
     /* the actual favagtk application */
     {
