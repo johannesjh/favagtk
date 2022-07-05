@@ -33,6 +33,11 @@ flatpak:
     CONFIG_OPTS: >
       -Dprofile=${PROFILE}
 
+echo:
+  stage: build
+  script: 'echo flatpak-builder --user --disable-rofiles-fuse flatpak_app --repo=repo ${BRANCH:+--default-branch=$BRANCH}
+    ${MANIFEST_PATH}'
+
 upload:
   # uploads the flatpak bundle to the project's package registry
   # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
