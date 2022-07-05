@@ -36,8 +36,8 @@
         <p>Maintenance release</p>
         <ul>
           <li>Fixed a bug where the UI froze when users clicked the file-open button inside the recent files popover.</li>
-          <li>Removed machine learning features: This version removes fava plugins such as smart_importer, fava_investor and others because of their heavy machine learning dependencies.</li>
           <li>Fixed a bug where included beancount files failed to load: Widened the flatpak sandbox permissions for accessing the users' file system.</li>
+          <li>Updated fava to version 1.22, and updated other dependencies as well.</li>
           <li>Optimized development builds: Faster build times locally and in gitlab-ci.</li>
         </ul>
       </description>

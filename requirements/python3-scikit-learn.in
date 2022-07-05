@@ -4,11 +4,48 @@
 # It pins the version number of scikit-learn and its dependencies,
 # in order to match the version numbers in the according flatpak build module.
 
+# note:
+# wheel filenames with compatible version numbers were generated
+# by downloading wheels for the respective architectures, as follows:
+#
+#	pip3 download \
+#	   --only-binary=:all: \
+#	   --platform manylinux1_x86_64 --platform linux_x86_64 --platform manylinux2014_x86_64 --platform any \
+#	   --python-version 39 \
+#	   --implementation cp \
+#	   --abi cp39 --abi abi3 --abi none \
+#	   scikit-learn==1.1.1
+#
+#
+#	pip3 download \
+#	   --only-binary=:all: \
+#	   --platform manylinux1_aarch64 --platform linux_aarch64 --platform manylinux2014_aarch64 --platform any \
+#	   --python-version 39 \
+#	   --implementation cp \
+#	   --abi cp39 --abi abi3 --abi none \
+#	   scikit-learn==1.1.1
+#	pip3 download \
+#	   --only-binary=:all: \
+#	   --platform manylinux1_x86_64 --platform linux_x86_64 --platform manylinux2014_x86_64 --platform any \
+#	   --python-version 310 \
+#	   --implementation cp \
+#	   --abi cp310 --abi abi3 --abi none \
+#	   scikit-learn==1.1.1
+#
+#
+#	pip3 download \
+#	   --only-binary=:all: \
+#	   --platform manylinux1_aarch64 --platform linux_aarch64 --platform manylinux2014_aarch64 --platform any \
+#	   --python-version 310 \
+#	   --implementation cp \
+#	   --abi cp310 --abi abi3 --abi none \
+#	   scikit-learn==1.1.1
+
+# platform constraints
 -c python3-gnome-platform.in
 
-scikit-learn == 0.24.0
-pybind11 == 2.6.1
-threadpoolctl == 2.1.0
-joblib == 1.0.0
-numpy == 1.21.6
-scipy == 1.6.1
+joblib == 1.1.0
+numpy == 1.23.0
+scikit-learn == 1.1.1
+scipy == 1.8.1
+threadpoolctl == 3.1.0

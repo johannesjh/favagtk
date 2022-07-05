@@ -1,10 +1,9 @@
 # This file was created manually
 # This file lists favagtk's optional python dependencies.
 
-# platform constraints
--c python3-gnome-platform.in
-
-# scikit-learn constraints
+# constraints
+-c python3-gnome-platform.txt
+-c python3-main.txt
 -c python3-scikit-learn.in
 
 # favagtk's optional dependencies

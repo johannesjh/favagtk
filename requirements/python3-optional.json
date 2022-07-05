@@ -559,7 +559,7 @@
       "name": "python3-fava",
       "buildsystem": "simple",
       "build-commands": [
-        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"fava==1.21\" --no-build-isolation"
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"fava==1.22\" --no-build-isolation"
       ],
       "sources": [
         {
@@ -636,11 +636,6 @@
           "type": "file",
           "url": "https://files.pythonhosted.org/packages/16/e3/4ad79882b92617e3a4a0df1960d6bce08edfb637737ac5c3f3ba29022e25/soupsieve-2.3.2.post1-py3-none-any.whl",
           "sha256": "3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759"
-        },
-        {
-          "type": "file",
-          "url": "https://files.pythonhosted.org/packages/83/24/d130bbae0ffdee6f55960e2fe8e6783bfde0ff1730039f3e4e1ae7114fb8/fava-1.21-py3-none-any.whl",
-          "sha256": "0417972eb112859b9d5cc08b43b966a54adb48bad4f2aa05adeb7aef5b655dfb"
         },
         {
           "type": "file",
@@ -799,6 +794,11 @@
         },
         {
           "type": "file",
+          "url": "https://files.pythonhosted.org/packages/6b/35/4d640b004289f8e6e0d32dcfa4a3280bc0d0194d3f3c59d1dd8611b3aac0/fava-1.22-py3-none-any.whl",
+          "sha256": "b7fc40f9674d0b1ba0ab857b8df71b2304352d30881756a243db6cbea788f334"
+        },
+        {
+          "type": "file",
           "url": "https://files.pythonhosted.org/packages/2e/57/a4177e24f8ed700c037e1eca7620097fdfbb1c9b358601e40169adf6d364/Babel-2.10.3-py3-none-any.whl",
           "sha256": "ff56f4892c1c4bf0d814575ea23471c230d544203c7748e8c68f0089478d48eb"
         },
@@ -900,11 +900,6 @@
           "type": "file",
           "url": "https://files.pythonhosted.org/packages/16/e3/4ad79882b92617e3a4a0df1960d6bce08edfb637737ac5c3f3ba29022e25/soupsieve-2.3.2.post1-py3-none-any.whl",
           "sha256": "3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759"
-        },
-        {
-          "type": "file",
-          "url": "https://files.pythonhosted.org/packages/83/24/d130bbae0ffdee6f55960e2fe8e6783bfde0ff1730039f3e4e1ae7114fb8/fava-1.21-py3-none-any.whl",
-          "sha256": "0417972eb112859b9d5cc08b43b966a54adb48bad4f2aa05adeb7aef5b655dfb"
         },
         {
           "type": "file",
@@ -1075,6 +1070,11 @@
           "type": "file",
           "url": "https://files.pythonhosted.org/packages/42/1f/b3c5d018045df922f75a9acb81041ab0e2dbb37be8f6f354f0d28c01edea/google_auth-2.9.0-py2.py3-none-any.whl",
           "sha256": "75b3977e7e22784607e074800048f44d6a56df589fb2abe58a11d4d20c97c314"
+        },
+        {
+          "type": "file",
+          "url": "https://files.pythonhosted.org/packages/6b/35/4d640b004289f8e6e0d32dcfa4a3280bc0d0194d3f3c59d1dd8611b3aac0/fava-1.22-py3-none-any.whl",
+          "sha256": "b7fc40f9674d0b1ba0ab857b8df71b2304352d30881756a243db6cbea788f334"
         },
         {
           "type": "file",
@@ -1975,8 +1975,8 @@
         },
         {
           "type": "file",
-          "url": "https://files.pythonhosted.org/packages/db/e2/9c0bde5f81394b627f623557690536b12017b84988a4a1f98ec826edab9e/scikit-learn-0.24.0.tar.gz",
-          "sha256": "076369634ee72b5a5941440661e2f306ff4ac30903802dc52031c7e9199ac640"
+          "url": "https://files.pythonhosted.org/packages/41/11/e931951f048908ceaf2423db48ca6ad10e0b818c2960a3bc2dacb4fa4c1d/scikit-learn-1.1.1.tar.gz",
+          "sha256": "3e77b71e8e644f86c8b5be7f1c285ef597de4c384961389ee3e9ca36c445b256"
         },
         {
           "type": "file",

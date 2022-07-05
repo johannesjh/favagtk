@@ -44,11 +44,15 @@
       ],
       "sources": [
         {
-          "type": "dir",
-          "path": "requirements"
+          "type": "file",
+          "path": "requirements/python3-main.txt"
         }
       ]
     },
+
+    /* optional dependencies for fava plugins */
+    "requirements/python3-scikit-learn.json",
+    "requirements/python3-optional.json",
 
     /* the actual favagtk application */
     {

@@ -4,24 +4,22 @@
 #
 #    pip-compile python3-scikit-learn.in
 #
-joblib==1.0.0
+joblib==1.1.0
     # via
     #   -r python3-scikit-learn.in
     #   scikit-learn
-numpy==1.21.6
+numpy==1.23.0
     # via
     #   -r python3-scikit-learn.in
     #   scikit-learn
     #   scipy
-pybind11==2.6.1
+scikit-learn==1.1.1
     # via -r python3-scikit-learn.in
-scikit-learn==0.24.0
-    # via -r python3-scikit-learn.in
-scipy==1.6.1
+scipy==1.8.1
     # via
     #   -r python3-scikit-learn.in
     #   scikit-learn
-threadpoolctl==2.1.0
+threadpoolctl==3.1.0
     # via
     #   -r python3-scikit-learn.in
     #   scikit-learn

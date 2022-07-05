@@ -38,6 +38,10 @@
     /* main application dependencies, generated using pip-compile and flatpak-pip-generator */
     "requirements/python3-main.json",
 
+    /* optional dependencies for fava plugins */
+    "requirements/python3-scikit-learn.json",
+    "requirements/python3-optional.json",
+
     /* the actual favagtk application */
     {
       "name": "favagtk",

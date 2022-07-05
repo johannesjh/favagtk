@@ -1,180 +1,98 @@
 /* Shared module for building and installing scikit-learn*/
-/* This file was written by hand, copied and modified from openpaperwork commit 776159823c91de0c9d558f00d76e494d6127e1f1*/
-/* Changes applied to this version of the file include: */
-/* - added this header */
-/* - reformatted the file*/
-/* - bumped version numbers */
+/* This file was written by hand. */
+/* It includes binary wheels for py39, py310 on x86_64 and aarm_64 architectures */
 {
-  "name": "python-scikit-sklearn",
+  "name": "python3-scikit-sklearn",
   "buildsystem": "simple",
   "ensure-writable": [
     "/lib/python*/site-packages/easy-install.pth",
     "/lib/python*/site-packages/setuptools.pth"
   ],
   "build-commands": [
-    "python3 setup.py build -j 0",
-    "python3 setup.py install --prefix=/app --root=/ --optimize=1"
+    "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} scikit-learn --no-build-isolation"
   ],
   "sources": [
     {
-      "type": "archive",
-      "url": "https://files.pythonhosted.org/packages/db/e2/9c0bde5f81394b627f623557690536b12017b84988a4a1f98ec826edab9e/scikit-learn-0.24.0.tar.gz",
-      "sha256": "076369634ee72b5a5941440661e2f306ff4ac30903802dc52031c7e9199ac640"
-    }
-  ],
-  "modules": [
-    {
-      "name": "python-cython",
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/6c/9f/f501ba9d178aeb1f5bf7da1ad5619b207c90ac235d9859961c11829d0160/Cython-0.29.21.tar.gz",
-          "sha256": "e57acb89bd55943c8d8bf813763d20b9099cc7165c0f16b707631a7654be9cad"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/3e/d5/0163eb0cfa0b673aa4fe1cd3ea9d8a81ea0f32e50807b0c295871e4aab2e/joblib-1.1.0-py2.py3-none-any.whl",
+      "sha256": "f21f109b3c7ff9d95f8387f752d0d9c34a02aa2f7060c2135f465da0e5160ff6"
     },
     {
-      "name": "python-pybind11",
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/d8/47/2eb4be23fa8cc1a08c855c012c1aa4348d06ab1a5527f876515bbf689644/pybind11-2.6.1.tar.gz",
-          "sha256": "ab7e60a520fe6ae25eca939191bb2ac416cd58478ce754740238a8bf1af18934"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/53/2e/acd76ea66fd4b5e02dd572101c2628a134f3fdedcaef10175dab2d5398aa/numpy-1.23.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "79a506cacf2be3a74ead5467aee97b81fca00c9c4c8b3ba16dbab488cd99ba10",
+      "only-arches": ["aarch64"]
     },
     {
-      "name": "lapack",
-      "buildsystem": "cmake",
-      "builddir": true,
-      "buildsystem": "cmake",
-      "builddir": true,
-      "config-opts": [
-        "-DCMAKE_INSTALL_prefix=/app --root=/ --optimize=1",
-        "-DCMAKE_INSTALL_LIBDIR=lib",
-        "-DCMAKE_BUILD_TYPE=Release",
-        "-DBUILD_SHARED_LIBS=ON",
-        "-DBUILD_TESTING=OFF",
-        "-DLAPACKE=ON",
-        "-DCBLAS=ON"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/Reference-LAPACK/lapack/archive/v3.9.0.tar.gz",
-          "sha256": "106087f1bb5f46afdfba7f569d0cbe23dacb9a07cd24733765a0e89dbe1ad573"
-        }
-      ],
-      "cleanup": ["/lib/cmake"]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/da/0e/496e529f440f528273f6847e14d7b132b0556a824fc2af36e8afd8e6a020/numpy-1.23.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "092f5e6025813e64ad6d1b52b519165d08c730d099c114a9247c9bb635a2a450",
+      "only-arches": ["x86_64"]
     },
     {
-      "name": "python-threadpoolctl",
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/78/e8/e39dc842f512ab5be11efe83160ddb7ad3c0cc1b8d42ce8c0469a0d2b926/threadpoolctl-2.1.0.tar.gz",
-          "sha256": "ddc57c96a38beb63db45d6c159b5ab07b6bced12c45a1f07b2b92f272aebfa6b"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/85/f9/06e90e66b9c4148ef044329da0a1c8e4f76bbf8f618a8367470f531b6433/numpy-1.23.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "f1d88ef79e0a7fa631bb2c3dda1ea46b32b1fe614e10fedd611d3d5398447f2f",
+      "only-arches": ["aarch64"]
     },
     {
-      "name": "python-joblib",
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/69/a1/68266edcfabe8dc240d7c9e06972a121b011b232f0d1796a016192438435/joblib-1.0.0.tar.gz",
-          "sha256": "7ad866067ac1fdec27d51c8678ea760601b70e32ff1881d4dc8e1171f2b64b24"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/7a/88/8404fbe4f6472e4e54106a8faacae1279a244422bc88f5ee3e33ba2dd72b/numpy-1.23.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "d54b3b828d618a19779a84c3ad952e96e2c2311b16384e973e671aa5be1f6187",
+      "only-arches": ["x86_64"]
     },
     {
-      "name": "python-numpy",
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "build-options": {
-        "env": {
-          "ATLAS": "None",
-          "BLAS": "/app/lib",
-          "LAPACK": "/app/lib"
-        }
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/45/b7/de7b8e67f2232c26af57c205aaad29fe17754f793404f59c8a730c7a191a/numpy-1.21.6.zip",
-          "sha256": "ecb55251139706669fdec2ff073c98ef8e9a84473e51e716211b41aa0f18e656"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/21/f1/08f5e313c028bfce28abc068ba5b6633ed95b767441b6e5271249ae65601/scikit_learn-1.1.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "8ff56d07b9507fbe07ca0f4e5c8f3e171f74a429f998da03e308166251316b34",
+      "only-arches": ["aarch64"]
     },
     {
-      "name": "python-scipy",
-      "build-options": {
-        "env": {
-          "ATLAS": "None",
-          "BLAS": "/app/lib",
-          "LAPACK": "/app/lib",
-          "LDFLAGS": "-shared"
-        }
-      },
-      "buildsystem": "simple",
-      "ensure-writable": [
-        "/lib/python*/site-packages/easy-install.pth",
-        "/lib/python*/site-packages/setuptools.pth"
-      ],
-      "build-commands": [
-        "python3 setup.py build -j 0",
-        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://files.pythonhosted.org/packages/26/68/84dbe18583e79e56e4cee8d00232a8dd7d4ae33bc3acf3be1c347991848f/scipy-1.6.1.tar.gz",
-          "sha256": "c4fceb864890b6168e79b0e714c585dbe2fd4222768ee90bc1aa0f8218691b11"
-        }
-      ]
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/62/cb/49d4c9d3505b0dd062f49c4f573995977876cc556c658caffcfcd9043ea8/scikit_learn-1.1.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "c2dad2bfc502344b869d4a3f4aa7271b2a5f4fe41f7328f404844c51612e2c58",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/79/b2/78bd6b9705296a8030c398619c9dedaa0724199be800955a7c18a1e6a3ba/scikit_learn-1.1.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "33cf061ed0b79d647a3e4c3f6c52c412172836718a7cd4d11c1318d083300133",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/43/bc/7130ffd49a1cf72659c61eb94d8f037bc5502c94866f407c0219d929e758/scikit_learn-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "47464c110eaa9ed9d1fe108cb403510878c3d3a40f110618d2a19b2190a3e35c",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/37/4a/3793af0083296bfae244629be13fdc91cad104cf5cf3d1f20de4b46e221b/scipy-1.8.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "d3b3c8924252caaffc54d4a99f1360aeec001e61267595561089f8b5900821bb",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/25/82/da07cc3bb40554f1f82d7e24bfa7ffbfb05b50c16eb8d738ebb74b68af8f/scipy-1.8.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "70de2f11bf64ca9921fda018864c78af7147025e467ce9f4a11bc877266900a6",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/1b/eb/1aa3502b192cfe513ffdb24b964ccb34b38e5343c980f34ee2ac1ed65e4b/scipy-1.8.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "1da52b45ce1a24a4a22db6c157c38b39885a990a566748fc904ec9f03ed8c6ba",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/bc/fe/72b611ba221c3367b06163992af4807515d6e0e09b3b9beee8ec22162d6f/scipy-1.8.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "a0aa8220b89b2e3748a2836fbfa116194378910f1a6e78e4675a095bcd2c762d",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/61/cf/6e354304bcb9c6413c4e02a747b600061c21d38ba51e7e544ac7bc66aecc/threadpoolctl-3.1.0-py3-none-any.whl",
+      "sha256": "8b99adda265feb6773280df41eece7b2e6561b772d21ffd52e372f999024907b"
     }
   ]
 }
