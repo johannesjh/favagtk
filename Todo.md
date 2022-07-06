@@ -1,5 +1,8 @@
 # Todos
 
+- speed up build by installing pandas from binary package
+  as part of the scikit-learn flatpak build json
+
 - Do I need to sandbox webkit?, as proposed in this initiative:
   https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/Sandbox-all-the-WebKit!
 
