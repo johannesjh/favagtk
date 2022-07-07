@@ -48,6 +48,8 @@ Note that FavaGTK is only a thin convenience layer around [Fava](https://github.
 
 ## Contributing
 
+favagtk is developed as a voluntary effort in the authors' free time.
+
 All contributions are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement. See [CONTRIBUTING.md](./CONTRIBUTING.md) for details, e.g., how to view debug output when testing and how to setup a development environment.
 
 ## License
