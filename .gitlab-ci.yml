@@ -10,6 +10,7 @@ include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
     BUNDLE_aarch64: org.gnome.gitlab.johannesjh.favagtk.devel_aarch64.flatpak
     CONFIG_OPTS: >-
       -Dprofile=devel
+    PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/favagtk/${CI_COMMIT_TAG}"
 
 flatpak@x86_64:
   # builds a flatpak bundle for x86_64
@@ -26,6 +27,7 @@ flatpak@aarch64:
 upload:
   # uploads the flatpak bundle to the project's package registry
   # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
+  extends: [ '.vars-devel' ]
   stage: deploy
   only:
     - tags
@@ -37,6 +39,7 @@ upload:
 release:
   # publishes a gitlab release when a tag has been pushed
   # see also: https://docs.gitlab.com/ee/ci/yaml/index.html#release
+  extends: [ '.vars-devel' ]
   stage: deploy
   needs:
     - upload
