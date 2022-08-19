@@ -1,61 +1,19 @@
 include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml"
 
-stages:
-  - build
-  - test
-  - upload
-  - release
-
-variables:
-  BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.flatpak"
-  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/favagtk/${CI_COMMIT_TAG}"
-
-flatpak:
-  # builds a flatpak image
-  # based on GNOME's "devops with flatpak" initiative: https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/DevOps-with-Flatpak
-  extends: ".flatpak"
-  timeout: 120m
-  stage: build
-  image: "registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master"
-  rules:
-    # using the release build profile for tagged versions, otherwise using the devel build profile
-    - if: $CI_COMMIT_TAG == null
-      variables:
-        PROFILE: devel
-    - if: $CI_COMMIT_TAG != null
-      variables:
-        PROFILE: release
+.vars-devel:
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.devel.json"
     FLATPAK_MODULE: "favagtk"
     APP_ID: "org.gnome.gitlab.johannesjh.favagtk"
-    RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
-    CONFIG_OPTS: >
-      -Dprofile=${PROFILE}
+    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+    BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.devel.flatpak"
+    CONFIG_OPTS: >-
+      -Dprofile=devel
 
-upload:
-  # uploads the flatpak bundle to the project's package registry
-  # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
-  stage: upload
-  only:
-    - tags
-  image: curlimages/curl:latest
-  script: 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE}" "${PACKAGE_REGISTRY_URL}/${BUNDLE}"'
+# Build Flatpak for x86_64
+flatpak@x86_64:
+  extends: ['.flatpak@x86_64', '.vars-devel']
 
-release:
-  # creates a "release" in the gitlab project's page, to make it easy for users to download the flatpak bundle
-  # https://docs.gitlab.com/ee/ci/yaml/index.html#release
-  stage: release
-  only:
-    - tags
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  script:
-    - echo "Running the release job."
-  release:
-    tag_name: $CI_COMMIT_TAG
-    name: "Release $CI_COMMIT_TAG"
-    description: "Release created using the release-cli."
-    assets:
-      links:
-        - name: ${BUNDLE}
-          url: ${PACKAGE_REGISTRY_URL}/${BUNDLE}
+# Build Flatpak for aarch64
+flatpak@aarch64:
+  extends: ['.flatpak@aarch64', '.vars-devel']

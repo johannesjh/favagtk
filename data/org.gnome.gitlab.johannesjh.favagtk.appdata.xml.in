@@ -30,7 +30,8 @@
   </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
-    <release version="0.2.1" date="2022-07-06">
+    <!--
+    <release version="0.2.1" date="">
       <description>
         <p>Maintenance release</p>
         <ul>
@@ -41,6 +42,7 @@
         </ul>
       </description>
     </release>
+    -->
     <release version="0.2.0" date="2022-06-18">
       <description>
         <p>Full rewrite using GTK4</p>
