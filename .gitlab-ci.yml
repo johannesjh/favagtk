@@ -6,14 +6,52 @@ include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
     FLATPAK_MODULE: "favagtk"
     APP_ID: "org.gnome.gitlab.johannesjh.favagtk"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-    BUNDLE: "org.gnome.gitlab.johannesjh.favagtk.devel.flatpak"
+    BUNDLE_x86_64: org.gnome.gitlab.johannesjh.favagtk.devel_x86_64.flatpak
+    BUNDLE_aarch64: org.gnome.gitlab.johannesjh.favagtk.devel_aarch64.flatpak
     CONFIG_OPTS: >-
       -Dprofile=devel
 
-# Build Flatpak for x86_64
 flatpak@x86_64:
+  # builds a flatpak bundle for x86_64
   extends: ['.flatpak@x86_64', '.vars-devel']
+  variables:
+    BUNDLE: ${BUNDLE_x86_64}
 
-# Build Flatpak for aarch64
 flatpak@aarch64:
+  # builds a flatpak bundle for aarch64
   extends: ['.flatpak@aarch64', '.vars-devel']
+  variables:
+    BUNDLE: ${BUNDLE_aarch64}
+
+upload:
+  # uploads the flatpak bundle to the project's package registry
+  # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
+  stage: deploy
+  only:
+    - tags
+  image: curlimages/curl:latest
+  script:
+    - 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE_x86_64}" "${PACKAGE_REGISTRY_URL}/${BUNDLE_x86_64}"'
+    - 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE_aarch64}" "${PACKAGE_REGISTRY_URL}/${BUNDLE_aarch64}"'
+
+release:
+  # publishes a gitlab release when a tag has been pushed
+  # see also: https://docs.gitlab.com/ee/ci/yaml/index.html#release
+  stage: deploy
+  needs:
+    - upload
+  only:
+    - tags
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Running the release job."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: "Release $CI_COMMIT_TAG"
+    description: "Release created using the release-cli."
+    assets:
+      links:
+        - name: ${BUNDLE_x86_64}
+          url: ${PACKAGE_REGISTRY_URL}/${BUNDLE_x86_64}
+        - name: ${BUNDLE_aarch64}
+          url: ${PACKAGE_REGISTRY_URL}/${BUNDLE_aarch64}
