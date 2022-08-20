@@ -37,6 +37,7 @@
         <ul>
           <li>Fixed a bug where the UI froze when users clicked the file-open button inside the recent files popover.</li>
           <li>Fixed a bug where included beancount files failed to load: Widened the flatpak sandbox permissions for accessing the users' file system.</li>
+          <li>Fixed a sporadic crash when opening a beancount file. The crash was due to a concurrency issue when favagtk checks if and when fava's server becomes available.</li>
           <li>Updated fava to version 1.22, and updated other dependencies as well.</li>
           <li>Optimized development builds: Faster build times locally and in gitlab-ci.</li>
         </ul>

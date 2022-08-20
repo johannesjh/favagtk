@@ -130,6 +130,9 @@ class Server(GObject.GObject):
         except URLError:
             logger.debug(f"Checking server URL: {url} is not (yet) available...")
             return False
+        except:
+            logger.warn(f"An exception occurred while checking server URL: {url}...")
+            return False
 
     @staticmethod
     def _find_free_port():
