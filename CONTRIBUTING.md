@@ -16,20 +16,15 @@ Simply clone this project in GNOME Builder.
 
 The project includes two build configurations:
 
-* `org.gnome.gitlab.johannesjh.favagtk.devel.json`
-  for quick development builds:
-  resolves python packages on-the-fly (i.e., does not compare against saved hashes)
-  and prefers binary packages to shorten the build time.
-* `org.gnome.gitlab.johannesjh.favagtk.json`
-  for release builds:
-  resolves python packages before building, saves and compares hashes,
-  builds and installs python source packages.
+- `org.gnome.gitlab.johannesjh.favagtk.devel.json`
+  for quicker development builds, and
+- `org.gnome.gitlab.johannesjh.favagtk.json`
+  for release builds.
 
-To choose a build configuration in GNOME Builder, 
+To choose a build configuration in GNOME Builder,
 switch to the "Build Preferences" surface (e.g., using the dropdown button in the top left corner of the window),
 select the desired build configuration
 and click the "Make Active" button.
-
 
 ## Build Options
 
@@ -59,7 +54,6 @@ The option (as well as other options) can be set in the following ways:
   `meson configure -Dprofile=release`.
   See the [meson documentation about build options](https://mesonbuild.com/Build-options.html)
   for further explanation.
-
 
 ## Dependencies
 
@@ -110,7 +104,7 @@ They are built and published using CI scripts when a tag is pushed.
 To publish a new version of favagtk in favagtk's development repository,
 take the following steps:
 
-- Set the intended version number in the main `meson.build` file. 
+- Set the intended version number in the main `meson.build` file.
 - Describe the release in the `data/*appdata.xml*` file.
 - Build and test a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
 - Publish the release by pushing a tag named similar to `v1.2.3`.
@@ -119,7 +113,6 @@ CI scripts will build a package and make it available for download on [favagtk's
 
 ## Flathub Releases
 
-To publish an updated flatpak package on flathub, 
-create a pull request with updated manifest and requirement files 
+To publish an updated flatpak package on flathub,
+create a pull request with updated manifest and requirement files
 in [favagtk's flathub packaging repo](https://github.com/flathub/org.gnome.gitlab.johannesjh.favagtk).
-
