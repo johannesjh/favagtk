@@ -294,7 +294,8 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         """Closes the window"""
 
         # remember last-opened file name in settings
-        self.settings.set_string("last-opened", getattr(self, "beancount_file", ""))
+        beancount_file = getattr(self, "beancount_file", "") or ""
+        self.settings.set_string("last-opened", beancount_file)
 
         # close beancount file and stop web server
         self.close_file()
