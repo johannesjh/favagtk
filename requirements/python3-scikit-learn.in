@@ -8,13 +8,17 @@
 # wheel filenames with compatible version numbers were generated
 # by downloading wheels for the respective architectures, as follows:
 #
+#
+# python 3.9:
+#
 #	pip3 download \
 #	   --only-binary=:all: \
 #	   --platform manylinux1_x86_64 --platform linux_x86_64 --platform manylinux2014_x86_64 --platform any \
 #	   --python-version 39 \
 #	   --implementation cp \
 #	   --abi cp39 --abi abi3 --abi none \
-#	   scikit-learn==1.1.1
+#	   scikit-learn==1.1.1 \
+#          pandas==1.4.3
 #
 #
 #	pip3 download \
@@ -23,14 +27,20 @@
 #	   --python-version 39 \
 #	   --implementation cp \
 #	   --abi cp39 --abi abi3 --abi none \
-#	   scikit-learn==1.1.1
+#	   scikit-learn==1.1.1 \
+#          pandas==1.4.3
+#
+#
+# python 3.10:
+#
 #	pip3 download \
 #	   --only-binary=:all: \
 #	   --platform manylinux1_x86_64 --platform linux_x86_64 --platform manylinux2014_x86_64 --platform any \
 #	   --python-version 310 \
 #	   --implementation cp \
 #	   --abi cp310 --abi abi3 --abi none \
-#	   scikit-learn==1.1.1
+#	   scikit-learn==1.1.1 \
+#          pandas==1.4.3
 #
 #
 #	pip3 download \
@@ -39,13 +49,18 @@
 #	   --python-version 310 \
 #	   --implementation cp \
 #	   --abi cp310 --abi abi3 --abi none \
-#	   scikit-learn==1.1.1
+#	   scikit-learn==1.1.1 \
+#          pandas==1.4.3
 
 # platform constraints
 -c python3-gnome-platform.in
 
+# scikit-learn, needed for smart_importer's machine learning:
 joblib == 1.1.0
 numpy == 1.23.0
 scikit-learn == 1.1.1
 scipy == 1.8.1
 threadpoolctl == 3.1.0
+
+# pandas, needed for yfinance:
+pandas==1.4.3

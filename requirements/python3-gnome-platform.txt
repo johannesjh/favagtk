@@ -4,7 +4,9 @@
 #
 #    pip-compile python3-gnome-platform.in
 #
-lxml==4.8.0
+cython==0.29.30
+    # via -r python3-gnome-platform.in
+lxml==4.9.0
     # via -r python3-gnome-platform.in
 mako==1.2.0
     # via -r python3-gnome-platform.in
@@ -14,11 +16,20 @@ markupsafe==2.1.1
     # via
     #   -r python3-gnome-platform.in
     #   mako
+meson==0.59.4
+    # via -r python3-gnome-platform.in
 pycairo==1.21.0
     # via
     #   -r python3-gnome-platform.in
     #   pygobject
-pygobject==3.42.1
+pygments==2.12.0
+    # via -r python3-gnome-platform.in
+pygobject==3.42.2
     # via -r python3-gnome-platform.in
 six==1.16.0
     # via -r python3-gnome-platform.in
+wheel==0.37.1
+    # via -r python3-gnome-platform.in
+
+# The following packages are considered to be unsafe in a requirements file:
+# pip
