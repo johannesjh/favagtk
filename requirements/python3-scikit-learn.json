@@ -9,7 +9,7 @@
     "/lib/python*/site-packages/setuptools.pth"
   ],
   "build-commands": [
-    "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} scikit-learn --no-build-isolation"
+    "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} scikit-learn pandas --no-build-isolation"
   ],
   "sources": [
     {
@@ -93,6 +93,40 @@
       "type": "file",
       "url": "https://files.pythonhosted.org/packages/61/cf/6e354304bcb9c6413c4e02a747b600061c21d38ba51e7e544ac7bc66aecc/threadpoolctl-3.1.0-py3-none-any.whl",
       "sha256": "8b99adda265feb6773280df41eece7b2e6561b772d21ffd52e372f999024907b"
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/ca/b0/2994a42e3852deb3aaa4af7804a04f9defb13a6f2e6edc6328683700d386/pandas-1.4.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "41fc406e374590a3d492325b889a2686b31e7a7780bec83db2512988550dadbf",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/a5/ac/6c04be2c26e8c839659b7bcdc7a4bcd4e5366867bff8027ffd1cae58b806/pandas-1.4.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "1d9382f72a4f0e93909feece6fef5500e838ce1c355a581b3d8f259839f2ea76",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/41/81/1686c25606ac4a1228769be5558cef8d54c0fbc987c5d592fa7d01087b16/pandas-1.4.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "e48fbb64165cda451c06a0f9e4c7a16b534fcabd32546d531b3c240ce2844112",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/ea/e4/a1cbaca4069fdd92c930bb1c5eebd9ea9c55717a9bf60bd41708c8a33f5a/pandas-1.4.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "6f803320c9da732cc79210d7e8cc5c8019aad512589c910c66529eb1b1818230",
+      "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl",
+      "sha256": "961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/d5/50/54451e88e3da4616286029a3a17fc377de817f66a0f50e1faaee90161724/pytz-2022.2.1-py2.py3-none-any.whl",
+      "sha256": "220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"
     }
   ]
 }
