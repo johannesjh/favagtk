@@ -107,6 +107,7 @@ take the following steps:
 - Set the intended version number in the main `meson.build` file.
 - Describe the release in the `data/*appdata.xml*` file.
 - Build and test a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
+- Don't forget to also build and test a release build, not just a development build.
 - Publish the release by pushing a tag named similar to `v1.2.3`.
 
 CI scripts will build a package and make it available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) in gitlab.
