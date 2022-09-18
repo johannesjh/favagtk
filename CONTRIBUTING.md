@@ -2,9 +2,23 @@
 
 All contributions to favagtk are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement.
 
-## Viewing Debug Output
+## Installing a Development Build
 
-Starting favagtk from the commandline allows to view its debug output and helps understand what is going on "under the hood". This can be useful to analyze a problem prior to reporting a bug.
+Download a .flatpak file from one of [favagtk's releases in gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) or from a ci pipeline.
+
+You can then install and run the flatpak file as follows.
+
+```bash
+flatpak install --user <file>.flatpak
+```
+
+...this installs an app named "Fava". 
+
+## Starting the App and Viewing Debug Output
+
+The favagtk app can be started in the same way as any other application, e.g., [using GNOME Shell's activity view](https://help.gnome.org/users/gnome-help/stable/shell-apps-open.html.hi). Starting favagtk from the commandline, as follows, will allow you to view its debug output. The debug output logs what is going on "under the hood" and includes error messages and exceptions. This information is useful to analyze a problem prior to reporting a bug.
+
+To start favagtk from the commandline and view its debug output:
 
 ```bash
 flatpak run org.gnome.gitlab.johannesjh.favagtk
@@ -117,3 +131,9 @@ CI scripts will build a package and make it available for download on [favagtk's
 To publish an updated flatpak package on flathub,
 create a pull request with updated manifest and requirement files
 in [favagtk's flathub packaging repo](https://github.com/flathub/org.gnome.gitlab.johannesjh.favagtk).
+
+* Flathub's build bot will then start building the app based on the pull request.
+* Wait for the build to succeed
+* Manually smoketest the build result. 
+* Merge the pull request
+* Flathub build bot will then publish the app.

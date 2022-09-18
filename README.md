@@ -1,7 +1,8 @@
 # favagtk
 
 [![pipeline status](https://gitlab.gnome.org/johannesjh/favagtk/badges/main/pipeline.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/commits/main)
-[![Latest Release](https://gitlab.gnome.org/johannesjh/favagtk/-/badges/release.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
+[![Latest Development Release](https://gitlab.gnome.org/johannesjh/favagtk/-/badges/release.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
+
 
 Do your finances using fava and beancount.
 
@@ -20,27 +21,19 @@ double-entry bookkeeping software as a GNOME desktop application.
 
 ![Screenshot of favagtk](https://gitlab.gnome.org/johannesjh/favagtk/raw/HEAD/data/screenshots/main.png)
 
-## Getting Started
+## Installation
 
-In the future, favagtk will be published on [flathub](https://flathub.org/). As for now, the easiest way to start using Fava GTK is to download and install a flatpak application package from [favagtk's releases in gilab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
+favagtk can be installed from [flathub](https://flathub.org/). 
 
-### System Requirements
+<a href='https://flathub.org/apps/details/org.gnome.gitlab.johannesjh.favagtk'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
-A linux system with [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
+System requirements:
+* A linux system with [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
+* The app's target platform is the GNOME desktop environment. (Other desktop environments are not targeted, but are likely to work as well).
 
-### Installation
+## Usage
 
-Download a .flatpak file from one of [favagtk's releases in gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases).
-
-You can then install the application as follows.
-
-```bash
-flatpak install --user <file.flatpak>
-```
-
-### Usage
-
-Once installed, you will find an application named "Fava" that can be started in the very same way as any other desktop application, e.g., using GNOME Shell.
+Once installed, you will find an application named "Fava" that can be started in the very same way as any other desktop application, e.g., [using GNOME Shell's activity view](https://help.gnome.org/users/gnome-help/stable/shell-apps-open.html.hi).
 
 The application window that is initially shown prompts to open a beancount file. If you don't have a beancount file yet, you can simply create an empty text file with a `.beancount` extension. Alternatively, it is possible to generate an example beancount file by running [beancount's bean-example command](https://beancount.github.io/docs/tutorial_example.html#generate-an-example-file). Opening the beancount file will display fava's user interface, allowing to view and edit the beancount file.
 
@@ -48,7 +41,7 @@ Note that FavaGTK is only a thin convenience layer around [Fava](https://github.
 
 ## Contributing
 
-favagtk is developed as a voluntary effort in the authors' free time.
+favagtk is developed in an open-source, community-driven way, as a voluntary effort in the authors' free time.
 
 All contributions are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement. See [CONTRIBUTING.md](./CONTRIBUTING.md) for details, e.g., how to view debug output when testing and how to setup a development environment.
 
