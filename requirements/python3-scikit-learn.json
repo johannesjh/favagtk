@@ -1,86 +1,19 @@
-/* Shared module for building and installing scikit-learn*/
-/* This file was written by hand. */
-/* It includes binary wheels for py39, py310 on x86_64 and aarm_64 architectures */
 {
-  "name": "python3-scikit-sklearn",
+  "name": "python3-package-installation",
   "buildsystem": "simple",
-  "ensure-writable": [
-    "/lib/python*/site-packages/easy-install.pth",
-    "/lib/python*/site-packages/setuptools.pth"
-  ],
   "build-commands": [
-    "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} scikit-learn pandas --no-build-isolation"
+    "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation joblib numpy pandas python-dateutil pytz scikit-learn scipy six threadpoolctl"
   ],
   "sources": [
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/3e/d5/0163eb0cfa0b673aa4fe1cd3ea9d8a81ea0f32e50807b0c295871e4aab2e/joblib-1.1.0-py2.py3-none-any.whl",
-      "sha256": "f21f109b3c7ff9d95f8387f752d0d9c34a02aa2f7060c2135f465da0e5160ff6"
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/53/2e/acd76ea66fd4b5e02dd572101c2628a134f3fdedcaef10175dab2d5398aa/numpy-1.23.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "79a506cacf2be3a74ead5467aee97b81fca00c9c4c8b3ba16dbab488cd99ba10",
-      "only-arches": ["aarch64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/da/0e/496e529f440f528273f6847e14d7b132b0556a824fc2af36e8afd8e6a020/numpy-1.23.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "092f5e6025813e64ad6d1b52b519165d08c730d099c114a9247c9bb635a2a450",
-      "only-arches": ["x86_64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/85/f9/06e90e66b9c4148ef044329da0a1c8e4f76bbf8f618a8367470f531b6433/numpy-1.23.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "f1d88ef79e0a7fa631bb2c3dda1ea46b32b1fe614e10fedd611d3d5398447f2f",
-      "only-arches": ["aarch64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/7a/88/8404fbe4f6472e4e54106a8faacae1279a244422bc88f5ee3e33ba2dd72b/numpy-1.23.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "d54b3b828d618a19779a84c3ad952e96e2c2311b16384e973e671aa5be1f6187",
-      "only-arches": ["x86_64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/21/f1/08f5e313c028bfce28abc068ba5b6633ed95b767441b6e5271249ae65601/scikit_learn-1.1.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "8ff56d07b9507fbe07ca0f4e5c8f3e171f74a429f998da03e308166251316b34",
-      "only-arches": ["aarch64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/62/cb/49d4c9d3505b0dd062f49c4f573995977876cc556c658caffcfcd9043ea8/scikit_learn-1.1.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "c2dad2bfc502344b869d4a3f4aa7271b2a5f4fe41f7328f404844c51612e2c58",
-      "only-arches": ["x86_64"]
+      "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "sha256": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
     },
     {
       "type": "file",
       "url": "https://files.pythonhosted.org/packages/79/b2/78bd6b9705296a8030c398619c9dedaa0724199be800955a7c18a1e6a3ba/scikit_learn-1.1.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
       "sha256": "33cf061ed0b79d647a3e4c3f6c52c412172836718a7cd4d11c1318d083300133",
-      "only-arches": ["aarch64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/43/bc/7130ffd49a1cf72659c61eb94d8f037bc5502c94866f407c0219d929e758/scikit_learn-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "47464c110eaa9ed9d1fe108cb403510878c3d3a40f110618d2a19b2190a3e35c",
-      "only-arches": ["x86_64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/37/4a/3793af0083296bfae244629be13fdc91cad104cf5cf3d1f20de4b46e221b/scipy-1.8.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "d3b3c8924252caaffc54d4a99f1360aeec001e61267595561089f8b5900821bb",
-      "only-arches": ["aarch64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/25/82/da07cc3bb40554f1f82d7e24bfa7ffbfb05b50c16eb8d738ebb74b68af8f/scipy-1.8.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "70de2f11bf64ca9921fda018864c78af7147025e467ce9f4a11bc877266900a6",
-      "only-arches": ["x86_64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/1b/eb/1aa3502b192cfe513ffdb24b964ccb34b38e5343c980f34ee2ac1ed65e4b/scipy-1.8.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "1da52b45ce1a24a4a22db6c157c38b39885a990a566748fc904ec9f03ed8c6ba",
       "only-arches": ["aarch64"]
     },
     {
@@ -96,15 +29,25 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/ca/b0/2994a42e3852deb3aaa4af7804a04f9defb13a6f2e6edc6328683700d386/pandas-1.4.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-      "sha256": "41fc406e374590a3d492325b889a2686b31e7a7780bec83db2512988550dadbf",
-      "only-arches": ["aarch64"]
+      "url": "https://files.pythonhosted.org/packages/ea/e4/a1cbaca4069fdd92c930bb1c5eebd9ea9c55717a9bf60bd41708c8a33f5a/pandas-1.4.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "6f803320c9da732cc79210d7e8cc5c8019aad512589c910c66529eb1b1818230",
+      "only-arches": ["x86_64"]
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/a5/ac/6c04be2c26e8c839659b7bcdc7a4bcd4e5366867bff8027ffd1cae58b806/pandas-1.4.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "1d9382f72a4f0e93909feece6fef5500e838ce1c355a581b3d8f259839f2ea76",
+      "url": "https://files.pythonhosted.org/packages/7a/88/8404fbe4f6472e4e54106a8faacae1279a244422bc88f5ee3e33ba2dd72b/numpy-1.23.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "d54b3b828d618a19779a84c3ad952e96e2c2311b16384e973e671aa5be1f6187",
       "only-arches": ["x86_64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/d5/50/54451e88e3da4616286029a3a17fc377de817f66a0f50e1faaee90161724/pytz-2022.2.1-py2.py3-none-any.whl",
+      "sha256": "220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl",
+      "sha256": "961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
     },
     {
       "type": "file",
@@ -114,19 +57,26 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/ea/e4/a1cbaca4069fdd92c930bb1c5eebd9ea9c55717a9bf60bd41708c8a33f5a/pandas-1.4.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "6f803320c9da732cc79210d7e8cc5c8019aad512589c910c66529eb1b1818230",
+      "url": "https://files.pythonhosted.org/packages/3e/d5/0163eb0cfa0b673aa4fe1cd3ea9d8a81ea0f32e50807b0c295871e4aab2e/joblib-1.1.0-py2.py3-none-any.whl",
+      "sha256": "f21f109b3c7ff9d95f8387f752d0d9c34a02aa2f7060c2135f465da0e5160ff6"
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/1b/eb/1aa3502b192cfe513ffdb24b964ccb34b38e5343c980f34ee2ac1ed65e4b/scipy-1.8.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "1da52b45ce1a24a4a22db6c157c38b39885a990a566748fc904ec9f03ed8c6ba",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/85/f9/06e90e66b9c4148ef044329da0a1c8e4f76bbf8f618a8367470f531b6433/numpy-1.23.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "f1d88ef79e0a7fa631bb2c3dda1ea46b32b1fe614e10fedd611d3d5398447f2f",
+      "only-arches": ["aarch64"]
+    },
+    {
+      "type": "file",
+      "url": "https://files.pythonhosted.org/packages/43/bc/7130ffd49a1cf72659c61eb94d8f037bc5502c94866f407c0219d929e758/scikit_learn-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "47464c110eaa9ed9d1fe108cb403510878c3d3a40f110618d2a19b2190a3e35c",
       "only-arches": ["x86_64"]
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl",
-      "sha256": "961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
-    },
-    {
-      "type": "file",
-      "url": "https://files.pythonhosted.org/packages/d5/50/54451e88e3da4616286029a3a17fc377de817f66a0f50e1faaee90161724/pytz-2022.2.1-py2.py3-none-any.whl",
-      "sha256": "220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"
     }
   ]
 }

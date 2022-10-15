@@ -40,5 +40,13 @@ favagtk's flatpak build includes several modules to build and install dependenci
 
 To generate requirements lists with platform/architecture-specific packages, e.g., with binary wheels:
 
+- [favagtk #7 Speed up package builds by rewriting flatpak-pip-generator?](https://gitlab.gnome.org/johannesjh/favagtk/-/issues/7)
+- [favagtk #8 Automatic dependency updates as merge requests?](https://gitlab.gnome.org/johannesjh/favagtk/-/issues/8)
 - [flatpak-pip-generator issue #296 "Allow using binary wheels instead of building from source"](https://github.com/flatpak/flatpak-builder-tools/issues/296)
+- [pipenv allows to specify platform-specific dependencies using pep508 specifiers](https://dev.to/tomoyukiaota/creating-a-pipfile-which-has-different-installation-instructions-depending-on-operating-systems-pytorch-v041-as-an-example-56i8)
 - [pip-compile-cross-platform](https://pypi.org/project/pip-compile-cross-platform/), similar to pip-compile but using poetry's dependency resolver under the hood.
+- [poetry #5205](https://github.com/python-poetry/poetry/issues/5205) discusses the problem that poetry does not (fully?) allow to specify arch-specific package sources.
+- [pip MR #7996](https://github.com/pypa/pip/pull/7996/files#diff-fb0dc145687a7bd36497effbe61f66392a3252ef9cdae5f3bdcf6c01a6ba9955) added the ability to specify the `--prefer-binary` option in requirements.txt files.
+  this option can be specified for each requirement, see https://stackoverflow.com/a/68437088 `protobuf --no-binary protobuf`
+
+

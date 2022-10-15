@@ -30,6 +30,17 @@
   </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
+    <!--
+    <release version="0.2.2" date="">
+      <description>
+        <p>Maintenance release</p>
+        <ul>
+          <li>Updated to GNOME 43.</li>
+          <li>Sped up and simplified the build.</li>
+        </ul>
+      </description>
+    </release>
+    -->
     <release version="0.2.1" date="2022-08-20">
       <description>
         <p>Maintenance release</p>

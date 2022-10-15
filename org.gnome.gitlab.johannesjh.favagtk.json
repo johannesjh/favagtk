@@ -1,58 +1,49 @@
-/* release build of favagtk */
 {
-  "app-id": "org.gnome.gitlab.johannesjh.favagtk",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "42",
-  "sdk": "org.gnome.Sdk",
-  "command": "favagtk",
-  "finish-args": [
-    "--share=network",
-    "--share=ipc",
-    "--socket=fallback-x11",
-    "--device=dri",
-    "--socket=wayland",
-    "--filesystem=host"
-  ],
-  "cleanup": [
-    "/include",
-    "/lib/pkgconfig",
-    "/man",
-    "/share/doc",
-    "/share/gtk-doc",
-    "/share/man",
-    "/share/pkgconfig",
-    "*.la",
-    "*.a"
-  ],
-  "modules": [
-    /* shared module, a gtk4 compatible version of webkitgtk is required */
-    "requirements/webkitgtk.json",
-
-    /* blueprint compiler for .ui files */
-    "requirements/blueprint-compiler.json",
-
-    /* main application dependencies, generated using pip-compile and flatpak-pip-generator */
-    "requirements/python3-main.json",
-
-    /* optional dependencies for fava plugins */
-    "requirements/python3-scikit-learn.json",
-    "requirements/python3-optional.json",
-
-    /* the actual favagtk application */
-    {
-      "name": "favagtk",
-      "builddir": true,
-      "buildsystem": "meson",
-      "sources": [
+    "app-id" : "org.gnome.gitlab.johannesjh.favagtk",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "43",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "favagtk",
+    "finish-args" : [
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--device=dri",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        "requirements/blueprint-compiler.json",
+        "requirements/python3-scikit-learn.json",
+        "requirements/python3-main.json",
+        "requirements/python3-optional.json",
         {
-          "type": "dir",
-          "path": "."
+            "name" : "favagtk",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : "."
+                }
+            ],
+            "config-opts" : [
+                "-Dprofile=release"
+            ]
         }
-      ],
-      "config-opts": ["-Dprofile=release"]
+    ],
+    "build-options" : {
+        "env" : {        }
     }
-  ],
-  "build-options": {
-    "env": {}
-  }
 }
