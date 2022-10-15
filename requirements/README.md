@@ -13,15 +13,6 @@ favagtk's flatpak build includes several modules to build and install dependenci
 
   - The `org.gnome.Sdk` platform is used as runtime for favagtk's flatpak build. The Sdk includes compilers and other tools. Whatever is missing in the Sdk must be built and installed from source.
 
-- WebkitGtk
-
-  - A version is needed that is compatible with GTK4.
-
-  - Unfortunately, `org.gnome.Platform//42` does not include a recent enough version of webkitgtk. Possible workarounds include:
-    - building and installing a recent build of webkitgtk on top of `org.gnome.Platform//42`, or
-    - building development builds against `org.gnome.Platform//master` (which does ship a recent enough version of webkitgtk)
-    - wait for a next version of `org.gnome.Platform` to be published.
-
 - Python packages
 
   - A general note about how python packages are handled in favagtk's flatpak build:
@@ -48,5 +39,3 @@ To generate requirements lists with platform/architecture-specific packages, e.g
 - [poetry #5205](https://github.com/python-poetry/poetry/issues/5205) discusses the problem that poetry does not (fully?) allow to specify arch-specific package sources.
 - [pip MR #7996](https://github.com/pypa/pip/pull/7996/files#diff-fb0dc145687a7bd36497effbe61f66392a3252ef9cdae5f3bdcf6c01a6ba9955) added the ability to specify the `--prefer-binary` option in requirements.txt files.
   this option can be specified for each requirement, see https://stackoverflow.com/a/68437088 `protobuf --no-binary protobuf`
-
-

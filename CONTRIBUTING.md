@@ -12,7 +12,7 @@ You can then install and run the flatpak file as follows.
 flatpak install --user <file>.flatpak
 ```
 
-...this installs an app named "Fava". 
+...this installs an app named "Fava".
 
 ## Starting the App and Viewing Debug Output
 
@@ -26,19 +26,7 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 
 ## Setting up a Development Environment
 
-Simply clone this project in GNOME Builder.
-
-The project includes two build configurations:
-
-- `org.gnome.gitlab.johannesjh.favagtk.devel.json`
-  for quicker development builds, and
-- `org.gnome.gitlab.johannesjh.favagtk.json`
-  for release builds.
-
-To choose a build configuration in GNOME Builder,
-switch to the "Build Preferences" surface (e.g., using the dropdown button in the top left corner of the window),
-select the desired build configuration
-and click the "Make Active" button.
+Simply clone this project in GNOME Builder and hit the build and run buttons.
 
 ## Build Options
 
@@ -109,7 +97,7 @@ favagtk is packaged using flatpak.
 
 ## Releases
 
-On a generaral note:
+On a general note:
 Releases are named using semantic versioning.
 They are built and published using CI scripts when a tag is pushed.
 
@@ -132,8 +120,8 @@ To publish an updated flatpak package on flathub,
 create a pull request with updated manifest and requirement files
 in [favagtk's flathub packaging repo](https://github.com/flathub/org.gnome.gitlab.johannesjh.favagtk).
 
-* Flathub's build bot will then start building the app based on the pull request.
-* Wait for the build to succeed
-* Manually smoketest the build result. 
-* Merge the pull request
-* Flathub build bot will then publish the app.
+- Flathub's build bot will then start building the app based on the pull request.
+- Wait for the build to succeed
+- Manually smoketest the build result.
+- Merge the pull request
+- Flathub build bot will then publish the app.

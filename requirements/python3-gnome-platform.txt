@@ -4,25 +4,25 @@
 #
 #    pip-compile python3-gnome-platform.in
 #
-cython==0.29.30
+cython==0.29.32
     # via -r python3-gnome-platform.in
-lxml==4.9.0
+lxml==4.9.1
     # via -r python3-gnome-platform.in
-mako==1.2.0
+mako==1.2.2
     # via -r python3-gnome-platform.in
-markdown==3.3.4
+markdown==3.4.1
     # via -r python3-gnome-platform.in
 markupsafe==2.1.1
     # via
     #   -r python3-gnome-platform.in
     #   mako
-meson==0.59.4
+meson==0.63.2
     # via -r python3-gnome-platform.in
 pycairo==1.21.0
     # via
     #   -r python3-gnome-platform.in
     #   pygobject
-pygments==2.12.0
+pygments==2.13.0
     # via -r python3-gnome-platform.in
 pygobject==3.42.2
     # via -r python3-gnome-platform.in
