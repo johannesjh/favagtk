@@ -38,8 +38,5 @@
       ],
       "config-opts": ["-Dprofile=release"]
     }
-  ],
-  "build-options": {
-    "env": {}
-  }
+  ]
 }
