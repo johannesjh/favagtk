@@ -19,9 +19,7 @@ pip-compile:
 	# Input: This target reads dependency definitions from *.in files
 	# Output: The target freezes transitive dependencies and write them to *.txt files
 	pip-compile python3-gnome-platform.in > python3-gnome-platform.txt
-	pip-compile --verbose python3-scikit-learn.in > python3-scikit-learn.txt
 	pip-compile python3-main.in > python3-main.txt
-	pip-compile python3-optional.in > python3-optional.txt
 	#
 	# to avoid inter-dependent requirement files,
 	# remove all lines starting with -c or -r in requirement txt files:
@@ -36,23 +34,4 @@ python3-main.json:
 	./req2flatpak.py --requirements-file python3-main.txt --target-platforms 310-x86_64 310-aarch64 > python3-main.json
 	- pre-commit run --files python3-main.json > /dev/null
 	echo "done creating python3-main.json"
-
-
-.PHONY: python3-optional.json
-python3-optional.json:
-	# This script generate a flatpak build module definition for optional python dependencies.
-	# Input: The target reads python dependencies from *.txt files.
-	# Output: The target generates a flatpak build module "python3-optional.json"
-	./req2flatpak.py --requirements-file python3-optional.txt --target-platforms 310-x86_64 310-aarch64 > python3-optional.json
-	- pre-commit run --files python3-optional.json > /dev/null
-	echo "done creating python3-optional.json"
-
-.PHONY: python3-scikit-learn.json
-python3-scikit-learn.json:
-	# This script generate a flatpak build module definition for machine learning python dependencies.
-	# Input: The target reads python dependencies from *.txt files.
-	# Output: The target generates a flatpak build module "python3-scikit-learn.json"
-	./req2flatpak.py --requirements-file python3-scikit-learn.txt --target-platforms 310-x86_64 310-aarch64 > python3-scikit-learn.json
-	- pre-commit run --files python3-scikit-learn.json > /dev/null
-	echo "done creating python3-scikit-learn.json"
 

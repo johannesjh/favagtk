@@ -10,10 +10,10 @@ import shelve
 import sys
 import urllib.request
 from contextlib import nullcontext, suppress
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from functools import cached_property
 from itertools import product
-from typing import List, Union, Optional, Iterable, Hashable, Iterator, Tuple, FrozenSet
+from typing import FrozenSet, Hashable, Iterable, Iterator, List, Optional, Tuple, Union
 
 import pkg_resources
 
@@ -590,4 +590,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

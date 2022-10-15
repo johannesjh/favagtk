@@ -1,8 +1,10 @@
-# This file was created manually
-# This file lists favagtk's main python dependencies.
-
 # platform constraints
 -c python3-gnome-platform.in
 
-# main python dependencies
+# main dependency
 fava ~= 1.21
+
+# optional dependencies
+smart-importer ~= 0.3
+beancount-share ~= 0.1.10
+fava-investor ~= 0.2.1

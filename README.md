@@ -3,7 +3,6 @@
 [![pipeline status](https://gitlab.gnome.org/johannesjh/favagtk/badges/main/pipeline.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/commits/main)
 [![Latest Development Release](https://gitlab.gnome.org/johannesjh/favagtk/-/badges/release.svg)](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
 
-
 Do your finances using fava and beancount.
 
 favagtk makes it easy to use the
@@ -23,13 +22,14 @@ double-entry bookkeeping software as a GNOME desktop application.
 
 ## Installation
 
-favagtk can be installed from [flathub](https://flathub.org/). 
+favagtk can be installed from [flathub](https://flathub.org/).
 
 <a href='https://flathub.org/apps/details/org.gnome.gitlab.johannesjh.favagtk'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
 System requirements:
-* A linux system with [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
-* The app's target platform is the GNOME desktop environment. (Other desktop environments are not targeted, but are likely to work as well).
+
+- A linux system with [flatpak](https://flatpak.org/) is needed to install and run the flatpak package.
+- The app's target platform is the GNOME desktop environment. (Other desktop environments are not targeted, but are likely to work as well).
 
 ## Usage
 
