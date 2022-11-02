@@ -276,7 +276,7 @@ class RequirementsParser:
         def validate_requirement(req: pkg_resources.Requirement) -> None:
             assert (
                 len(req.specs) == 1
-            ), "Error parsing requirements: A single version numer must be specified."
+            ), "Error parsing requirements: A single version number must be specified."
             assert (
                 req.specs[0][0] == "=="
             ), "Error parsing requirements: The exact version must specified as 'package==version'."
