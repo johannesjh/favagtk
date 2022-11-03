@@ -30,6 +30,16 @@
   </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
+    <!--
+    <release version="0.2.3" date="">
+      <description>
+        <p>Maintenance release</p>
+        <ul>
+          <li>Updated fava to version 1.23.1, and updated other dependencies as well.</li>
+        </ul>
+      </description>
+    </release>
+    -->
     <release version="0.2.2" date="2022-10-15">
       <description>
         <p>Maintenance release</p>
