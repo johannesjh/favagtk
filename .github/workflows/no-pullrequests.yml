@@ -1,0 +1,26 @@
+name: "Repo Lockdown"
+
+on:
+  issues:
+    types: opened
+  pull_request_target:
+    types: opened
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/repo-lockdown@v2.2.0
+        with:
+          issue-comment: >
+            This repository does not accept bug reports.
+            Please report issues over at https://gitlab.gnome.org/johannesjh/favagtk/.
+            See the README and CONTRIBUTING files for details.
+          pr-comment: >
+            This repository does not accept pull requests.
+            Please submit pull requests over at https://gitlab.gnome.org/johannesjh/favagtk/.
+            See the README and CONTRIBUTING files for details.
