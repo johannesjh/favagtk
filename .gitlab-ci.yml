@@ -1,6 +1,16 @@
 include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml"
 
+variables:
+  TARGET:
+    description: Defines the ci target, whether to build the app ("flatpak") or update its dependencies ("autoupdate").
+    value: "flatpak"
+    #selectable options are only available in gitlab >= 15.7, see https://docs.gitlab.com/ee/ci/pipelines/index.html#configure-a-list-of-selectable-values-for-a-prefilled-variable
+    #options:
+    #  - "flatpak"
+    #  - "autoupdate"
+
 .vars-devel:
+  # defines variables for the flatpak builds
   image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-43"
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
@@ -15,12 +25,16 @@ include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 
 flatpak@x86_64:
   # builds a flatpak bundle for x86_64
+  rules:
+    - if: $TARGET == "flatpak"
   extends: [".flatpak@x86_64", ".vars-devel"]
   variables:
     BUNDLE: ${BUNDLE_x86_64}
 
 flatpak@aarch64:
   # builds a flatpak bundle for aarch64
+  rules:
+    - if: $TARGET == "flatpak"
   extends: [".flatpak@aarch64", ".vars-devel"]
   variables:
     BUNDLE: ${BUNDLE_aarch64}
@@ -30,8 +44,8 @@ upload:
   # based on: https://gitlab.com/gitlab-org/release-cli/-/tree/master/docs/examples/release-assets-as-generic-package
   extends: [".vars-devel"]
   stage: deploy
-  only:
-    - tags
+  rules:
+    - if: $TARGET == "flatpak" && $CI_COMMIT_TAG
   image: curlimages/curl:latest
   script:
     - 'curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${BUNDLE_x86_64}" "${PACKAGE_REGISTRY_URL}/${BUNDLE_x86_64}"'
@@ -44,8 +58,8 @@ release:
   stage: deploy
   needs:
     - upload
-  only:
-    - tags
+  rules:
+    - if: $TARGET == "flatpak" && $CI_COMMIT_TAG
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   script:
     - echo "Running the release job."
@@ -59,3 +73,28 @@ release:
           url: ${PACKAGE_REGISTRY_URL}/${BUNDLE_x86_64}
         - name: ${BUNDLE_aarch64}
           url: ${PACKAGE_REGISTRY_URL}/${BUNDLE_aarch64}
+
+autoupdate:
+  # periodically submits a merge request with updated dependencies
+  # see https://stackoverflow.com/a/72743215
+  image: "python:3.10-bullseye"
+  rules:
+    - if: $TARGET == "autoupdate"
+  before_script:
+    - if [ -z ${AUTOUPDATE_PUSH_TOKEN} ]; then (echo "Error The variable AUTOUPDATE_PUSH_TOKEN is empty, but the token is needed to push updated dependencies using git." && exit 1); fi
+    - export BRANCH=autoupdate-`date -I`
+    - git remote set-url origin https://AUTOUPDATE_PUSH_TOKEN:${AUTOUPDATE_PUSH_TOKEN}@gitlab.gnome.org/johannesjh/favagtk.git
+    - git config user.name ${GITLAB_USER_NAME}
+    - git config user.email ${GITLAB_USER_EMAIL}
+  script:
+    - git branch -D ${BRANCH} || exit_code=$?
+    - git checkout -b ${BRANCH}
+    - pip install pip-tools pre-commit
+    - pre-commit install
+    - make -C requirements pip-compile
+    - make -C requirements python3-main.json
+    - git add requirements/*
+    - git status
+    - git diff --staged
+    - git commit -m 'autoupdate of python dependencies'
+    - git push --set-upstream origin ${BRANCH} -o merge_request.create -o merge_request.remove_source_branch -o merge_request.title="autoupdate of python dependencies" -o merge_request.draft || exit_code=$?
