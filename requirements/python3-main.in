@@ -8,3 +8,8 @@ fava ~= 1.21
 smart-importer ~= 0.3
 beancount-share ~= 0.1.10
 fava-investor ~= 0.2.1
+
+# TEMPORARY WORKAROUND
+# smart-importer v0.3 is not yet compatible with scikit-learn v1.2
+# see https://github.com/beancount/smart_importer/pull/119
+scikit-learn < 1.2
