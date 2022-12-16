@@ -97,4 +97,4 @@ autoupdate:
     - git status
     - git diff --staged
     - git commit -m 'autoupdate of python dependencies'
-    - git push --set-upstream origin ${BRANCH} -o merge_request.create -o merge_request.remove_source_branch -o merge_request.title="autoupdate of python dependencies" -o merge_request.draft || exit_code=$?
+    - git push --set-upstream origin ${BRANCH} -o merge_request.create -o merge_request.remove_source_branch -o merge_request.title="autoupdate of python dependencies" || exit_code=$?
