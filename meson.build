@@ -1,5 +1,5 @@
 project('favagtk',
-          version: '0.2.4',
+          version: '0.2.5-dev',
     meson_version: '>= 0.59.0',
   default_options: [ 'warning_level=2',
                    ],

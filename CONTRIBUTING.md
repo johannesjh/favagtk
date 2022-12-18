@@ -106,11 +106,14 @@ They are built and published using CI scripts when a tag is pushed.
 To publish a new version of favagtk in favagtk's development repository,
 take the following steps:
 
+- Create a branch for the release, e.g., a branch called `v1.2.3`.
 - Set the intended version number in the main `meson.build` file.
 - Describe the release in the `data/*appdata.xml*` file.
+- Commit and push these changes.
 - Build a release candidate by pushing a tag named similar to `v1.2.3-rc4`.
 - Test the release candidate by downloading and installing the `*.flatpak` file from the build pipeline.
-- Publish the release by pushing a tag named similar to `v1.2.3`.
+- If tests were ok, merge the release branch into main.
+- Publish the release by pushing a tag such as `v1.2.3`.
 
 CI scripts will build a package and make it available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) in gitlab.
 
