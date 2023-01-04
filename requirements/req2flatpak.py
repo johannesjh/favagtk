@@ -607,7 +607,7 @@ class FlatpakGenerator:
 
         def sources(downloads: Iterable[Download]) -> List[dict]:
             sorted_downloads = sorted(
-                downloads, key=lambda d: (d.package, d.version, d.arch)
+                downloads, key=lambda d: (d.package, d.version, d.arch or "")
             )
             return [source(download) for download in sorted_downloads]
 
