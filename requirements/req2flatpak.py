@@ -191,7 +191,7 @@ class Requirement:
 
 
 @dataclass(frozen=True)
-class Download:
+class Download(Requirement):
     """Represents a python package download."""
 
     filename: str
@@ -490,6 +490,8 @@ class PypiClient:
             version=req.version,
             downloads=[
                 Download(
+                    package=req.package,
+                    version=req.version,
                     filename=url["filename"],
                     url=url["url"],
                     sha256=url["digests"]["sha256"],
@@ -603,13 +605,19 @@ class FlatpakGenerator:
                 source["only-arches"] = [download.arch]
             return source
 
+        def sources(downloads: Iterable[Download]) -> List[dict]:
+            sorted_downloads = sorted(
+                downloads, key=lambda d: (d.package, d.version, d.arch)
+            )
+            return [source(download) for download in sorted_downloads]
+
         return {
             "name": module_name,
             "buildsystem": "simple",
             "build-commands": [
                 pip_install_template + " ".join([req.package for req in requirements])
             ],
-            "sources": [source(download) for download in downloads],
+            "sources": sources(downloads),
         }
 
     @classmethod
