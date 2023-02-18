@@ -73,7 +73,6 @@ try:
     # added with py 3.8
     from functools import cached_property  # type: ignore[attr-defined]
 except ImportError:
-
     # Inspired by the implementation in the standard library
     # pylint: disable=invalid-name,too-few-public-methods
     class cached_property:  # type: ignore[no-redef]
@@ -226,6 +225,17 @@ class Download(Requirement):
             if any(tag.endswith("aarch64") for tag in self.tags):
                 return "aarch64"
         return None
+
+    def __lt__(self, other):
+        """Makes this class sortable."""
+        # Note: Implementing __lt__ is sufficient to make a class sortable,
+        # see, e.g., https://stackoverflow.com/a/7152796
+
+        def sort_keys(download: Download) -> Tuple[str, str, str]:
+            """A tuple of package, version and architecture is used as key for sorting."""
+            return download.package, download.version, download.arch or ""
+
+        return sort_keys(self) < sort_keys(other)
 
 
 @dataclass(frozen=True)
@@ -537,9 +547,7 @@ class DownloadChooser:
         preferred downloads are returned first.
         """
         cache = set()
-        for (platform_tag, download) in product(
-            platform.python_tags, release.downloads
-        ):
+        for platform_tag, download in product(platform.python_tags, release.downloads):
             if download in cache:
                 continue
             if wheels_only and not download.is_wheel:
@@ -606,10 +614,7 @@ class FlatpakGenerator:
             return source
 
         def sources(downloads: Iterable[Download]) -> List[dict]:
-            sorted_downloads = sorted(
-                downloads, key=lambda d: (d.package, d.version, d.arch or "")
-            )
-            return [source(download) for download in sorted_downloads]
+            return [source(download) for download in sorted(downloads)]
 
         return {
             "name": module_name,
