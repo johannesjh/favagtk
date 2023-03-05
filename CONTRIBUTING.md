@@ -10,18 +10,19 @@ For example, it would be most welcome if you'd be willing to test [autoupdate me
 
 ## Installing a Development Build
 
-You can install and running a .flatpak file to benefit from a new feature, as well as for testing.
+You can download, install and run a favagtk .flatpak file to benefit from a new feature, as well as for testing.
+
 Downloads are available for each of
 [favagtk's releases](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
 and from merge requests and other ci pipelines.
 
-You can install and run the flatpak file as follows.
+Once downloaded, you can install and run the flatpak file as follows.
 
 ```bash
 flatpak install --user <file>.flatpak
 ```
 
-...this installs an app named "Fava".
+Once installed, you will have an app named "Fava" on your computer.
 
 ## Starting the App and Viewing Debug Output
 
