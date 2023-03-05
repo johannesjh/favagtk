@@ -31,7 +31,7 @@
   <developer_name>johannesjh</developer_name>
   <releases>
     <!--
-    <release version="0.2.5-dev" date="">
+    <release version="0.2.6-dev" date="">
       <description>
         <p>Maintenance release</p>
         <ul>
@@ -40,6 +40,14 @@
       </description>
     </release>
     -->
+    <release version="0.2.5" date="2023-03-05">
+      <description>
+        <p>Maintenance release</p>
+        <ul>
+          <li>Updates python dependencies.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.4" date="2022-12-18">
       <description>
         <p>Maintenance release</p>
