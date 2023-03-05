@@ -2,21 +2,31 @@
 
 All contributions to favagtk are greatly appreciated... pull requests are welcome, and so are bug reports and suggestions for improvement.
 
+## Testing and Reporting Issues
+
+The easiest way to start contributing is by simply using favagtk and by reporting any errors or inconveniences you may encounter as [issues in favagtk's gitlab project](https://gitlab.gnome.org/johannesjh/favagtk/-/issues). You can test official versions as well as development builds.
+
+For example, it would be most welcome if you'd be willing to test [autoupdate merge requests](https://gitlab.gnome.org/johannesjh/favagtk/-/merge_requests?state=opened&search=autoupdate) by installing and running the .flatpak files from these merge requests. This way, you can help keeping favagtk up to date.
+
 ## Installing a Development Build
 
-Download a .flatpak file from one of [favagtk's releases in gitlab](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) or from a ci pipeline.
+You can download, install and run a favagtk .flatpak file to benefit from a new feature, as well as for testing.
 
-You can then install and run the flatpak file as follows.
+Downloads are available for each of
+[favagtk's releases](https://gitlab.gnome.org/johannesjh/favagtk/-/releases)
+and from merge requests and other ci pipelines.
+
+Once downloaded, you can install and run the flatpak file as follows.
 
 ```bash
 flatpak install --user <file>.flatpak
 ```
 
-...this installs an app named "Fava".
+Once installed, you will have an app named "Fava" on your computer.
 
 ## Starting the App and Viewing Debug Output
 
-The favagtk app can be started in the same way as any other application, e.g., [using GNOME Shell's activity view](https://help.gnome.org/users/gnome-help/stable/shell-apps-open.html.hi). Starting favagtk from the commandline, as follows, will allow you to view its debug output. The debug output logs what is going on "under the hood" and includes error messages and exceptions. This information is useful to analyze a problem prior to reporting a bug.
+Once installed, the app be started in the same way as any other application, e.g., [using GNOME Shell's activity view](https://help.gnome.org/users/gnome-help/stable/shell-apps-open.html.hi). You can alternatively start favagtk from the commandline, as follows, in order to view its debug output. The debug output logs what is going on "under the hood" and includes error messages and exceptions. This information is useful to analyze a problem prior to reporting a bug.
 
 To start favagtk from the commandline and view its debug output:
 
