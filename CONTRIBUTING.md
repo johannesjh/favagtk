@@ -124,6 +124,7 @@ take the following steps:
 - Test the release candidate by downloading and installing the `*.flatpak` file from the build pipeline.
 - If tests were ok, merge the release branch into main.
 - Publish the release by pushing a tag such as `v1.2.3`.
+- Prepare the next release by setting a dev version number such as `v1.2.4-dev` in meson.build on the main branch.
 
 CI scripts will build a package and make it available for download on [favagtk's release page](https://gitlab.gnome.org/johannesjh/favagtk/-/releases) in gitlab.
 
