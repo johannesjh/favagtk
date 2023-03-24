@@ -22,7 +22,7 @@ beancount-plugin-utils==0.0.4
     # via beancount-share
 beancount-share==0.1.10
     # via -r python3-main.in
-beautifulsoup4==4.11.2
+beautifulsoup4==4.12.0
     # via
     #   beancount
     #   yfinance
@@ -64,24 +64,24 @@ flask==2.2.3
     #   flask-babel
 flask-babel==3.0.1
     # via fava
-frozendict==2.3.5
+frozendict==2.3.6
     # via yfinance
 google-api-core==2.11.0
     # via google-api-python-client
-google-api-python-client==2.81.0
+google-api-python-client==2.82.0
     # via beancount
-google-auth==2.16.2
+google-auth==2.16.3
     # via
     #   google-api-core
     #   google-api-python-client
     #   google-auth-httplib2
 google-auth-httplib2==0.1.0
     # via google-api-python-client
-googleapis-common-protos==1.58.0
+googleapis-common-protos==1.59.0
     # via google-api-core
 html5lib==1.1
     # via yfinance
-httplib2==0.21.0
+httplib2==0.22.0
     # via
     #   google-api-python-client
     #   google-auth-httplib2
@@ -206,5 +206,5 @@ werkzeug==2.2.3
     # via
     #   fava
     #   flask
-yfinance==0.2.12
+yfinance==0.2.13
     # via fava-investor

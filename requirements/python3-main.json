@@ -37,8 +37,8 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/c6/ee/16d6f808f5668317d7c23f942091fbc694bcded6aa39678e5167f61b2ba0/beautifulsoup4-4.11.2-py3-none-any.whl",
-      "sha256": "0e79446b10b3ecb499c1556f7e228a53e64a2bfcebd455f370d8927cb5b59e39"
+      "url": "https://files.pythonhosted.org/packages/ee/a7/06b189a2e280e351adcef25df532af3c59442123187e228b960ab3238687/beautifulsoup4-4.12.0-py3-none-any.whl",
+      "sha256": "2130a5ad7f513200fae61a17abb5e338ca980fa28c439c0571014bc0217e9591"
     },
     {
       "type": "file",
@@ -138,13 +138,13 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/41/44/1892c9b2a21f471ef2681559f9e57470795199330dad8eca734bce408434/frozendict-2.3.5.tar.gz",
-      "sha256": "65d7e3995c9174b77d7d80514d7062381750491e112bbeb44323368baa3e636a"
+      "url": "https://files.pythonhosted.org/packages/93/0b/d07e3ebdc3e31acff5a59a7e087c3f19bc456691dfd9afefd427168350d1/frozendict-2.3.6.tar.gz",
+      "sha256": "14e376fb0c8fe0b11b77872a84356dfa191b24a240be66bf5ec66d9b0d203bb8"
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/fa/83/361156d7fa163d9726f52415ec5a2e22c2d28f3983517636b73785ce0eaa/frozendict-2.3.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-      "sha256": "c9b8cbed40c96fce53e5a31ff2db30ca2c56992ba033555b08c22d099c3576ec",
+      "url": "https://files.pythonhosted.org/packages/fb/f2/6a0230b19aeb4fe83dc0e66bdef3a8c27c56828b473c894d61321a10c3cf/frozendict-2.3.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "1e3255b0f33a65b558d99d067c1dbedc6f30effe66967d5b201c7fcffb20a86e",
       "only-arches": ["x86_64"]
     },
     {
@@ -154,13 +154,13 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/ca/8e/3c507a09ca912df23035e6d4d255bc9f11ed8fcbff004cdfad306b63fab5/google_api_python_client-2.81.0-py2.py3-none-any.whl",
-      "sha256": "ad6700ae3a76ead8956d7f30935978cea308530e342ad8c1e26a4e40fc05c054"
+      "url": "https://files.pythonhosted.org/packages/90/e8/f8f1072dee14d69143c68a4be564e818e6d7b7fb2bb5a7f49102efeded43/google_api_python_client-2.82.0-py2.py3-none-any.whl",
+      "sha256": "80a97d900f10dc709b9ba8fe5e72073d69f2a2b7f6b87d02cf69015790bc0b56"
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/93/c4/16f8ad44ed7544244a9883f35cc99dc96378652a0ec7cc39028b1c697a1e/google_auth-2.16.2-py2.py3-none-any.whl",
-      "sha256": "2fef3cf94876d1a0e204afece58bb4d83fb57228aaa366c64045039fda6770a2"
+      "url": "https://files.pythonhosted.org/packages/17/b2/facb29ba22cd89d9b00f10f52b8bafe322d63b605618edd87769b0b50eff/google_auth-2.16.3-py2.py3-none-any.whl",
+      "sha256": "4dfcfd8ecd1cf03ddc97fddfb3b1f2973ea4f3f664aa0d8cfaf582ef9f0c60e7"
     },
     {
       "type": "file",
@@ -169,8 +169,8 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/32/4e/ed585842aaa704d87495a0e99317aaa44c5007a597c05b995fa8cfc4dfbe/googleapis_common_protos-1.58.0-py2.py3-none-any.whl",
-      "sha256": "ca3befcd4580dab6ad49356b46bf165bb68ff4b32389f028f1abd7c10ab9519a"
+      "url": "https://files.pythonhosted.org/packages/a7/8d/7ccf8f63ab0a768e13720262374c0d6a1489f7f23f1b89a16c92af452f09/googleapis_common_protos-1.59.0-py2.py3-none-any.whl",
+      "sha256": "b287dc48449d1d41af0c69f4ea26242b5ae4c3d7249a38b0984c86a4caffff1f"
     },
     {
       "type": "file",
@@ -179,8 +179,8 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/31/c9/4720a06cc961415e49735e672071b1da1621a347e14a9b1f3728a59a2cbd/httplib2-0.21.0-py3-none-any.whl",
-      "sha256": "987c8bb3eb82d3fa60c68699510a692aa2ad9c4bd4f123e51dfb1488c14cdd01"
+      "url": "https://files.pythonhosted.org/packages/a8/6c/d2fbdaaa5959339d53ba38e94c123e4e84b8fbc4b84beb0e70d7c1608486/httplib2-0.22.0-py3-none-any.whl",
+      "sha256": "14ae0a53c1ba8f3d37e9e27cf37eabb0fb9980f435ba405d546948b009dd64dc"
     },
     {
       "type": "file",
@@ -440,8 +440,8 @@
     },
     {
       "type": "file",
-      "url": "https://files.pythonhosted.org/packages/e8/8e/b855a8c28eaa4a32a27aad5dfac5d08fbe4d69387c96c211ce3cd28296c1/yfinance-0.2.12-py2.py3-none-any.whl",
-      "sha256": "ccca64fb0d8a99d94a896dc87db1cac757bed91e8cfb82183be13679259bea0a"
+      "url": "https://files.pythonhosted.org/packages/1d/31/5384b24c1703c2b2960500f02c290e24cd14a1ba569233f86abd0ae6f681/yfinance-0.2.13-py2.py3-none-any.whl",
+      "sha256": "3162e9349a597958cb72ba0189c1c044807ea20f3ff3de9127e1e1149237c477"
     }
   ]
 }
