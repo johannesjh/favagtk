@@ -1,7 +1,7 @@
 # Makefile for managing favagtk's requirements
 
-PLATFORM=org.gnome.Platform//43
-SDK=org.gnome.Sdk//43
+PLATFORM=org.gnome.Platform//44
+SDK=org.gnome.Sdk//44
 
 .PHONY: python3-gnome-platform.in
 python3-gnome-platform.in:

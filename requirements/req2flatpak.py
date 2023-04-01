@@ -64,6 +64,10 @@ import pkg_resources
 
 logger = logging.getLogger(__name__)
 
+try:
+    import yaml
+except ImportError:
+    yaml = None  # type: ignore
 
 # =============================================================================
 # Helper functions / semi vendored code
@@ -101,6 +105,10 @@ except ImportError:
             return val
 
 
+class InvalidWheelFilename(Exception):
+    """An invalid wheel filename was found, users should refer to PEP 427."""
+
+
 try:
     # use packaging.tags functionality if available
     from packaging.utils import parse_wheel_filename
@@ -123,7 +131,6 @@ except ModuleNotFoundError:
 
         Implemented as (semi-)vendored functionality in req2flatpak.
         """
-        InvalidWheelFilename = Exception
         Tag = Tuple[str, str, str]
 
         # the following code is based on packaging.tags.parse_tag,
@@ -318,7 +325,7 @@ class PlatformFactory:
 
     @classmethod
     def from_python_version_and_arch(
-        cls, minor_version: int = None, arch="x86_64"
+        cls, minor_version: Optional[int] = None, arch="x86_64"
     ) -> Platform:
         """
         Returns a platform object that roughly describes a cpython installation on linux.
@@ -343,7 +350,7 @@ class PlatformFactory:
 
     @classmethod
     def _cp3_linux_tags(
-        cls, minor_version: int = None, arch="x86_64"
+        cls, minor_version: Optional[int] = None, arch="x86_64"
     ) -> Generator[str, None, None]:
         """Yields python platform tags for cpython3 on linux."""
         # pylint: disable=too-many-branches
@@ -628,12 +635,30 @@ class FlatpakGenerator:
     @classmethod
     def build_module_as_str(cls, *args, **kwargs) -> str:
         """
-        Generates a build module for inclusion in a flatpak-builder build manifest.
+        Generate JSON build module for inclusion in a flatpak-builder build manifest.
 
         The args and kwargs are the same as in
         :py:meth:`~req2flatpak.FlatpakGenerator.build_module`
         """
-        return json.dumps(cls.build_module(*args, **kwargs), indent=2)
+        return json.dumps(cls.build_module(*args, **kwargs), indent=4)
+
+    @classmethod
+    def build_module_as_yaml_str(cls, *args, **kwargs) -> str:
+        """
+        Generate YAML build module for inclusion in a flatpak-builder build manifest.
+
+        The args and kwargs are the same as in
+        :py:meth:`~req2flatpak.FlatpakGenerator.build_module`
+        """
+        # optional dependency, not imported at top
+        if not yaml:
+            raise ImportError(
+                "Package `pyyaml` has to be installed for the yaml format."
+            )
+
+        return yaml.dump(
+            cls.build_module(*args, **kwargs), default_flow_style=False, sort_keys=False
+        )
 
 
 # =============================================================================
@@ -671,11 +696,21 @@ def cli_parser() -> argparse.ArgumentParser:
         help="Uses a persistent cache when querying pypi.",
     )
     parser.add_argument(
+        "--yaml",
+        action="store_true",
+        help="Write YAML instead of the default JSON.  Needs the 'pyyaml' package.",
+    )
+
+    parser.add_argument(
         "--outfile",
         "-o",
         nargs="?",
         type=argparse.FileType("w"),
         default=sys.stdout,
+        help="""
+            By default, writes JSON but specify a '.yaml' extension and YAML
+            will be written instead, provided you have the 'pyyaml' package.
+        """,
     )
     parser.add_argument(
         "--platform-info",
@@ -692,7 +727,7 @@ def cli_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main():
+def main():  # pylint: disable=too-many-branches
     """Main function that provides req2flatpak's commandline interface."""
 
     # process commandline arguments
@@ -700,13 +735,25 @@ def main():
     options = parser.parse_args()
 
     # stream output to a file or to stdout
-    output_stream = options.outfile if hasattr(options.outfile, "write") else sys.stdout
+    if hasattr(options.outfile, "write"):
+        output_stream = options.outfile
+        if pathlib.Path(output_stream.name).suffix.casefold() in (".yaml", ".yml"):
+            options.yaml = True
+    else:
+        output_stream = sys.stdout
+
+    if options.yaml and not yaml:
+        parser.error(
+            "Outputing YAML requires 'pyyaml' package: try 'pip install pyyaml'"
+        )
 
     # print platform info if requested, and exit
     if options.platform_info:
-        json.dump(
-            asdict(PlatformFactory.from_current_interpreter()), output_stream, indent=4
-        )
+        info = asdict(PlatformFactory.from_current_interpreter())
+        if options.yaml:
+            yaml.dump(info, output_stream, default_flow_style=False, sort_keys=False)
+        else:
+            json.dump(info, output_stream, indent=4)
         parser.exit()
 
     # print installed packages if requested, and exit
@@ -760,13 +807,21 @@ def main():
         DownloadChooser.wheel_or_sdist(release, platform)
         for release in releases
         for platform in platforms
+        if platform
     }
 
     # generate flatpak-builder build module
-    build_module = FlatpakGenerator.build_module(requirements, downloads)
-
-    # write output
-    json.dump(build_module, output_stream, indent=4)
+    if options.yaml:
+        # write yaml
+        output_stream.write("# Generated by " + " ".join(sys.argv) + "\n")
+        output_stream.write(
+            FlatpakGenerator.build_module_as_yaml_str(requirements, downloads)
+        )
+    else:
+        # write json
+        output_stream.write(
+            FlatpakGenerator.build_module_as_str(requirements, downloads)
+        )
 
 
 if __name__ == "__main__":

@@ -22,10 +22,10 @@ from typing import Callable, Optional
 
 import gi
 
-gi.require_versions({"Gtk": "4.0", "WebKit2": "5.0"})
+gi.require_versions({"Gtk": "4.0", "WebKit": "6.0"})
 
 
-from gi.repository import Gdk, Gio, GLib, Gtk, WebKit2
+from gi.repository import Gdk, Gio, GLib, Gtk, WebKit
 
 from . import PROFILE
 from .file_open_dialog import FileOpenDialog
@@ -52,7 +52,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
     fava_view = Gtk.Template.Child()
 
     # webkit workaround from https://stackoverflow.com/a/60128243
-    WebKit2.WebView()
+    WebKit.WebView()
     webview = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -70,7 +70,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.server.connect("start", self.load_url)
 
         # Configure the webkit widget
-        settings = WebKit2.Settings()
+        settings = WebKit.Settings()
         settings.set_property("enable-developer-extras", True)
         self.webview.set_settings(settings)
 
@@ -229,7 +229,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         """
         find_controller = self.webview.get_find_controller()
         find_options = (
-            WebKit2.FindOptions.CASE_INSENSITIVE | WebKit2.FindOptions.WRAP_AROUND
+            WebKit.FindOptions.CASE_INSENSITIVE | WebKit.FindOptions.WRAP_AROUND
         )
         find_controller.search(self.search_entry.get_text(), find_options, 32)
 
@@ -260,7 +260,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.search_bar.set_search_mode(False)
         find_controller = (
             self.webview.get_find_controller()
-        )  # type: WebKit2.FindController
+        )  # type: WebKit.FindController
         find_controller.search_finish()
         self.search_entry.set_text("")
         self.webview.grab_focus()

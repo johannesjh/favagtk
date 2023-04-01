@@ -1,5 +1,5 @@
 using Gtk 4.0;
-using WebKit2 5.0;
+using WebKit 6.0;
 
 template FavagtkWindow : ApplicationWindow {
   name: "favagtk";
@@ -56,7 +56,7 @@ template FavagtkWindow : ApplicationWindow {
       }
       ScrolledWindow fava_scrolled_window {
         Viewport fava_view_viewport {
-          WebKit2.WebView webview {
+          WebKit.WebView webview {
             hexpand: true;
             vexpand: true;
           }
