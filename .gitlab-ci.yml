@@ -4,10 +4,9 @@ variables:
   TARGET:
     description: Defines the ci target, whether to build the app ("flatpak") or update its dependencies ("autoupdate").
     value: "flatpak"
-    #selectable options are only available in gitlab >= 15.7, see https://docs.gitlab.com/ee/ci/pipelines/index.html#configure-a-list-of-selectable-values-for-a-prefilled-variable
-    #options:
-    #  - "flatpak"
-    #  - "autoupdate"
+    options:
+      - "flatpak"
+      - "autoupdate"
 
 .vars-devel:
   # defines variables for the flatpak builds
