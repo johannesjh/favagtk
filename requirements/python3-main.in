@@ -2,9 +2,9 @@
 -c python3-gnome-platform.in
 
 # main dependency
-fava ~= 1.21
+fava ~= 1.24
 
 # optional dependencies
 smart-importer ~= 0.4
 beancount-share ~= 0.1.10
-fava-investor ~= 0.2.1
+fava-investor ~= 0.5.0
