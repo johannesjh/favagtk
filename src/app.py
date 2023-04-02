@@ -63,7 +63,7 @@ class FavagtkApplication(Adw.Application):
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
-        about = AboutDialog(self.props.active_window)
+        about = AboutDialog(parent=self.props.active_window)
         about.present()
 
     def create_action(self, name, callback, shortcuts=None):
