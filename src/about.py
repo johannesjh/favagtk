@@ -15,22 +15,48 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk
 
 from . import PROFILE, VCS_TAG, VERSION
 
 
-class AboutDialog(Gtk.AboutDialog):
-    def __init__(self, parent):
-        Gtk.AboutDialog.__init__(self)
-        self.props.program_name = "favagtk"
-        self.props.version = VERSION
+class AboutDialog(Adw.Window):
+    # Implementation Notes:
+    # We cannot inherit from Adw.AboutWindow because Adwaita marked the
+    # AboutWindow class as "final". See, e.g.:
+    # https://discourse.gnome.org/t/how-to-create-custom-libadwaita-widget/9379/2
+    # https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/class.AboutWindow.html
+    # We therefore use the __new__ method instead of __init__ in this class,
+    # allowing to return an Adw.AboutWindow whenever this class is instantiated,
+    # compare https://stackoverflow.com/a/2491881
+
+    def __new__(cls, *, parent: Gtk.Window):
+        # For inspiration, compare, e.g.,
+        # https://gtk.justcode.com.br/gtk-libadwaita-widgets/
+        dialog = Adw.AboutWindow()
+        dialog.set_transient_for(parent=parent)
+
+        dialog.set_application_name("favagtk")
+
+        version = VERSION
         if PROFILE:
-            self.props.version += f" {PROFILE} build "
+            version += f" {PROFILE} build "
         if VCS_TAG:
-            self.props.version += f" ({VCS_TAG})"
-        self.props.authors = ["johannesjh"]
-        self.props.copyright = "2022 johannesjh"
-        self.props.logo_icon_name = "org.gnome.gitlab.johannesjh.favagtk"
-        self.props.modal = True
-        self.set_transient_for(parent)
+            version += f" ({VCS_TAG})"
+        dialog.set_version(version)
+
+        dialog.set_developer_name("johannesjh")
+        dialog.add_credit_section(
+            "Special Thanks to Upstream Projects",
+            [
+                "fava https://beancount.github.io/fava/",
+                "beancount https://github.com/beancount/beancount",
+            ],
+        )
+
+        dialog.set_license_type(Gtk.License.GPL_3_0)
+        dialog.set_website("https://gitlab.gnome.org/johannesjh/favagtk")
+        dialog.set_issue_url("https://gitlab.gnome.org/johannesjh/favagtk/-/issues")
+        dialog.set_application_icon("org.gnome.gitlab.johannesjh.favagtk")
+
+        return dialog
