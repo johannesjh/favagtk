@@ -4,6 +4,7 @@
     <comment>Beancount File</comment>
     <sub-class-of type="text/plain"/>
     <generic-icon name="text-x-generic"/>
+    <icon name="text-x-generic"/>
     <glob pattern="*.beancount"/>
   </mime-type>
 </mime-info>
