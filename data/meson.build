@@ -40,4 +40,10 @@ if compile_schemas.found()
   )
 endif
 
+install_data(
+  'mime.xml',
+  install_dir: 'share/mime/packages',
+  rename: 'org.gnome.gitlab.johannesjh.favagtk.xml	'
+)
+
 subdir('icons')
