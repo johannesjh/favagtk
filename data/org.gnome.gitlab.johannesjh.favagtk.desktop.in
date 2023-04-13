@@ -1,8 +1,9 @@
 [Desktop Entry]
 Name=Fava
-Exec=favagtk
+Exec=favagtk %u
 Icon=org.gnome.gitlab.johannesjh.favagtk
 Terminal=false
 Type=Application
 Categories=Office;Finance
 StartupNotify=true
+MimeType=text/x.beancount;

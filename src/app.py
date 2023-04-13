@@ -33,7 +33,7 @@ class FavagtkApplication(Adw.Application):
     def __init__(self):
         super().__init__(
             application_id="org.gnome.gitlab.johannesjh.favagtk",
-            flags=Gio.ApplicationFlags.FLAGS_NONE,
+            flags=Gio.ApplicationFlags.HANDLES_OPEN,
         )
         self.create_action("quit", self.do_quit, ["<primary>q"])
         self.create_action("about", self.on_about_action)
@@ -49,6 +49,12 @@ class FavagtkApplication(Adw.Application):
         if not win:
             win = FavagtkWindow(application=self)
         win.present()
+
+    def do_open(self, files, _n_files, _hint):
+        """Called when the application shall open a file."""
+        self.do_activate()
+        win = self.props.active_window
+        win.open_file(files[0])
 
     def load_css(self, resource_path):
         """Loads css from a Gio resource at given path"""
