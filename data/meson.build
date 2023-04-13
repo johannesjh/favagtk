@@ -40,4 +40,20 @@ if compile_schemas.found()
   )
 endif
 
+
+# install mime type
+install_data(
+  'mime.xml',
+  install_dir: 'share/mime/packages',
+  rename: 'org.gnome.gitlab.johannesjh.favagtk.xml'
+)
+
+# update mime database
+# using a custom install script as a workaround until I have meson 64,
+# specifically see meson issue #10865 and
+# release notes https://mesonbuild.com/Release-notes-for-0-64-0.html#added-update_mime_database-to-gnomepost_install
+meson.add_install_script('update-mime-database', join_paths(get_option('prefix'), get_option('datadir'), 'mime'), skip_if_destdir: true)
+
+
+# build and install meson sub directories:
 subdir('icons')

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="text/x.beancount">
+    <comment>Beancount File</comment>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-generic"/>
+    <icon name="text-x-generic"/>
+    <glob pattern="*.beancount"/>
+  </mime-type>
+</mime-info>
+

@@ -41,9 +41,10 @@
     <!--
     <release version="0.2.6-dev" date="">
       <description>
-        <p>Maintenance release</p>
+        <p>Allows to open beancount files files in favagtk using GNOME Files.</p>
         <ul>
-          <li>Updates to the GNOME44 runtime.</li>
+          <li>New feature: It is now possible to open beancount files in favagtk straight from GNOME Files (or any other file explorer, for that matter).</li>
+          <li>Maintenance: Updates to GNOME44, and updates python dependencies.</li>
         </ul>
       </description>
     </release>

@@ -18,6 +18,7 @@ class FileOpenDialog(Gtk.FileChooserNative):
         filter_beancount = Gtk.FileFilter()
         filter_beancount.set_name("Beancount files")
         filter_beancount.add_pattern("*.beancount")
+        filter_beancount.add_mime_type("text/x.beancount")
         self.add_filter(filter_beancount)
 
         filter_plain = Gtk.FileFilter()
