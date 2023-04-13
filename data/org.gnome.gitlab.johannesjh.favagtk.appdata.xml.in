@@ -24,6 +24,14 @@
       <image>https://gitlab.gnome.org/johannesjh/favagtk/raw/HEAD/data/screenshots/main.png</image>
       <caption>Main window</caption>
     </screenshot>
+    <screenshot type="default">
+      <image>https://gitlab.gnome.org/johannesjh/favagtk/raw/HEAD/data/screenshots/balancesheet.png</image>
+      <caption>Balance Sheet</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://gitlab.gnome.org/johannesjh/favagtk/raw/HEAD/data/screenshots/trial-balance.png</image>
+      <caption>Trial Balance</caption>
+    </screenshot>
   </screenshots>
   <kudos>
    <kudo>ModernToolkit</kudo>
