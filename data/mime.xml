@@ -2,9 +2,8 @@
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="text/x.beancount">
     <comment>Beancount File</comment>
-    <icon name="org.gnome.gitlab.johannesjh.favagtk"/>
     <sub-class-of type="text/plain"/>
-    <glob pattern="*.beancount" />
+    <glob pattern="*.beancount"/>
   </mime-type>
 </mime-info>
 
