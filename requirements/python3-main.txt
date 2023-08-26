@@ -30,17 +30,15 @@ bottle==0.12.25
     # via beancount
 cachetools==5.3.1
     # via google-auth
-certifi==2023.5.7
+certifi==2023.7.22
     # via requests
-cffi==1.15.1
-    # via cryptography
-chardet==5.1.0
+chardet==5.2.0
     # via beancount
-charset-normalizer==3.1.0
+charset-normalizer==3.2.0
     # via requests
 cheroot==9.0.0
     # via fava
-click==8.1.3
+click==8.1.6
     # via
     #   click-aliases
     #   fava
@@ -48,11 +46,9 @@ click==8.1.3
     #   flask
 click-aliases==1.0.1
     # via fava-investor
-cryptography==41.0.1
-    # via yfinance
-exceptiongroup==1.1.1
+exceptiongroup==1.1.2
     # via pytest
-fava==1.24.4
+fava==1.25.1
     # via
     #   -r python3-main.in
     #   fava-investor
@@ -66,18 +62,18 @@ flask-babel==3.1.0
     # via fava
 frozendict==2.3.8
     # via yfinance
-google-api-core==2.11.0
+google-api-core==2.11.1
     # via google-api-python-client
-google-api-python-client==2.88.0
+google-api-python-client==2.96.0
     # via beancount
-google-auth==2.19.1
+google-auth==2.22.0
     # via
     #   google-api-core
     #   google-api-python-client
     #   google-auth-httplib2
 google-auth-httplib2==0.1.0
     # via google-api-python-client
-googleapis-common-protos==1.59.0
+googleapis-common-protos==1.60.0
     # via google-api-core
 html5lib==1.1
     # via yfinance
@@ -91,34 +87,34 @@ iniconfig==2.0.0
     # via pytest
 itsdangerous==2.1.2
     # via flask
-jaraco-functools==3.7.0
+jaraco-functools==3.8.1
     # via cheroot
 jinja2==3.1.2
     # via
     #   fava
     #   flask
     #   flask-babel
-joblib==1.2.0
+joblib==1.3.2
     # via scikit-learn
 lxml==4.9.2
     # via
     #   -c python3-gnome-platform.in
     #   beancount
     #   yfinance
-markdown2==2.4.8
+markdown2==2.4.10
     # via fava
 markupsafe==2.1.2
     # via
     #   -c python3-gnome-platform.in
     #   jinja2
     #   werkzeug
-more-itertools==9.1.0
+more-itertools==10.1.0
     # via
     #   cheroot
     #   jaraco-functools
 multitasking==0.0.11
     # via yfinance
-numpy==1.24.3
+numpy==1.25.2
     # via
     #   pandas
     #   scikit-learn
@@ -129,15 +125,15 @@ packaging==23.1
     # via
     #   fava-investor
     #   pytest
-pandas==2.0.2
+pandas==2.0.3
     # via yfinance
-pluggy==1.0.0
+pluggy==1.2.0
     # via pytest
 ply==3.11
     # via
     #   beancount
     #   fava
-protobuf==4.23.2
+protobuf==4.24.0
     # via
     #   google-api-core
     #   googleapis-common-protos
@@ -147,11 +143,9 @@ pyasn1==0.5.0
     #   rsa
 pyasn1-modules==0.3.0
     # via google-auth
-pycparser==2.21
-    # via cffi
-pyparsing==3.0.9
+pyparsing==3.1.1
     # via httplib2
-pytest==7.3.1
+pytest==7.4.0
     # via beancount
 python-dateutil==2.8.2
     # via
@@ -172,9 +166,9 @@ requests==2.31.0
     #   yfinance
 rsa==4.9
     # via google-auth
-scikit-learn==1.2.2
+scikit-learn==1.3.0
     # via smart-importer
-scipy==1.10.1
+scipy==1.11.1
     # via scikit-learn
 simplejson==3.19.1
     # via fava
@@ -192,7 +186,7 @@ soupsieve==2.4.1
     # via beautifulsoup4
 tabulate==0.9.0
     # via fava-investor
-threadpoolctl==3.1.0
+threadpoolctl==3.2.0
     # via scikit-learn
 tomli==2.0.1
     # via pytest
@@ -206,9 +200,9 @@ urllib3==1.26.16
     #   requests
 webencodings==0.5.1
     # via html5lib
-werkzeug==2.3.4
+werkzeug==2.3.6
     # via
     #   fava
     #   flask
-yfinance==0.2.18
+yfinance==0.2.28
     # via fava-investor
