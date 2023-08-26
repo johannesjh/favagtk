@@ -66,11 +66,12 @@ class RecentsPopover(Gtk.Popover):
         display = Gdk.Display.get_default()
         provider = Gtk.CssProvider()
         provider.load_from_data(
-            b"""
+            """
         #recents_popover label {
           font-weight: normal;
         }
-        """
+        """,
+            -1,
         )
         Gtk.StyleContext.add_provider_for_display(
             display, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
