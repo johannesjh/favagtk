@@ -39,17 +39,26 @@
   <developer_name>johannesjh</developer_name>
   <releases>
     <!--
-    <release version="0.2.6-dev" date="">
+    <release version="0.2.7-dev" date="">
       <description>
-        <p>Allows to open beancount files files in favagtk using GNOME Files.</p>
+        <p>Summary.</p>
         <ul>
+          <li>Feature / Bug / Maintenance: description.</li>
+        </ul>
+      </description>
+    </release>
+    -->
+    <release version="0.2.6" date="2023-08-27">
+      <description>
+        <p>Better desktop integration.</p>
+        <ul>
+          <li>New feature: This release improves the app's integration with the GNOME desktop. The Fava Desktop app is now associated with *.beancount files, allowing users to choose "Open with..." and to then choose "Fava" in GNOME Files.</li>
           <li>New feature: It is now possible to open beancount files in favagtk straight from GNOME Files (or any other file explorer, for that matter).</li>
           <li>Maintenance: Updates to GNOME 44, updates fava and beancount.</li>
           <li>Maintenance> Updates various dependencies including blueprint and python libraries.</li>
         </ul>
       </description>
     </release>
-    -->
     <release version="0.2.5" date="2023-03-05">
       <description>
         <p>Maintenance release</p>
