@@ -24,7 +24,6 @@ https://gitlab.gnome.org/World/apostrophe/-/blob/main/apostrophe/open_popover.py
 https://gitlab.gnome.org/World/apostrophe/-/blob/main/data/ui/Recents.ui
 """
 
-from gettext import gettext as _
 from itertools import islice
 
 import gi

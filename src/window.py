@@ -25,7 +25,7 @@ import gi
 gi.require_versions({"Gtk": "4.0", "WebKit": "6.0"})
 
 
-from gi.repository import Gdk, Gio, GLib, Gtk, WebKit
+from gi.repository import Gio, GLib, Gtk, WebKit
 
 from . import PROFILE
 from .file_open_dialog import FileOpenDialog
@@ -78,7 +78,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         action = Gio.SimpleAction(name="open")
         action.connect("activate", self.show_file_open_dialog)
         self.add_action(action)
-        app.set_accels_for_action(f"win.open", ["<primary>o"])
+        app.set_accels_for_action("win.open", ["<primary>o"])
 
         action = Gio.SimpleAction.new("open_file", GLib.VariantType("s"))
         action.connect("activate", self.open_file_from_gvariant)
@@ -87,13 +87,13 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         action = Gio.SimpleAction(name="close")
         action.connect("activate", self.close_file_or_window)
         self.add_action(action)
-        app.set_accels_for_action(f"win.close", ["<primary>w"])
+        app.set_accels_for_action("win.close", ["<primary>w"])
 
         action = Gio.SimpleAction(name="search")
         action.set_enabled(False)
         action.connect("activate", self.search_start)
         self.add_action(action)
-        app.set_accels_for_action(f"win.search", ["<primary>f"])
+        app.set_accels_for_action("win.search", ["<primary>f"])
 
         action = Gio.SimpleAction.new_stateful(
             name="search_toggle",
