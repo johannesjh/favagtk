@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using WebKit 6.0;
 
-template FavagtkWindow : ApplicationWindow {
+template $FavagtkWindow : ApplicationWindow {
   name: "favagtk";
   title: _("Fava");
 
@@ -80,4 +80,4 @@ menu primary_menu {
   }
 }
 
-.RecentsPopover recents_popover {}
+$RecentsPopover recents_popover {}

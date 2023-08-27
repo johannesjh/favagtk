@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template RecentsPopover {
+template $RecentsPopover : Popover {
   name: "recents_popover";
   halign: start;
   valign: end;
@@ -20,9 +20,9 @@ template RecentsPopover {
 
       SearchEntry search_entry {
         hexpand: true;
-        search-changed => on_search_entry_changed_cb();
-        activate => on_search_entry_activate_cb();
-        stop-search => on_search_entry_stop_cb();
+        search-changed => $on_search_entry_changed_cb();
+        activate => $on_search_entry_activate_cb();
+        stop-search => $on_search_entry_stop_cb();
       }
 
       Button {
