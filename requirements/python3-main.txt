@@ -36,9 +36,9 @@ chardet==5.2.0
     # via beancount
 charset-normalizer==3.2.0
     # via requests
-cheroot==9.0.0
+cheroot==10.0.0
     # via fava
-click==8.1.6
+click==8.1.7
     # via
     #   click-aliases
     #   fava
@@ -46,15 +46,15 @@ click==8.1.6
     #   flask
 click-aliases==1.0.1
     # via fava-investor
-exceptiongroup==1.1.2
+exceptiongroup==1.1.3
     # via pytest
-fava==1.25.1
+fava==1.26
     # via
     #   -r python3-main.in
     #   fava-investor
 fava-investor==0.5.0
     # via -r python3-main.in
-flask==2.3.2
+flask==2.3.3
     # via
     #   fava
     #   flask-babel
@@ -64,7 +64,7 @@ frozendict==2.3.8
     # via yfinance
 google-api-core==2.11.1
     # via google-api-python-client
-google-api-python-client==2.96.0
+google-api-python-client==2.98.0
     # via beancount
 google-auth==2.22.0
     # via
@@ -87,7 +87,7 @@ iniconfig==2.0.0
     # via pytest
 itsdangerous==2.1.2
     # via flask
-jaraco-functools==3.8.1
+jaraco-functools==3.9.0
     # via cheroot
 jinja2==3.1.2
     # via
@@ -125,15 +125,15 @@ packaging==23.1
     # via
     #   fava-investor
     #   pytest
-pandas==2.0.3
+pandas==2.1.0
     # via yfinance
-pluggy==1.2.0
+pluggy==1.3.0
     # via pytest
 ply==3.11
     # via
     #   beancount
     #   fava
-protobuf==4.24.0
+protobuf==4.24.3
     # via
     #   google-api-core
     #   googleapis-common-protos
@@ -145,7 +145,7 @@ pyasn1-modules==0.3.0
     # via google-auth
 pyparsing==3.1.1
     # via httplib2
-pytest==7.4.0
+pytest==7.4.2
     # via beancount
 python-dateutil==2.8.2
     # via
@@ -154,7 +154,7 @@ python-dateutil==2.8.2
     #   pandas
 python-magic==0.4.27
     # via beancount
-pytz==2023.3
+pytz==2023.3.post1
     # via
     #   flask-babel
     #   pandas
@@ -168,21 +168,20 @@ rsa==4.9
     # via google-auth
 scikit-learn==1.3.0
     # via smart-importer
-scipy==1.11.1
+scipy==1.11.2
     # via scikit-learn
 simplejson==3.19.1
     # via fava
 six==1.16.0
     # via
     #   -c python3-gnome-platform.in
-    #   cheroot
     #   google-auth
     #   google-auth-httplib2
     #   html5lib
     #   python-dateutil
 smart-importer==0.4
     # via -r python3-main.in
-soupsieve==2.4.1
+soupsieve==2.5
     # via beautifulsoup4
 tabulate==0.9.0
     # via fava-investor
@@ -190,6 +189,8 @@ threadpoolctl==3.2.0
     # via scikit-learn
 tomli==2.0.1
     # via pytest
+typing-extensions==4.7.1
+    # via jaraco-functools
 tzdata==2023.3
     # via pandas
 uritemplate==4.1.1
@@ -200,7 +201,7 @@ urllib3==1.26.16
     #   requests
 webencodings==0.5.1
     # via html5lib
-werkzeug==2.3.6
+werkzeug==2.3.7
     # via
     #   fava
     #   flask
