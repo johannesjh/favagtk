@@ -50,9 +50,10 @@
     -->
     <release version="0.2.7" date="2023-09-07">
       <description>
-        <p>Reduces the flatpak package size.</p>
+        <p>Reduces the flatpak package size and updates fava.</p>
         <ul>
           <li>Maintenance: Reduces the flatpak package size by cleaning up the blueprint compiler after building.</li>
+          <li>Maintenance: Updates fava as well as other python package dependencies.</li>
         </ul>
       </description>
     </release>
