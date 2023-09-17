@@ -41,9 +41,9 @@
     <!--
     <release version="0.2.8-dev" date="">
       <description>
-        <p>Reduces the package size.</p>
+        <p>Headline for main feature.</p>
         <ul>
-          <li>Maintenance: Reduces the flatpak package size by cleaning up the blueprint compiler after building.</li>
+          <li>Feature: Allows to navigate back and forward using the Alt-Left and Alt-Right keyboard shortcuts.</li>
         </ul>
       </description>
     </release>
