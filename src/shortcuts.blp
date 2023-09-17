@@ -21,41 +21,54 @@ template $FavagtkShortcutsWindow : Gtk.ShortcutsWindow {
   modal: true;
 
   ShortcutsSection {
-    section-name: "shortcuts";
-    max-height: 10;
+    title: C_("Shortcut Window", "General");
+    section-name: "general-shortcuts";
 
     ShortcutsGroup {
-      title: C_("shortcut window", "General");
-
+      title: C_("Shortcut Window", "General");
 
       ShortcutsShortcut {
-        title: C_("shortcut window", "Open File");
+        title: C_("Shortcut Window", "Open File");
         action-name: "win.open";
       }
 
       ShortcutsShortcut {
-        title: C_("shortcut window", "Search");
-        action-name: "win.search";
-      }
-
-      ShortcutsShortcut {
-        title: C_("shortcut window", "Search Next Match");
-        accelerator: "<primary>g";
-      }
-
-      ShortcutsShortcut {
-        title: C_("shortcut window", "Search Previous Match");
-        accelerator: "<shift><primary>g";
-      }
-
-      ShortcutsShortcut {
-        title: C_("shortcut window", "Close File");
+        title: C_("Shortcut Window", "Close File");
         action-name: "win.close";
       }
 
       ShortcutsShortcut {
-        title: C_("shortcut window", "Quit");
+        title: C_("Shortcut Window", "Quit");
         action-name: "app.quit";
+      }
+    }
+
+    ShortcutsGroup {
+      title: C_("Shortcut Window", "Navigation and Search");
+
+      ShortcutsShortcut {
+        title: C_("Shortcut Window", "Go Back");
+        action-name: "win.go-back";
+      }
+
+      ShortcutsShortcut {
+        title: C_("Shortcut Window", "Go Forward");
+        action-name: "win.go-forward";
+      }
+
+      ShortcutsShortcut {
+        title: C_("Shortcut Window", "Search");
+        action-name: "win.search";
+      }
+
+      ShortcutsShortcut {
+        title: C_("Shortcut Window", "Search Next Match");
+        accelerator: "<primary>g";
+      }
+
+      ShortcutsShortcut {
+        title: C_("Shortcut Window", "Search Previous Match");
+        accelerator: "<shift><primary>g";
       }
 
     }
