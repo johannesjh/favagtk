@@ -95,6 +95,16 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         self.add_action(action)
         app.set_accels_for_action("win.search", ["<primary>f"])
 
+        action = Gio.SimpleAction(name="go-back")
+        action.connect("activate", self.go_back)
+        self.add_action(action)
+        app.set_accels_for_action("win.go-back", ["<alt>Left"])
+
+        action = Gio.SimpleAction(name="go-forward")
+        action.connect("activate", self.go_forward)
+        self.add_action(action)
+        app.set_accels_for_action("win.go-forward", ["<alt>Right"])
+
         action = Gio.SimpleAction.new_stateful(
             name="search_toggle",
             parameter_type=None,
@@ -264,6 +274,12 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         find_controller.search_finish()
         self.search_entry.set_text("")
         self.webview.grab_focus()
+
+    def go_back(self, *args):
+        self.webview.go_back()
+
+    def go_forward(self, *args):
+        self.webview.go_forward()
 
     def close_file_or_window(self, *args):
         """Closes currently opened file, or closes the window if no file is open"""
