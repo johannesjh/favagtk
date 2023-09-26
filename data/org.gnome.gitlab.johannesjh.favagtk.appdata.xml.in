@@ -55,7 +55,7 @@
         <ul>
           <li>Update: The app is now based on GNOME 45.</li>
           <li>Feature: Allows to navigate back and forward using the Alt-Left and Alt-Right keyboard shortcuts.</li>
-          <li>Fava Update: Minor update of fava to v1.26.1</li>
+          <li>Maintenance: Minor update of fava to v1.26.1</li>
           <li>Maintenance: Reduces the flatpak package size by cleaning up the blueprint compiler after building.</li>
         </ul>
       </description>
