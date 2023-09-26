@@ -39,10 +39,22 @@
   <developer_name>johannesjh</developer_name>
   <releases>
     <!--
+    <release version="" date="">
+      <description>
+        <p>Headline.</p>
+        <ul>
+          <li>Change item.</li>
+        </ul>
+      </description>
+    </release>
+    -->
+    <!--
     <release version="0.2.8-dev" date="">
       <description>
-        <p>Reduces the package size.</p>
+        <p>GNOME 45.</p>
         <ul>
+          <li>Fava: Minor update of fava to v1.26.1</li>
+          <li>Maintenance: The app is now based on GNOME 45.</li>
           <li>Maintenance: Reduces the flatpak package size by cleaning up the blueprint compiler after building.</li>
         </ul>
       </description>
