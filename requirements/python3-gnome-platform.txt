@@ -24,7 +24,7 @@ pycairo==1.24.0
     #   pygobject
 pygments==2.16.1
     # via -r python3-gnome-platform.in
-pygobject==3.44.1
+pygobject==3.46.0
     # via -r python3-gnome-platform.in
 six==1.16.0
     # via -r python3-gnome-platform.in
