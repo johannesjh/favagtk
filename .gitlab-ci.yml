@@ -10,7 +10,7 @@ variables:
 
 .vars-devel:
   # defines variables for the flatpak builds
-  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44"
+  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
     FLATPAK_MODULE: "favagtk"
@@ -76,7 +76,7 @@ release:
 autoupdate:
   # periodically submits a merge request with updated dependencies
   # see https://stackoverflow.com/a/72743215
-  image: "python:3.10-bullseye"
+  image: "python:3.11-bookworm"
   rules:
     - if: $TARGET == "autoupdate"
   before_script:
