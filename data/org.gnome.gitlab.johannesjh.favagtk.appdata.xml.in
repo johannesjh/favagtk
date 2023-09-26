@@ -48,8 +48,7 @@
       </description>
     </release>
     -->
-    <!--
-    <release version="0.2.8-dev" date="">
+    <release version="0.2.8" date="2023-09-26">
       <description>
         <p>GNOME 45.</p>
         <ul>
@@ -60,7 +59,6 @@
         </ul>
       </description>
     </release>
-    -->
     <release version="0.2.7" date="2023-09-07">
       <description>
         <p>Reduces the flatpak package size and updates fava.</p>
