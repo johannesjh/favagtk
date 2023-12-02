@@ -1,6 +1,7 @@
-.flatpak-builder
+__pycache__
 _build
 _repo
+.flatpak-builder
+*~
 /subprojects/blueprint-compiler
 /venv/
-*~
