@@ -33,6 +33,10 @@
       <caption>Trial Balance</caption>
     </screenshot>
   </screenshots>
+  <branding>
+    <color type="primary" scheme_preference="light">#ffffff</color>
+    <color type="primary" scheme_preference="dark">#003759</color>
+  </branding>
   <kudos>
    <kudo>ModernToolkit</kudo>
   </kudos>
