@@ -25,7 +25,7 @@ from threading import Thread
 from urllib.error import URLError
 
 from fava.application import app
-from gi.repository import GObject
+from gi.repository import GLib, GObject
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
@@ -92,16 +92,16 @@ class Server(GObject.GObject):
         except AttributeError:
             return False
 
-    def wait_until_available(self, cb, *args, **kwargs):
+    def wait_until_available(self, cb, *args):
         """
-        Waits until the server's URL is available, then calls the `cb` function.
-        The wait loop runs in a separate thread, repeatedly polling the URL.
-        When the server returns a response for the URL, the loop stops
-        and the callback function `cb` is called.
+        Waits until self.url is available, then calls the `cb` function.
+
+        The wait loop repeatedly polls the url until it gets a response.
+        It then calls the callback function `cb` and passes the arguments array.
         """
 
-        # from: https://stackoverflow.com/a/45498191
-        def wait_loop(somepredicate, *args, timeout=3, period=0.01, **kwargs):
+        # wait loop, based on: https://stackoverflow.com/a/45498191
+        def wait_loop(somepredicate, *args, timeout=10, period=0.01, **kwargs):
             must_end = time.time() + timeout
             while time.time() < must_end:
                 if somepredicate(*args, **kwargs):
@@ -109,13 +109,19 @@ class Server(GObject.GObject):
                 time.sleep(period)
             return False
 
-        # from: https://stackoverflow.com/a/45498191
+        # wait loop invocation, based on: https://stackoverflow.com/a/45498191
         def wait_until(*args, **kwargs):
             t = Thread(target=wait_loop, args=args, kwargs=kwargs)
             t.start()
 
+        # poll until the url is available
         wait_until(self.is_available, self.url)
-        cb(*args, **kwargs)
+
+        # then call the callback from the main thread
+        if args:
+            GLib.idle_add(cb, args)
+        else:
+            GLib.idle_add(cb)
 
     @staticmethod
     def is_available(url):
@@ -128,8 +134,13 @@ class Server(GObject.GObject):
                 logger.debug(f"Checking server URL: {url} is available.")
                 return True
         except URLError:
+            # no response, so we keep polling
             logger.debug(f"Checking server URL: {url} is not (yet) available...")
             return False
+        except TimeoutError:
+            # timeout reading the response
+            logger.debug(f"Checking server URL: timeout reading from {url}...")
+            return True
         except Exception as e:
             logger.warn(
                 f"An exception occurred while checking server URL: {url}...\n{e}"
