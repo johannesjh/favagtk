@@ -38,6 +38,8 @@ flatpak run org.gnome.gitlab.johannesjh.favagtk
 
 Simply clone this project in GNOME Builder and hit the build and run buttons.
 
+Alternatively, you can use the Makefile or the Gitlab CI Build definition to build favagtk.
+
 ## Build Options
 
 Available options are declared in `meson_options.txt`.

@@ -2,10 +2,7 @@
 
 favagtk's flatpak build includes several modules to build and install all the dependencies that are required for favagtk.
 
-- Flatpak build
-
-  - For the flatpak build manifest, see `org.gnome.gitlab.johannesjh.favagtk.json`
-  - Version numbers for org.gnome.Platform must be identical in `org.gnome.gitlab.johannesjh.favagtk.json` and in `.gitlab-ci.yml`.
+- Flatpak build manifest, see `org.gnome.gitlab.johannesjh.favagtk.json`
 
 - Python packages
 
@@ -14,10 +11,20 @@ favagtk's flatpak build includes several modules to build and install all the de
   - `pip-compile` is used to freeze python dependencies.
   - `req2flatpak.py` is used to generate a flatpak build module for the python packages.
 
+## Updating Dependency Versions
 
-## Autoupdates
+To update required dependency versions:
+
+1. Update the version of `org.gnome.Platform` in `requirements/Makefile`, in the flatpak build manifest `org.gnome.gitlab.johannesjh.favagtk.json` and in `.gitlab-ci.yml`
+2. Update the list of python packages that come pre-installed as part of `org.gnome.Platform` by running `make -C requirements python3-gnome-platform.in`.
+3. Update the list of additional python packages that are needed by favagtk by manually editing `python3-main.in`.
+4. Resolve python dependencies by running `make -C requirements pip-compile`.
+5. Update the python package versions in the flatpak build module by running `make -C requirements python3-main.json`.
+
+...then build and test favagtk.
+
+## Autoupdating Dependency Versions
 
 The CI configuration in `.gitlab-ci.yml` includes a script to be run periodically.
-The script runs pip-compile (by invoking `requirements/Makefile`) 
+The script runs pip-compile (by invoking `requirements/Makefile`)
 and submits a merge request with updated dependencies.
-

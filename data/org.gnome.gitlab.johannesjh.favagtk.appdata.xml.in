@@ -39,15 +39,25 @@
   <developer_name>johannesjh</developer_name>
   <releases>
     <!--
-    <release version="0.2.12-dev" date="">
+    <release version="0.2.13-dev" date="">
       <description>
-        <p>Better handling of large beancount files.</p>
+        <p>Summary.</p>
         <ul>
-          <li>Improves the handling of large beancount files.</li>
+          <li>Detail.</li>
         </ul>
       </description>
     </release>
     -->
+    <release version="0.2.12" date="2024-05-31">
+      <description>
+        <p>Better handling of large beancount files.</p>
+        <ul>
+          <li>Improves the handling of large beancount files.</li>
+          <li>Updates favagtk to use the GNOME 46 runtime platform.</li>
+          <li>Updates python dependencies.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.11" date="2024-05-31">
       <description>
         <p>Updates Fava.</p>
