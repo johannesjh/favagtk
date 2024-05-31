@@ -41,9 +41,9 @@
     <!--
     <release version="0.2.12-dev" date="">
       <description>
-        <p>Headline.</p>
+        <p>Better handling of large beancount files.</p>
         <ul>
-          <li>Change item.</li>
+          <li>Improves the handling of large beancount files.</li>
         </ul>
       </description>
     </release>
