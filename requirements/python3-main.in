@@ -7,4 +7,4 @@ fava ~= 1.27
 # optional dependencies
 smart-importer ~= 0.5
 beancount-share ~= 0.1.10
-fava-investor ~= 0.6.0
+fava-investor ~= 0.7.0

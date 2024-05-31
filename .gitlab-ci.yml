@@ -10,7 +10,7 @@ variables:
 
 .vars-devel:
   # defines variables for the flatpak builds
-  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
+  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-46"
   variables:
     MANIFEST_PATH: "org.gnome.gitlab.johannesjh.favagtk.json"
     FLATPAK_MODULE: "favagtk"
