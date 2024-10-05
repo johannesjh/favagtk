@@ -16,10 +16,11 @@ favagtk's flatpak build includes several modules to build and install all the de
 To update required dependency versions:
 
 1. Update the version of `org.gnome.Platform` in `requirements/Makefile`, in the flatpak build manifest `org.gnome.gitlab.johannesjh.favagtk.json` and in `.gitlab-ci.yml`
-2. Update the list of python packages that come pre-installed as part of `org.gnome.Platform` by running `make -C requirements python3-gnome-platform.in`.
-3. Update the list of additional python packages that are needed by favagtk by manually editing `python3-main.in`.
-4. Resolve python dependencies by running `make -C requirements pip-compile`.
-5. Update the python package versions in the flatpak build module by running `make -C requirements python3-main.json`.
+2. Update the target platform version in `requirements/Makefile`
+3. Update the list of python packages that come pre-installed as part of `org.gnome.Platform` by running `make -C requirements python3-gnome-platform.in`.
+4. Update the list of additional python packages that are needed by favagtk by manually editing `python3-main.in`.
+5. Resolve python dependencies by running `make -C requirements pip-compile`.
+6. Update the python package versions in the flatpak build module by running `make -C requirements python3-main.json`.
 
 ...then build and test favagtk.
 

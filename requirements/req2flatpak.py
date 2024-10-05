@@ -371,7 +371,7 @@ class PlatformFactory:
             cache.add(obj)
             return obj
 
-        platforms = [f"manylinux_2_{v}" for v in seq(35, 17)] + ["manylinux2014"]
+        platforms = [f"manylinux_2_{v}" for v in seq(39, 17)] + ["manylinux2014"]
         if arch == "x86_64":
             platforms += (
                 [f"manylinux_2_{v}" for v in seq(16, 12)]
