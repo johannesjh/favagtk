@@ -43,8 +43,8 @@ class FavagtkWindow(Gtk.ApplicationWindow):
 
     # ui elements:
     header_bar = Gtk.Template.Child()
-    recents_popover = Gtk.Template.Child()
-    shortcuts_window = FavagtkShortcutsWindow()
+    recents_popover: RecentsPopover = Gtk.Template.Child()
+    shortcuts_window: FavagtkShortcutsWindow = FavagtkShortcutsWindow()
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
     stack = Gtk.Template.Child()
@@ -268,9 +268,7 @@ class FavagtkWindow(Gtk.ApplicationWindow):
         """
         self.lookup_action("search_toggle").set_state(GLib.Variant.new_boolean(False))
         self.search_bar.set_search_mode(False)
-        find_controller = (
-            self.webview.get_find_controller()
-        )  # type: WebKit.FindController
+        find_controller = self.webview.get_find_controller()  # type: WebKit.FindController
         find_controller.search_finish()
         self.search_entry.set_text("")
         self.webview.grab_focus()

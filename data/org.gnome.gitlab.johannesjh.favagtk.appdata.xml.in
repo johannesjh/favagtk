@@ -43,7 +43,7 @@
   <developer_name>johannesjh</developer_name>
   <releases>
     <!--
-    <release version="1.0.1-dev" date="">
+    <release version="2.0.1-dev" date="">
       <description>
         <p>Summary.</p>
         <ul>
@@ -52,6 +52,16 @@
       </description>
     </release>
     -->
+    <release version="2.0.0-dev" date="2025-03-29">
+      <description>
+        <p>Beancount 3</p>
+        <ul>
+          <li>Updates beancount to version 3.</li>
+          <li>Updates fava and other dependencies as well.</li>
+          <li>Updates to GNOME 48.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.0" date="2024-10-05">
       <description>
         <p>1.0.0</p>
