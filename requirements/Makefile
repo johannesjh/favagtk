@@ -1,7 +1,7 @@
 # Makefile for managing favagtk's requirements
 
-PLATFORM=org.gnome.Platform//47
-SDK=org.gnome.Sdk//47
+PLATFORM=org.gnome.Platform//48
+SDK=org.gnome.Sdk//48
 
 .PHONY: python3-gnome-platform.in
 python3-gnome-platform.in:
@@ -15,6 +15,7 @@ python3-gnome-platform.in:
 	#
 	# patch the resulting file by removing packages that cannot be resolved on pypi:
 	sed -i '/^pwquality/d' python3-gnome-platform.in
+	sed -i 's/^mako == 1.3.9.dev0/mako == 1.3.9/' python3-gnome-platform.in
 
 .PHONY: pip-compile
 pip-compile:
