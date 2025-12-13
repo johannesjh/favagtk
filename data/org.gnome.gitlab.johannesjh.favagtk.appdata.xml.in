@@ -42,16 +42,16 @@
   </kudos>
   <developer_name>johannesjh</developer_name>
   <releases>
-    <!--
-    <release version="2.0.1-dev" date="">
+    <release version="2.0.1" date="2025-12-13">
       <description>
-        <p>Summary.</p>
+        <p>Updates to GNOME 49, and Darkmode is working now!</p>
         <ul>
-          <li>Detail.</li>
+          <li>Updates to GNOME 49.</li>
+          <li>Updates fava, beancount, and many other packages.</li>
+          <li>Dark mode is working now, as a result of all the updates.</li>
         </ul>
       </description>
     </release>
-    -->
     <release version="2.0.0" date="2025-03-29">
       <description>
         <p>Beancount 3</p>
