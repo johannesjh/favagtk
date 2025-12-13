@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 project('favagtk',
-          version: '2.0.1',
+          version: '2.0.2-dev',
     meson_version: '>= 1.4.0',
   default_options: [ 'warning_level=2',
                    ],
