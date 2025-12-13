@@ -45,9 +45,11 @@
     <!--
     <release version="2.0.1-dev" date="">
       <description>
-        <p>Summary.</p>
+        <p>Updates to GNOME 49. Darkmode is working now.</p>
         <ul>
-          <li>Detail.</li>
+          <li>Updates the underlying SDK to GNOME 49</li>
+          <li>Updates fava, beancount, and many other packages.</li>
+          <li>Dark mode is working now, as a result of all the updates.</li>
         </ul>
       </description>
     </release>

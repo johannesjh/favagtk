@@ -1,7 +1,7 @@
 # Makefile for managing favagtk's requirements
 
-PLATFORM=org.gnome.Platform//48
-SDK=org.gnome.Sdk//48
+PLATFORM=org.gnome.Platform//49
+SDK=org.gnome.Sdk//49
 
 .PHONY: python3-gnome-platform.in
 python3-gnome-platform.in:
@@ -35,7 +35,7 @@ python3-main.json:
 	# This script generates a flatpak build module definition for main python dependencies.
 	# Input: The target reads python dependencies from python3-main.txt
 	# Output: The target generates a flatpak build module "python3-main.json"
-	./req2flatpak.py --requirements-file python3-main.txt --target-platforms 312-x86_64 312-aarch64 > python3-main.json
+	./req2flatpak.py --requirements-file python3-main.txt --target-platforms 313-x86_64 313-aarch64 > python3-main.json
 	- pre-commit run --files python3-main.json > /dev/null
 	echo "done creating python3-main.json"
 
