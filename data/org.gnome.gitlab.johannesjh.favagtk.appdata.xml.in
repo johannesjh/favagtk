@@ -2,19 +2,20 @@
 <component type="desktop-application">
 	<id>org.gnome.gitlab.johannesjh.favagtk.desktop</id>
   <name>Fava</name>
-  <summary>Do your finances using fava and beancount</summary>
+  <summary>Do your finances</summary>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
 	<description>
-	  <p>This app allows to use the Fava and Beancount double-entry bookkeeping
-	    software packages as a GNOME desktop application.
-	  </p>
+	  <p>This app lets you use the Fava and Beancount double-entry bookkeeping software packages
+	    with the convenience of a desktop application.</p>
 	  <ul>
-	    <li>Easy installation using flatpak</li>
-	    <li>Start fava and beancount as you would any other desktop application.</li>
-	    <li>Built as a GNOME application, using GTK4 and webkit, packaged using flatpak.</li>
+      <li>Streamlined user interface — fava and beancount help you manage your finances with ease and clarity.</li>
+      <li>Simple installation via flatpak — no need to manually configure dependencies.</li>
+      <li>Seamless integration with your desktop environment — launch Fava and Beancount just like any other application in your GNOME desktop environment.</li>
+      <li>Provides the <a href="https://github.com/beancount/fava">fava</a>, <a href="https://github.com/beancount/beancount">beancount</a> and <a href="https://github.com/beancount/smart_importer">smart_importer</a> software packages.</li>
 	  </ul>
 	</description>
+
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://gitlab.gnome.org/johannesjh/favagtk</url>
   <url type="bugtracker">https://gitlab.gnome.org/johannesjh/favagtk/-/issues</url>
@@ -46,9 +47,10 @@
     <!--
     <release version="2.0.2-dev" date="">
       <description>
-        <p>...</p>
+        <p>Maintenance</p>
         <ul>
-          <li>...</li>
+          <li>Improves app metadata. (Adds a VCS Url to favagtk's git repository).</li>
+          <li>Optimizes the app build. (Removes blueprint from the build because it comes included in the GNOME runtime platform since GNOME 49_.</li>
         </ul>
       </description>
     </release>
