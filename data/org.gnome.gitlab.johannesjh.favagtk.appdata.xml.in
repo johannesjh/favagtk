@@ -49,8 +49,8 @@
       <description>
         <p>Maintenance</p>
         <ul>
-          <li>Improves app metadata. (Adds a VCS Url to favagtk's git repository).</li>
-          <li>Optimizes the app build. (Removes blueprint from the build because it comes included in the GNOME runtime platform since GNOME 49_.</li>
+          <li>Improves app metadata.</li>
+          <li>Makes the app build smaller by removing redundant blueprint binaries.</li>
         </ul>
       </description>
     </release>
