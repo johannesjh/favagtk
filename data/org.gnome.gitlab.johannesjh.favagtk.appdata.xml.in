@@ -149,7 +149,7 @@
           <li>New feature: This release improves the app's integration with the GNOME desktop. The Fava Desktop app is now associated with *.beancount files, allowing users to choose "Open with..." and to then choose "Fava" in GNOME Files.</li>
           <li>New feature: It is now possible to open beancount files in favagtk straight from GNOME Files (or any other file explorer, for that matter).</li>
           <li>Maintenance: Updates to GNOME 44, updates fava and beancount.</li>
-          <li>Maintenance> Updates various dependencies including blueprint and python libraries.</li>
+          <li>Maintenance: Updates various dependencies including blueprint and python libraries.</li>
         </ul>
       </description>
     </release>
@@ -213,3 +213,4 @@
     </release>
   </releases>
 </component>
+
