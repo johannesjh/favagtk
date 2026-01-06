@@ -23,12 +23,14 @@ To update required dependency versions:
 5. Resolve python dependencies by running `make -C requirements pip-compile`.
 6. Update the python package versions in the flatpak build module by running `make -C requirements python3-main.json`. You may want/need to increment the python version in the according makefile lines.
 
-...then build and test favagtk.
-
 
 To update the blueprint compiler:
 
-1. Update the version of blueprint in `requirements/blueprint-compiler.json` and in `subprojects/blueprint-compiler.wrap`
+1. Check what version of blueprint is included in your target platform. E.g., `flatpak run org.gnome.Platform -c "blueprint-compiler --version"`.
+2. Update the version of blueprint in the meson subproject, in `subprojects/blueprint-compiler.wrap`.
+3. Optionally, in case you want to / or need to include a different version of blueprint than what is shipped with the target platform version, then edit `requirements/blueprint-compiler.json` and include this flatpak build module in the beginning of the flatpak build.
+
+...then build and test favagtk.
 
 
 ## Autoupdating Dependency Versions
